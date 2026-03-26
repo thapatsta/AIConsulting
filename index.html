@@ -57,7 +57,7 @@
       left: 0;
       right: 0;
       z-index: 100;
-      padding: 22px 28px;
+      padding: 12px 28px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -139,6 +139,7 @@
     .hero h1 em {
       font-style: italic;
       color: var(--accent);
+      font-size: 0.82em;
     }
     .hero-sub {
       font-size: 18px;
@@ -515,6 +516,9 @@
     .d2 { transition-delay: 0.20s; }
     .d3 { transition-delay: 0.30s; }
     /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: clamp(20px, 5.5vw, 42px); }
+    }
     @media (max-width: 860px) {
       .cards { grid-template-columns: 1fr; }
       .trust-grid { grid-template-columns: 1fr; }
@@ -539,7 +543,7 @@
     @media (max-width: 600px) {
       section { padding: 80px 0; }
       .hero { padding: 120px 0 80px; min-height: auto; }
-      .hero h1 { font-size: 40px; }
+      .hero h1 { font-size: clamp(18px, 5vw, 36px); }
       .hero-sub { font-size: 16px; }
       .section-title { font-size: 28px; }
       .trust-stat { font-size: 40px; }
@@ -564,7 +568,7 @@
   <section class="hero">
     <div class="container">
       <p class="hero-eyebrow">AI Consulting &middot; Toronto</p>
-      <h1>Find out exactly where AI can<br>give your team <em>10+ hours<br>back every week.</em></h1>
+      <h1>Your team is spending hours every week<br>on work AI could handle.<br><em>Let's find exactly where.</em></h1>
       <p class="hero-sub">I'll find exactly where — free. A 45-minute call, 3 specific AI opportunities in your business, and a written breakdown delivered within 24 hours.</p>
       <div class="hero-actions">
         <a href="#book" class="btn-primary">Book Your Free Review</a>
