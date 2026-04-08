@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<!--
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  patrickdes — AI AUTOMATION USE CASE TEMPLATE                               ║
+║  ─────────────────────────────────────────────────────────────────────────  ║
+║  HOW TO USE THIS TEMPLATE                                                   ║
+║  1. Copy this file and rename it (e.g. "lead-generation.html")              ║
+║  2. Find every ✏️ DESIGN PROMPT comment and replace the placeholder text    ║
+║  3. Update the card link in use-cases-index.html to point to your new file  ║
+║  4. Swap the hero card color by changing the --hero-accent CSS variable     ║
+║                                                                             ║
+║  DESIGN PROMPT FORMAT:                                                      ║
+║  ✏️  = replace this text                                                    ║
+║  💡  = design/copy tip                                                      ║
+║  🎨  = visual/style instruction                                             ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ✏️ PAGE TITLE ─────────────────────────────────────────────────────
+         Format: "[Use Case Name] — patrickdes"
+         Example: "AI Lead Generation — patrickdes"
+         ─────────────────────────────────────────────────────────────────── -->
+    <title>AI Lead Generation — patrickdes</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg:      #07070f;
+            --surface: #0c0c1a;
+            --text:    #e4e4f0;
+            --muted:   #5a5a78;
+            --border:  rgba(0,212,255,0.09);
+
+            /*
+            🎨 HERO ACCENT COLOR ──────────────────────────────────────────
+               Change this one variable to re-theme the whole page.
+               Use the matching accent from the index page card:
+               · Lead Generation      → #00d4ff  (cyan)
+               · Customer Support     → #8b6fff  (purple)
+               · Document Processing  → #00e87a  (green)
+               · Reporting/Analytics  → #ffb800  (amber)
+            ───────────────────────────────────────────────────────────── */
+            --hero-accent: #00d4ff;
+            --hero-accent-rgb: 0, 212, 255;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Epilogue', sans-serif;
+            font-weight: 300;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background-image:
+                linear-gradient(rgba(0,212,255,0.022) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,212,255,0.022) 1px, transparent 1px);
+            background-size: 64px 64px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ── NAV ─────────────────────────────────────────────────────── */
+        nav {
+            position: fixed;
+            inset: 0 0 auto 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 48px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(7,7,15,0.88);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        .nav-logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px; font-weight: 500;
+            letter-spacing: 0.06em;
+            color: var(--text);
+            text-decoration: none;
+        }
+        .nav-logo em { color: var(--hero-accent); font-style: normal; }
+
+        .nav-links { display: flex; gap: 36px; }
+        .nav-links a {
+            font-size: 13px; font-weight: 400;
+            letter-spacing: 0.03em;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--text); }
+
+        .btn-outline {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px; font-weight: 500;
+            letter-spacing: 0.08em;
+            padding: 10px 22px;
+            border: 1px solid rgba(var(--hero-accent-rgb), 0.35);
+            color: var(--hero-accent);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-outline:hover {
+            background: rgba(var(--hero-accent-rgb), 0.07);
+            box-shadow: 0 0 20px rgba(var(--hero-accent-rgb), 0.12);
+        }
+
+        /* ── BACK LINK ───────────────────────────────────────────────── */
+        .back-link {
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding-top: 120px;
+            padding-left: 48px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+            opacity: 0;
+            animation: fadeUp 0.45s ease forwards 0.1s;
+        }
+        .back-link:hover { color: var(--text); }
+        .back-link::before { content: '←'; font-size: 13px; }
+
+        /* ── HERO ────────────────────────────────────────────────────── */
+        .case-hero {
+            position: relative;
+            z-index: 1;
+            padding: 32px 48px 88px;
+            overflow: hidden;
+        }
+
+        /* Glow behind hero */
+        .case-hero::after {
+            content: '';
+            position: absolute;
+            top: -80px; right: -120px;
+            width: 640px; height: 480px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse, rgba(var(--hero-accent-rgb), 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--hero-accent);
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeUp 0.45s ease forwards 0.2s;
+        }
+
+        /* ✏️ HOOK LINE: One punchy problem statement — the "before" state.
+           Keep it short and punchy. Examples:
+           · "No Pipeline. No Prospects. No Chance."
+           · "200 Tickets. 3 Support Reps. No Automation."
+           · "3 Hours a Day. Just Copying Data."        */
+        .hero-hook {
+            font-size: clamp(13px, 1.4vw, 15px);
+            font-weight: 400;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(228,228,240,0.35);
+            margin-bottom: 18px;
+            opacity: 0;
+            animation: fadeUp 0.45s ease forwards 0.28s;
+        }
+
+        .case-hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: clamp(48px, 7vw, 96px);
+            line-height: 0.93;
+            letter-spacing: -0.04em;
+            color: var(--text);
+            max-width: 760px;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards 0.36s;
+        }
+
+        /* ✏️ INTRO PARAGRAPH: 2-3 sentences. Set the scene.
+           Who is the client? What was broken? What changed?
+           Keep it factual. No fluff. 50-80 words.           */
+        .hero-intro {
+            max-width: 580px;
+            font-size: 17px;
+            line-height: 1.72;
+            color: rgba(228,228,240,0.6);
+            opacity: 0;
+            animation: fadeUp 0.5s ease forwards 0.48s;
+        }
+
+        /* Left accent bar */
+        .case-hero::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--hero-accent);
+            box-shadow: 0 0 24px var(--hero-accent), 0 0 60px rgba(var(--hero-accent-rgb), 0.35);
+        }
+
+        /* ── METRICS BAR ─────────────────────────────────────────────── */
+        /*
+        ✏️ METRICS BAR: 3 key results/outcomes from this use case.
+           💡 Use specific numbers — they build credibility.
+              Good: "3× Pipeline Growth" / Bad: "Significant Improvement"
+           💡 One metric per column: NUMBER + LABEL
+           Examples:
+              · 3×     Pipeline Growth
+              · 80%    Reduction in Manual Work
+              · 14 hrs Saved Per Week
+              · $240k  Annual Cost Saving
+              · 85%    First-Contact Resolution
+        */
+        .metrics-bar {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border: 1px solid var(--border);
+            margin: 0 48px 80px;
+            opacity: 0;
+            animation: fadeUp 0.5s ease forwards 0.6s;
+        }
+
+        .metric {
+            padding: 40px 36px;
+            border-right: 1px solid var(--border);
+        }
+        .metric:last-child { border-right: none; }
+
+        .metric-number {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: clamp(36px, 4.5vw, 58px);
+            line-height: 1;
+            letter-spacing: -0.03em;
+            color: var(--hero-accent);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .metric-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* ── CONTENT BLOCKS ──────────────────────────────────────────── */
+        .case-content {
+            position: relative;
+            z-index: 1;
+            padding: 0 48px;
+            max-width: 1200px;
+        }
+
+        .content-block {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 48px;
+            padding: 72px 0;
+            border-top: 1px solid var(--border);
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+        .content-block.visible { opacity: 1; transform: translateY(0); }
+
+        /* Section label sidebar */
+        .section-sidebar {
+            padding-top: 8px;
+        }
+
+        .section-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--hero-accent);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .section-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* Section body */
+        .section-body h2 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: clamp(28px, 3.2vw, 40px);
+            line-height: 1.08;
+            letter-spacing: -0.025em;
+            color: var(--text);
+            margin-bottom: 28px;
+        }
+
+        .section-body p {
+            font-size: 16px;
+            line-height: 1.78;
+            color: rgba(228,228,240,0.62);
+            margin-bottom: 20px;
+            max-width: 560px;
+        }
+        .section-body p:last-of-type { margin-bottom: 0; }
+
+        /* ── PROCESS STEPS ───────────────────────────────────────────── */
+        /*
+        ✏️ PROCESS STEPS: Walk through HOW the automation was built.
+           💡 Use 3–5 steps. Each step = one clear action.
+           💡 Use active verbs: "Mapped" / "Built" / "Integrated" / "Deployed"
+           💡 Keep each description to 1-2 sentences max.
+        */
+        .process-steps {
+            margin-top: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .step {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            color: var(--hero-accent);
+            background: rgba(var(--hero-accent-rgb), 0.08);
+            border: 1px solid rgba(var(--hero-accent-rgb), 0.2);
+            padding: 6px 12px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .step-body h3 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 17px;
+            letter-spacing: -0.01em;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .step-body p {
+            font-size: 14px;
+            line-height: 1.65;
+            color: var(--muted);
+            max-width: 480px;
+            margin-bottom: 0 !important;
+        }
+
+        /* ── PULL QUOTE ──────────────────────────────────────────────── */
+        /*
+        ✏️ PULL QUOTE: A short, direct quote from the client.
+           💡 Ideal length: 20–40 words.
+           💡 The quote should describe the transformation in their own words.
+           💡 If you don't have a real quote yet, use a result statement:
+              e.g. "We stopped spending Sunday afternoons building reports
+              and started spending them on strategy."
+        */
+        .pull-quote-block {
+            position: relative;
+            z-index: 1;
+            margin: 0 48px 0;
+            padding: 72px 0;
+            border-top: 1px solid var(--border);
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+        .pull-quote-block.visible { opacity: 1; transform: translateY(0); }
+
+        .pull-quote {
+            font-family: 'Epilogue', sans-serif;
+            font-style: italic;
+            font-weight: 300;
+            font-size: clamp(22px, 3vw, 36px);
+            line-height: 1.42;
+            letter-spacing: -0.015em;
+            color: var(--text);
+            max-width: 680px;
+            padding-left: 40px;
+            border-left: 3px solid var(--hero-accent);
+            box-shadow: -20px 0 60px rgba(var(--hero-accent-rgb), 0.04);
+            margin-bottom: 24px;
+        }
+
+        .pull-quote-cite {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding-left: 40px;
+        }
+
+        /* ── RELATED USE CASES ───────────────────────────────────────── */
+        /*
+        ✏️ RELATED USE CASES: Link to 3 other use case pages.
+           🎨 Each card uses the accent colour of that use case:
+              Lead Gen → cyan / Support → purple / Docs → green / Analytics → amber
+           ✏️ Update the href, category tag, title, and description for each card.
+        */
+        .related-section {
+            position: relative;
+            z-index: 1;
+            padding: 80px 48px;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-heading-row {
+            display: flex;
+            align-items: baseline;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .section-heading-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .section-heading-title {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: clamp(22px, 2.8vw, 32px);
+            letter-spacing: -0.02em;
+            color: var(--text);
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .related-card {
+            position: relative;
+            padding: 36px 32px;
+            border: 1px solid var(--border);
+            text-decoration: none;
+            overflow: hidden;
+            transition: border-color 0.25s;
+        }
+
+        /* 🎨 Each related card has its own accent colour strip — update per card */
+        .related-card::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 2px;
+        }
+
+        .related-card.accent-purple::before    { background: #8b6fff; }
+        .related-card.accent-green::before     { background: #00e87a; }
+        .related-card.accent-amber::before     { background: #ffb800; }
+        .related-card.accent-cyan::before      { background: #00d4ff; }
+
+        .related-card:hover { border-color: rgba(228,228,240,0.15); background: var(--surface); }
+
+        .related-card-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            display: block;
+        }
+        .related-card.accent-purple .related-card-tag { color: #8b6fff; }
+        .related-card.accent-green  .related-card-tag { color: #00e87a; }
+        .related-card.accent-amber  .related-card-tag { color: #ffb800; }
+        .related-card.accent-cyan   .related-card-tag { color: #00d4ff; }
+
+        .related-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 1.2;
+            letter-spacing: -0.015em;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .related-card p {
+            font-size: 13px;
+            line-height: 1.62;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .related-arrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+            transition: color 0.2s;
+        }
+        .related-card:hover .related-arrow { color: var(--text); }
+
+        /* ── CTA BLOCK ───────────────────────────────────────────────── */
+        /*
+        ✏️ CTA BLOCK: The closing call-to-action.
+           💡 Personalise the headline to the use case:
+              "Ready to automate your lead generation?"
+              "Want to cut your support ticket volume in half?"
+              "Ready to reclaim hours lost to document admin?"
+        */
+        .cta-block {
+            position: relative;
+            z-index: 1;
+            padding: 100px 48px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .cta-block::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px; height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse, rgba(var(--hero-accent-rgb), 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-block h2 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: clamp(36px, 5vw, 68px);
+            line-height: 1;
+            letter-spacing: -0.04em;
+            color: var(--text);
+            max-width: 640px;
+            margin: 0 auto 16px;
+        }
+
+        .cta-block p {
+            font-size: 16px;
+            line-height: 1.65;
+            color: var(--muted);
+            max-width: 400px;
+            margin: 0 auto 40px;
+        }
+
+        .btn-primary {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px; font-weight: 500;
+            letter-spacing: 0.08em;
+            padding: 15px 32px;
+            background: var(--hero-accent);
+            color: #07070f;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center; gap: 8px;
+            transition: all 0.22s;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 36px rgba(var(--hero-accent-rgb), 0.28);
+        }
+
+        /* ── FOOTER ──────────────────────────────────────────────────── */
+        footer {
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid var(--border);
+            padding: 36px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .footer-logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px; color: var(--muted);
+        }
+        .footer-logo em { color: var(--hero-accent); font-style: normal; }
+        .footer-links { display: flex; gap: 28px; }
+        .footer-links a {
+            font-size: 12px; font-weight: 300;
+            color: var(--muted); text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--text); }
+        .footer-copy {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px; color: var(--muted); opacity: 0.45;
+        }
+
+        /* ── ANIMATIONS ──────────────────────────────────────────────── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── RESPONSIVE ──────────────────────────────────────────────── */
+        @media (max-width: 900px) {
+            .content-block { grid-template-columns: 1fr; gap: 24px; }
+            .section-sidebar { padding-top: 0; display: flex; gap: 12px; align-items: center; }
+        }
+        @media (max-width: 768px) {
+            nav { padding: 18px 24px; }
+            .nav-links { display: none; }
+            .back-link, .case-hero, .case-content, .pull-quote-block,
+            .related-section, .cta-block { padding-left: 24px; padding-right: 24px; }
+            .metrics-bar { margin: 0 24px 60px; grid-template-columns: 1fr; }
+            .metric { border-right: none; border-bottom: 1px solid var(--border); }
+            .metric:last-child { border-bottom: none; }
+            .related-grid { grid-template-columns: 1fr; }
+            .case-hero h1 { font-size: clamp(40px, 10vw, 64px); }
+            footer { padding: 28px 24px; flex-direction: column; gap: 20px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── NAVIGATION ────────────────────────────────────────────────── -->
+    <nav>
+        <a href="./" class="nav-logo">patrickdes<em>.</em></a>
+        <div class="nav-links">
+            <a href="./">Use Cases</a>
+            <a href="/services">Services</a>
+            <a href="/about">About</a>
+        </div>
+        <a href="#cta" class="btn-outline">Book a Call ↗</a>
+    </nav>
+
+    <!-- ── BACK LINK ─────────────────────────────────────────────────── -->
+    <a href="./" class="back-link">All Use Cases</a>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         ✏️ HERO SECTION
+         ─────────────────────────────────────────────────────────────────
+         Fill in:
+           1. hero-tag     → use case category (e.g. "Lead Generation")
+           2. hero-hook    → punchy "before" problem statement
+           3. h1           → the case study title
+           4. hero-intro   → 2–3 sentence overview paragraph
+         💡 The title should describe the transformation, not just the tool.
+            Bad:  "AI-Powered CRM Automation"
+            Good: "The Sales Team That Never Sleeps"
+         ══════════════════════════════════════════════════════════════════ -->
+    <section class="case-hero">
+
+        <!-- ✏️ Category tag — matches the index card label -->
+        <div class="hero-tag">Lead Generation</div>
+
+        <!-- ✏️ Hook — the "before" in one punchy line -->
+        <div class="hero-hook">No Pipeline. No Prospects. No Chance.</div>
+
+        <!-- ✏️ Case study title -->
+        <h1>The Sales Team<br>That Never Sleeps</h1>
+
+        <!-- ✏️ Intro paragraph — 2-3 sentences, set the scene -->
+        <p class="hero-intro">
+            A regional professional services firm had a capable team but a broken prospecting process — manual list-building, inconsistent follow-ups, and a pipeline that dried up the moment the team got busy with delivery. We built a fully automated lead generation system that now runs every night while the team focuses on closing.
+        </p>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         ✏️ METRICS BAR
+         ─────────────────────────────────────────────────────────────────
+         3 key results. Use real numbers if you have them.
+         Each metric = metric-number (big) + metric-label (small)
+         ══════════════════════════════════════════════════════════════════ -->
+    <div class="metrics-bar">
+
+        <!-- ✏️ Metric 1 -->
+        <div class="metric">
+            <span class="metric-number">3×</span>
+            <span class="metric-label">Pipeline Growth</span>
+        </div>
+
+        <!-- ✏️ Metric 2 -->
+        <div class="metric">
+            <span class="metric-number">80%</span>
+            <span class="metric-label">Reduction in Manual Work</span>
+        </div>
+
+        <!-- ✏️ Metric 3 -->
+        <div class="metric">
+            <span class="metric-number">14 hrs</span>
+            <span class="metric-label">Saved Per Week</span>
+        </div>
+
+    </div>
+
+    <!-- ── NARRATIVE CONTENT ──────────────────────────────────────────── -->
+    <div class="case-content">
+
+        <!-- ══════════════════════════════════════════════════════════════
+             ✏️ SECTION 01 — THE CHALLENGE
+             ──────────────────────────────────────────────────────────────
+             Describe the problem in detail. 2–4 paragraphs.
+             💡 Be specific — name the exact pain points.
+             💡 Use the client's perspective/language where possible.
+             💡 End with the question: "Why wasn't this working?"
+             ══════════════════════════════════════════════════════════════ -->
+        <div class="content-block">
+            <div class="section-sidebar">
+                <span class="section-num">01</span>
+                <span class="section-name">The Challenge</span>
+            </div>
+            <div class="section-body">
+
+                <!-- ✏️ Challenge heading — summarise the core problem -->
+                <h2>A Pipeline That Dried Up Every Time Delivery Got Busy</h2>
+
+                <!-- ✏️ Challenge paragraphs — be specific about the pain -->
+                <p>
+                    The firm had no shortage of talent — three senior consultants and a small delivery team — but their business development process was entirely manual and entirely dependent on one person's energy on any given week. When client work was heavy, prospecting stopped. When prospecting stopped, the pipeline thinned. The cycle repeated itself every quarter.
+                </p>
+                <p>
+                    Attempting to fix this with a part-time sales hire hadn't worked — the role required too much institutional knowledge to hand off easily. CRM adoption was inconsistent, lead data was scattered across spreadsheets and email threads, and follow-up sequences were built and forgotten. The team knew they had a problem but had no clear path to fixing it that didn't involve more people.
+                </p>
+                <p>
+                    The real issue wasn't effort — it was that every step in their prospecting workflow required a human decision at a moment when the humans were already at capacity.
+                </p>
+
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             ✏️ SECTION 02 — THE SOLUTION
+             ──────────────────────────────────────────────────────────────
+             Describe WHAT you built and WHY those choices.
+             💡 Explain the automation at a conceptual level — not a technical one.
+             💡 Focus on what changed for the client, not how the code works.
+             💡 Name the tools/platforms only if they add credibility.
+             ══════════════════════════════════════════════════════════════ -->
+        <div class="content-block">
+            <div class="section-sidebar">
+                <span class="section-num">02</span>
+                <span class="section-name">The Solution</span>
+            </div>
+            <div class="section-body">
+
+                <!-- ✏️ Solution heading — what did you build? -->
+                <h2>Automated Prospecting, Enrichment &amp; Outreach — Running 24/7</h2>
+
+                <!-- ✏️ Solution paragraphs — what does the system do? -->
+                <p>
+                    We built a three-layer automation that handles the full top-of-funnel workflow: targeted prospect discovery, contact enrichment, and personalised outreach sequences — without requiring any ongoing input from the team.
+                </p>
+                <p>
+                    Each night, the system pulls a new batch of qualified prospects matching the firm's ideal client profile, enriches each contact with verified data, and slots them into a personalised email sequence timed to the firm's defined cadence. Replies and engagement events automatically update the CRM, trigger follow-up tasks, or escalate a lead to a consultant — all based on rules the team defined upfront.
+                </p>
+                <p>
+                    The result: prospecting happens whether or not anyone on the team has the bandwidth to make it happen. For the first time, delivery and business development could run in parallel rather than competing for the same hours.
+                </p>
+
+            </div>
+        </div>
+
+    </div><!-- /case-content -->
+
+    <!-- ── PULL QUOTE ─────────────────────────────────────────────────── -->
+    <div class="pull-quote-block">
+
+        <!-- ✏️ Client quote — their words describing the transformation -->
+        <blockquote class="pull-quote">
+            "We stopped treating prospecting as something we'd get to when things slowed down. It just… runs now. We walk in on Monday and there are qualified conversations already in motion."
+        </blockquote>
+
+        <!-- ✏️ Attribution — Name, Title, Company -->
+        <cite class="pull-quote-cite">— Managing Director, Regional Consulting Firm</cite>
+
+    </div>
+
+    <!-- ── CONTINUE NARRATIVE ─────────────────────────────────────────── -->
+    <div class="case-content">
+
+        <!-- ══════════════════════════════════════════════════════════════
+             ✏️ SECTION 03 — THE PROCESS
+             ──────────────────────────────────────────────────────────────
+             How did you build it? 3–5 numbered steps.
+             💡 Use active verbs: Mapped / Defined / Built / Integrated / Deployed
+             💡 Each step = a distinct phase of the project
+             💡 Keep each description to 1-2 short sentences
+             ══════════════════════════════════════════════════════════════ -->
+        <div class="content-block">
+            <div class="section-sidebar">
+                <span class="section-num">03</span>
+                <span class="section-name">The Process</span>
+            </div>
+            <div class="section-body">
+
+                <!-- ✏️ Process heading -->
+                <h2>How We Built It</h2>
+
+                <div class="process-steps">
+
+                    <!-- ✏️ Step 1 -->
+                    <div class="step">
+                        <span class="step-num">01</span>
+                        <div class="step-body">
+                            <h3>Mapped the Ideal Client Profile</h3>
+                            <p>Worked with the team to define exact targeting criteria — industry, company size, role, geography, and buying signals — so the automation only surfaced relevant prospects.</p>
+                        </div>
+                    </div>
+
+                    <!-- ✏️ Step 2 -->
+                    <div class="step">
+                        <span class="step-num">02</span>
+                        <div class="step-body">
+                            <h3>Built the Prospect Discovery Engine</h3>
+                            <p>Integrated a data enrichment API with a nightly automation that sources, validates, and deduplicates new contacts against the existing CRM.</p>
+                        </div>
+                    </div>
+
+                    <!-- ✏️ Step 3 -->
+                    <div class="step">
+                        <span class="step-num">03</span>
+                        <div class="step-body">
+                            <h3>Designed the Outreach Sequences</h3>
+                            <p>Wrote and configured 3-touch personalised email sequences for each client segment, with conditional logic that adapts follow-up timing based on open/click behaviour.</p>
+                        </div>
+                    </div>
+
+                    <!-- ✏️ Step 4 -->
+                    <div class="step">
+                        <span class="step-num">04</span>
+                        <div class="step-body">
+                            <h3>Connected CRM &amp; Escalation Logic</h3>
+                            <p>Automated reply classification and routing — interested replies are flagged and assigned to a consultant within minutes; unsubscribes are handled instantly without manual review.</p>
+                        </div>
+                    </div>
+
+                    <!-- ✏️ Step 5 (optional — delete this step if you only have 4) -->
+                    <div class="step">
+                        <span class="step-num">05</span>
+                        <div class="step-body">
+                            <h3>Deployed &amp; Handed Off</h3>
+                            <p>Ran a 2-week parallel test alongside the manual process, dialled in targeting and sequence copy, then transferred ownership to the client with a simple monitoring dashboard.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             ✏️ SECTION 04 — THE RESULTS
+             ──────────────────────────────────────────────────────────────
+             What happened after launch? 2–3 paragraphs.
+             💡 Reference the metrics from the bar above — tie story to numbers.
+             💡 Describe what the team is doing NOW with the time they got back.
+             💡 End on a forward-looking note.
+             ══════════════════════════════════════════════════════════════ -->
+        <div class="content-block">
+            <div class="section-sidebar">
+                <span class="section-num">04</span>
+                <span class="section-name">The Results</span>
+            </div>
+            <div class="section-body">
+
+                <!-- ✏️ Results heading -->
+                <h2>A Pipeline That Runs Independently of the Team's Bandwidth</h2>
+
+                <!-- ✏️ Results paragraphs -->
+                <p>
+                    Within 60 days of go-live, the firm had 3× the number of active conversations in their pipeline compared to their previous quarterly average — all without the team increasing the hours they spent on BD. The automation was surfacing 40–60 qualified prospects per week and converting roughly 8% to active email conversations.
+                </p>
+                <p>
+                    More meaningfully, the 14 hours per week previously spent on manual list-building, data entry, and outreach scheduling were redistributed to client delivery and proposal work. The team no longer experienced the feast-or-famine cycle that had defined their business development for three years.
+                </p>
+                <p>
+                    The system continues to run and improve. Monthly reviews of sequence performance have led to two rounds of copy refinements that increased reply rates by a further 22%. The foundation is in place to layer in LinkedIn outreach and event-triggered sequences as the firm scales.
+                </p>
+
+            </div>
+        </div>
+
+    </div><!-- /case-content -->
+
+    <!-- ── RELATED USE CASES ──────────────────────────────────────────── -->
+    <section class="related-section">
+        <div class="section-heading-row">
+            <span class="section-heading-label">// More Use Cases</span>
+            <span class="section-heading-title">Keep Exploring</span>
+        </div>
+
+        <div class="related-grid">
+
+            <!-- ✏️ Related Card 1 — link to another use case page -->
+            <a href="./lead-generation.html" class="related-card accent-purple">
+                <!-- ✏️ Category tag -->
+                <span class="related-card-tag">Customer Support</span>
+                <!-- ✏️ Card title -->
+                <h3>From 200 Tickets to 20</h3>
+                <!-- ✏️ One-line description -->
+                <p>AI triage resolved 85% of queries without human intervention — freeing the team for work that actually requires them.</p>
+                <span class="related-arrow">Explore use case →</span>
+            </a>
+
+            <!-- ✏️ Related Card 2 -->
+            <a href="./lead-generation.html" class="related-card accent-green">
+                <span class="related-card-tag">Document Processing</span>
+                <h3>The Hour-Long Task That Now Takes 4 Minutes</h3>
+                <p>Automated contract review and data extraction eliminated 3 hours of daily admin across a team of 12.</p>
+                <span class="related-arrow">Explore use case →</span>
+            </a>
+
+            <!-- ✏️ Related Card 3 -->
+            <a href="./lead-generation.html" class="related-card accent-amber">
+                <span class="related-card-tag">Reporting &amp; Analytics</span>
+                <h3>Reports That Write Themselves</h3>
+                <p>A financial advisory practice gets a fully formatted weekly report delivered every Monday at 7am — no manual work.</p>
+                <span class="related-arrow">Explore use case →</span>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- ── CTA BLOCK ──────────────────────────────────────────────────── -->
+    <section class="cta-block" id="cta">
+
+        <!-- ✏️ CTA Headline — personalise to this use case -->
+        <h2>Ready to automate<br>your lead generation?</h2>
+
+        <!-- ✏️ CTA sub-copy — keep to 1-2 sentences -->
+        <p>Book a free 30-minute strategy call. We'll map out exactly which workflows are worth automating first.</p>
+
+        <a href="/#contact" class="btn-primary">Book a Strategy Call ↗</a>
+
+    </section>
+
+    <!-- ── FOOTER ─────────────────────────────────────────────────────── -->
+    <footer>
+        <div class="footer-logo">patrickdes<em>.</em></div>
+        <div class="footer-links">
+            <a href="./">Use Cases</a>
+            <a href="/services">Services</a>
+            <a href="/#contact">Contact</a>
+            <a href="/privacy">Privacy Policy</a>
+        </div>
+        <div class="footer-copy">© 2026 patrickdes</div>
+    </footer>
+
+    <script>
+        // Scroll-triggered entrance for content blocks and quote
+        const reveals = document.querySelectorAll('.content-block, .pull-quote-block');
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => io.observe(el));
+    </script>
+
+</body>
+</html>
