@@ -1,799 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Document Processing — patrickdes</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Epilogue:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #07070f;
-            --surface: #0c0c1a;
-            --text: #e4e4f0;
-            --muted: #5a5a78;
-            --hero-accent: #00e87a;
-            --hero-accent-rgb: 0, 232, 122;
-            --border: rgba(0, 232, 122, 0.09);
-            --border-accent: rgba(0, 232, 122, 0.09);
-
-            --font-syne: 'Syne', sans-serif;
-            --font-epilogue: 'Epilogue', sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: var(--font-epilogue);
-            font-size: 16px;
-            line-height: 1.6;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image:
-                linear-gradient(90deg, rgba(0, 232, 122, 0.022) 1px, transparent 1px),
-                linear-gradient(0deg, rgba(0, 232, 122, 0.022) 1px, transparent 1px);
-            background-size: 60px 60px;
-            background-position: 0 0;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        main {
-            position: relative;
-            z-index: 1;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-syne);
-            font-weight: 700;
-            line-height: 1.2;
-            letter-spacing: -0.01em;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        h2 {
-            font-size: 2.25rem;
-            margin-bottom: 1.5rem;
-        }
-
-        h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        p {
-            margin-bottom: 1.5rem;
-            color: var(--text);
-            line-height: 1.8;
-        }
-
-        a {
-            color: var(--hero-accent);
-            text-decoration: none;
-            transition: opacity 0.3s ease;
-        }
-
-        a:hover {
-            opacity: 0.8;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(7, 7, 15, 0.7);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .nav-logo {
-            font-family: var(--font-syne);
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--hero-accent);
-            text-decoration: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .nav-logo:hover {
-            opacity: 0.8;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--hero-accent);
-        }
-
-        .hero {
-            padding-top: 120px;
-            padding-bottom: 60px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-tag {
-            display: inline-block;
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            color: var(--hero-accent);
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, var(--text), var(--hero-accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-hook {
-            font-size: 1.5rem;
-            color: var(--muted);
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(0, 232, 122, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(40px);
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .metrics {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 900px;
-            margin: 4rem auto;
-            padding: 2rem;
-            background: rgba(12, 12, 26, 0.5);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-        }
-
-        .metric {
-            text-align: center;
-        }
-
-        .metric-value {
-            font-family: var(--font-syne);
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--hero-accent);
-            margin-bottom: 0.5rem;
-        }
-
-        .metric-label {
-            font-size: 0.9rem;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        section {
-            padding: 4rem 0;
-            border-top: 1px solid var(--border);
-        }
-
-        section:first-of-type {
-            border-top: none;
-        }
-
-        .content-block {
-            display: grid;
-            grid-template-columns: 220px 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .content-sidebar {
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--hero-accent);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            padding-top: 0.5rem;
-        }
-
-        .content-main {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .content-main h2 {
-            margin-bottom: 1.5rem;
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .pull-quote {
-            margin: 3rem 0;
-            padding: 2.5rem;
-            background: rgba(0, 232, 122, 0.05);
-            border-left: 3px solid var(--hero-accent);
-            border-radius: 4px;
-            font-size: 1.2rem;
-            font-style: italic;
-            color: var(--text);
-            line-height: 1.9;
-        }
-
-        .pull-quote-attr {
-            font-size: 0.9rem;
-            color: var(--muted);
-            margin-top: 1rem;
-            font-style: normal;
-        }
-
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .step {
-            padding: 2rem;
-            background: rgba(12, 12, 26, 0.5);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .step-number {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--hero-accent);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 600;
-        }
-
-        .step h3 {
-            font-size: 1.25rem;
-            margin: 0;
-        }
-
-        .step p {
-            margin: 0;
-            font-size: 0.95rem;
-            line-height: 1.7;
-            color: var(--muted);
-        }
-
-        .related-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .card {
-            padding: 2rem;
-            background: rgba(12, 12, 26, 0.5);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .card:hover {
-            border-color: var(--hero-accent);
-            background: rgba(0, 232, 122, 0.08);
-        }
-
-        .card-tag {
-            display: inline-block;
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            padding: 0.4rem 0.8rem;
-            border: 1px solid currentColor;
-            border-radius: 4px;
-            width: fit-content;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-weight: 600;
-        }
-
-        .card.accent-cyan .card-tag {
-            color: #00d4ff;
-            border-color: #00d4ff;
-        }
-
-        .card.accent-purple .card-tag {
-            color: #b644ff;
-            border-color: #b644ff;
-        }
-
-        .card.accent-amber .card-tag {
-            color: #ffa500;
-            border-color: #ffa500;
-        }
-
-        .card h3 {
-            margin: 0;
-            font-size: 1.25rem;
-        }
-
-        .card p {
-            margin: 0;
-            font-size: 0.95rem;
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        .cta {
-            position: relative;
-            padding: 4rem 2rem;
-            text-align: center;
-            margin-top: 4rem;
-            overflow: hidden;
-        }
-
-        .cta::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0, 232, 122, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(60px);
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .cta-content {
-            position: relative;
-            z-index: 1;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.1rem;
-            color: var(--muted);
-            margin-bottom: 2rem;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--hero-accent);
-            color: var(--bg);
-            font-family: var(--font-syne);
-            font-size: 1rem;
-            font-weight: 700;
-            border: none;
-            border-radius: 4px;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(0, 232, 122, 0.3);
-        }
-
-        .cta-button:hover {
-            background: #00d46b;
-            box-shadow: 0 0 30px rgba(0, 232, 122, 0.5);
-        }
-
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 3rem 2rem;
-            background: rgba(7, 7, 15, 0.5);
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h4 {
-            font-family: var(--font-syne);
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 1rem;
-            color: var(--text);
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-section a {
-            color: var(--muted);
-            transition: color 0.3s ease;
-        }
-
-        .footer-section a:hover {
-            color: var(--hero-accent);
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.9rem;
-            color: var(--muted);
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-            color: var(--muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-
-        .back-link:hover {
-            color: var(--hero-accent);
-        }
-
-        .back-link::before {
-            content: '←';
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 1.75rem; }
-            .hero h1 { font-size: 2.5rem; }
-            .metrics { grid-template-columns: 1fr; gap: 1.5rem; }
-            .content-block { grid-template-columns: 1fr; gap: 1rem; }
-            .content-sidebar { margin-bottom: 1rem; }
-            .related-grid { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
-            .footer-content { grid-template-columns: repeat(2, 1fr); }
-            .cta h2 { font-size: 1.75rem; }
-        }
-
-        @media (max-width: 480px) {
-            nav { padding: 1rem; }
-            h1 { font-size: 1.75rem; }
-            h2 { font-size: 1.25rem; }
-            .hero h1 { font-size: 1.75rem; }
-            .hero-hook { font-size: 1.1rem; }
-            .process-steps { grid-template-columns: 1fr; }
-            .footer-content { grid-template-columns: 1fr; }
-            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Document Processing — Patrick Des</title>
+  <meta name="description" content="How AI document processing automation saves Toronto SMBs hours of daily admin by extracting, classifying, and routing document data automatically.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
 </head>
 <body>
-    <nav>
-        <a href="./" class="nav-logo">patrickdes</a>
-        <ul class="nav-links">
-            <li><a href="#services">Services</a></li>
-            <li><a href="#usecases">Use Cases</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
 
-    <main>
-        <div class="hero">
-            <div class="container">
-                <a href="./" class="back-link">Back to home</a>
-                <div class="hero-tag">Document Processing</div>
-                <h1>AI Document Processing<br>Automation</h1>
-                <p class="hero-hook">Extract, Organize, and Act on Document Data.</p>
-            </div>
+  <nav id="navbar">
+    <a href="/" class="nav-logo">Patrick Des.</a>
+    <a href="/#book" class="nav-cta">Book Free Review</a>
+  </nav>
+
+  <a href="./" class="back-link">&larr; All Use Cases</a>
+
+  <!-- ─── HERO ─── -->
+  <section class="case-hero">
+    <div class="container">
+      <div class="hero-tag">Document Processing</div>
+      <div class="hero-hook">Extract, Organize, and Act on Document Data.</div>
+      <h1>AI Document Processing<br>Automation</h1>
+      <p class="hero-intro">Automate the extraction, analysis, and organization of data from documents — saving hours of manual work, reducing errors, and triggering the right next steps automatically.</p>
+    </div>
+  </section>
+
+  <!-- ─── METRICS ─── -->
+  <div class="metrics-bar">
+    <div class="container" style="padding: 0;">
+      <div class="metrics-grid">
+        <div class="metric">
+          <span class="metric-value">3h</span>
+          <span class="metric-label">Daily Admin Eliminated</span>
         </div>
-
-        <div class="metrics fade-in">
-            <div class="metric">
-                <div class="metric-value">⏱</div>
-                <div class="metric-label">Massive Time Savings</div>
-            </div>
-            <div class="metric">
-                <div class="metric-value">✓</div>
-                <div class="metric-label">Reduced Human Error</div>
-            </div>
-            <div class="metric">
-                <div class="metric-value">↗</div>
-                <div class="metric-label">Scalable Operations</div>
-            </div>
+        <div class="metric">
+          <span class="metric-value">&check;</span>
+          <span class="metric-label">Reduced Human Error</span>
         </div>
-
-        <section class="container fade-in">
-            <p style="font-size: 1.1rem; color: var(--text); line-height: 1.9;">
-                Automate the extraction, analysis, and organization of data from documents — saving hours of manual work and reducing errors.
-            </p>
-        </section>
-
-        <section class="container fade-in">
-            <div class="content-block">
-                <div class="content-sidebar">SECTION 01</div>
-                <div class="content-main">
-                    <h2>The Problem</h2>
-                    <p>
-                        Teams spend too much time reading and summarizing documents, manually extracting key information, and repeating workflows that should be automated.
-                    </p>
-                    <p>
-                        Unstructured data scattered across PDFs, forms, and reports creates delays, inconsistencies, and avoidable mistakes in downstream operations.
-                    </p>
-                    <p>
-                        Manual processing slows decision-making and limits capacity as document volume grows.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section class="container fade-in">
-            <div class="content-block">
-                <div class="content-sidebar">SECTION 02</div>
-                <div class="content-main">
-                    <h2>The Solution</h2>
-                    <p>
-                        We implement AI-powered document processing that extracts structured data, summarizes key points, classifies content, and routes outputs into your existing workflows.
-                    </p>
-                    <p>
-                        Documents can be uploaded or received automatically, then processed into clean, categorized outputs for dashboards, spreadsheets, databases, or email workflows.
-                    </p>
-                    <p>
-                        Automation triggers can launch next steps immediately, so teams spend less time formatting data and more time acting on it.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section class="container fade-in">
-            <div class="pull-quote">
-                "Turning unstructured documents into structured outputs cut review time dramatically and gave our team clean data we could immediately use."
-                <div class="pull-quote-attr">— Operations Lead, SMB Team</div>
-            </div>
-        </section>
-
-        <section class="container fade-in">
-            <div class="content-block">
-                <div class="content-sidebar">SECTION 03</div>
-                <div class="content-main">
-                    <h2>How It Works</h2>
-                    <div class="process-steps">
-                        <div class="step">
-                            <div class="step-number">Step 01</div>
-                            <h3>Ingest Documents</h3>
-                            <p>Documents are uploaded or received from connected sources such as email, forms, and shared folders.</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">Step 02</div>
-                            <h3>Extract Key Data</h3>
-                            <p>AI extracts important fields and converts them into structured formats your systems can read and process.</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">Step 03</div>
-                            <h3>Classify and Summarize</h3>
-                            <p>Content is categorized with tags and summarized to surface what matters quickly to operational teams.</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">Step 04</div>
-                            <h3>Send Outputs</h3>
-                            <p>Structured results are pushed to dashboards, spreadsheets, databases, or sent directly via email.</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">Step 05</div>
-                            <h3>Trigger Next Steps</h3>
-                            <p>Workflow automations trigger follow-up actions so downstream teams can move immediately without manual handoffs.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="container fade-in">
-            <div class="content-block">
-                <div class="content-sidebar">SECTION 04</div>
-                <div class="content-main">
-                    <h2>Outcomes</h2>
-                    <p>
-                        Document-heavy teams save substantial time by eliminating repetitive extraction and review work.
-                    </p>
-                    <p>
-                        Error rates decrease as extraction and categorization become standardized and consistent across document types.
-                    </p>
-                    <p>
-                        Processing cycles become faster and more scalable, enabling teams to handle more volume without proportional increases in manual effort.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section class="container fade-in">
-            <h2 style="margin-bottom: 2rem;">Related Use Cases</h2>
-            <div class="related-grid">
-                <a href="./lead-generation.html" class="card accent-cyan">
-                    <div class="card-tag">Lead Generation</div>
-                    <h3>AI Lead Generation</h3>
-                    <p>A regional firm tripled their pipeline with a fully automated prospecting and outreach system that runs every night.</p>
-                </a>
-                <a href="./customer-support.html" class="card accent-purple">
-                    <div class="card-tag">Customer Support</div>
-                    <h3>AI Customer Support Automation</h3>
-                    <p>AI triage resolved 85% of support queries automatically — freeing the team for work that actually requires them.</p>
-                </a>
-                <a href="./reporting-analytics.html" class="card accent-amber">
-                    <div class="card-tag">Reporting &amp; Analytics</div>
-                    <h3>AI Reporting &amp; Analytics Automation</h3>
-                    <p>A financial advisory practice gets a fully formatted weekly report delivered every Monday at 7am — no manual work.</p>
-                </a>
-            </div>
-        </section>
-
-        <section class="cta fade-in">
-            <div class="cta-content">
-                <h2>Ready to reclaim hours<br>lost to document admin?</h2>
-                <p>Book a free 30-minute strategy call. We'll map out which parts of your document workflow are worth automating first.</p>
-                <a href="/#contact" class="cta-button">Schedule a Call</a>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Product</h4>
-                <ul>
-                    <li><a href="/#services">Services</a></li>
-                    <li><a href="/#usecases">Use Cases</a></li>
-                    <li><a href="/#pricing">Pricing</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="/#about">About</a></li>
-                    <li><a href="/#team">Team</a></li>
-                    <li><a href="/#blog">Blog</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Resources</h4>
-                <ul>
-                    <li><a href="/#docs">Documentation</a></li>
-                    <li><a href="/#guides">Guides</a></li>
-                    <li><a href="/#faq">FAQ</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="/#privacy">Privacy</a></li>
-                    <li><a href="/#terms">Terms</a></li>
-                    <li><a href="/#contact">Contact</a></li>
-                </ul>
-            </div>
+        <div class="metric">
+          <span class="metric-value">&nearr;</span>
+          <span class="metric-label">Scalable Operations</span>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 patrickdes. All rights reserved.</p>
-            <p>Built with AI. Designed for humans.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── CONTENT ─── -->
+  <div class="case-content">
+    <div class="container">
+
+      <div class="content-block reveal">
+        <div class="section-sidebar">
+          <span class="section-num">01</span>
+          <span class="section-name">The Challenge</span>
         </div>
-    </footer>
+        <div class="section-body">
+          <h2>The Problem</h2>
+          <p>Teams spend too much time reading and summarizing documents, manually extracting key information, and repeating workflows that should be automated.</p>
+          <p>Unstructured data scattered across PDFs, forms, and reports creates delays, inconsistencies, and avoidable mistakes in downstream operations.</p>
+          <p>Manual processing slows decision-making and limits capacity as document volume grows.</p>
+        </div>
+      </div>
 
-    <script>
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+      <div class="content-block reveal">
+        <div class="section-sidebar">
+          <span class="section-num">02</span>
+          <span class="section-name">The Solution</span>
+        </div>
+        <div class="section-body">
+          <h2>The Solution</h2>
+          <p>We implement AI-powered document processing that extracts structured data, summarizes key points, classifies content, and routes outputs into your existing workflows.</p>
+          <p>Documents can be uploaded or received automatically, then processed into clean, categorized outputs for dashboards, spreadsheets, databases, or email workflows.</p>
+          <p>Automation triggers can launch next steps immediately, so teams spend less time formatting data and more time acting on it.</p>
+        </div>
+      </div>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
+    </div>
+  </div>
 
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
+  <!-- ─── PULL QUOTE ─── -->
+  <div class="pull-quote-block reveal">
+    <div class="container">
+      <blockquote class="pull-quote">"Turning unstructured documents into structured outputs cut review time dramatically and gave our team clean data we could immediately use."</blockquote>
+      <cite class="pull-quote-cite">— Operations Lead, SMB Team</cite>
+    </div>
+  </div>
+
+  <!-- ─── PROCESS + RESULTS ─── -->
+  <div class="case-content">
+    <div class="container">
+
+      <div class="content-block reveal">
+        <div class="section-sidebar">
+          <span class="section-num">03</span>
+          <span class="section-name">The Process</span>
+        </div>
+        <div class="section-body">
+          <h2>How It Works</h2>
+          <div class="process-steps">
+            <div class="step">
+              <span class="step-num">01</span>
+              <div class="step-body">
+                <h3>Ingest Documents</h3>
+                <p>Documents are uploaded or received from connected sources such as email, forms, and shared folders.</p>
+              </div>
+            </div>
+            <div class="step">
+              <span class="step-num">02</span>
+              <div class="step-body">
+                <h3>Extract Key Data</h3>
+                <p>AI extracts important fields and converts them into structured formats your systems can read and process.</p>
+              </div>
+            </div>
+            <div class="step">
+              <span class="step-num">03</span>
+              <div class="step-body">
+                <h3>Classify and Summarize</h3>
+                <p>Content is categorized with tags and summarized to surface what matters quickly to operational teams.</p>
+              </div>
+            </div>
+            <div class="step">
+              <span class="step-num">04</span>
+              <div class="step-body">
+                <h3>Send Outputs</h3>
+                <p>Structured results are pushed to dashboards, spreadsheets, databases, or sent directly via email.</p>
+              </div>
+            </div>
+            <div class="step">
+              <span class="step-num">05</span>
+              <div class="step-body">
+                <h3>Trigger Next Steps</h3>
+                <p>Workflow automations trigger follow-up actions so downstream teams can move immediately without manual handoffs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block reveal">
+        <div class="section-sidebar">
+          <span class="section-num">04</span>
+          <span class="section-name">The Results</span>
+        </div>
+        <div class="section-body">
+          <h2>Outcomes</h2>
+          <p>Document-heavy teams save substantial time by eliminating repetitive extraction and review work.</p>
+          <p>Error rates decrease as extraction and categorization become standardized and consistent across document types.</p>
+          <p>Processing cycles become faster and more scalable, enabling teams to handle more volume without proportional increases in manual effort.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── RELATED ─── -->
+  <section class="related-section">
+    <div class="container">
+      <div class="related-header">
+        <p class="section-label">More Use Cases</p>
+        <h2>Keep Exploring</h2>
+      </div>
+      <div class="related-grid">
+        <a href="./lead-generation.html" class="related-card reveal">
+          <span class="related-card-tag">Lead Generation</span>
+          <h3>AI Lead Generation</h3>
+          <p>A regional firm tripled their pipeline with a fully automated prospecting and outreach system that runs every night.</p>
+          <span class="related-arrow">Explore use case &rarr;</span>
+        </a>
+        <a href="./customer-support.html" class="related-card reveal d1">
+          <span class="related-card-tag">Customer Support</span>
+          <h3>AI Customer Support Automation</h3>
+          <p>AI triage resolved 85% of support queries automatically — freeing the team for work that actually requires them.</p>
+          <span class="related-arrow">Explore use case &rarr;</span>
+        </a>
+        <a href="./reporting-analytics.html" class="related-card reveal d2">
+          <span class="related-card-tag">Reporting &amp; Analytics</span>
+          <h3>AI Reporting &amp; Analytics Automation</h3>
+          <p>A financial advisory practice gets a fully formatted weekly report delivered every Monday at 7am — no manual work.</p>
+          <span class="related-arrow">Explore use case &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA ─── -->
+  <section class="cta-block" id="cta">
+    <div class="container--narrow">
+      <h2>Ready to reclaim hours lost<br>to <em>document admin?</em></h2>
+      <p>Book a free 45-minute review. We'll map out which parts of your document workflow are worth automating first.</p>
+      <a href="/#book" class="btn-primary">Book Your Free Review</a>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-name">Patrick Des.</span>
+        <span class="footer-loc">AI Consulting &middot; Toronto, Ontario</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 32);
+    }, { passive: true });
+
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  </script>
+
 </body>
 </html>
