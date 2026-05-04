@@ -25,25 +25,25 @@
     ];
 
     const SERVICES = [
-      { icon: "⚡", title: "Diagnostics",        desc: "Warning lights, noises, drivability concerns, hard starts — we read the car, not just the code." },
-      { icon: "🔩", title: "Oil & Maintenance",  desc: "Routine service that keeps daily drivers dependable and your warranty intact." },
-      { icon: "🛑", title: "Brakes & Suspension",desc: "Safety-first work with clear explanations before anything gets touched." },
-      { icon: "❄️", title: "A/C & Heating",      desc: "Cabin comfort and system checks before seasonal extremes catch you off guard." },
-      { icon: "📋", title: "Inspections",         desc: "Pre-purchase, safety, and general condition checks done thoroughly." },
-      { icon: "🔧", title: "Repair Work",         desc: "When the issue goes beyond routine maintenance — diagnosed properly, fixed cleanly." },
+      { icon: "diagnostics", title: "Diagnostics",         desc: "Warning lights, noises, drivability concerns, hard starts — we read the car, not just the code." },
+      { icon: "oil",         title: "Oil & Maintenance",   desc: "Routine service that keeps daily drivers dependable and your warranty intact." },
+      { icon: "brakes",      title: "Brakes & Suspension", desc: "Safety-first work with clear explanations before anything gets touched." },
+      { icon: "ac",          title: "A/C & Heating",       desc: "Cabin comfort and system checks before seasonal extremes catch you off guard." },
+      { icon: "inspection",  title: "Inspections",          desc: "Pre-purchase, safety, and general condition checks done thoroughly." },
+      { icon: "repair",      title: "Repair Work",          desc: "When the issue goes beyond routine maintenance — diagnosed properly, fixed cleanly." },
     ];
 
     const TRUST_ITEMS = [
       { label: "Practical recommendations", sub: "No generic upsells"          },
       { label: "Photo-backed inspections",  sub: "See it before you approve it" },
       { label: "Honest communication",      sub: "Plain language, every time"   },
-      { label: "Work that feels thought through", sub: "Details matter here"    },
+      { label: "Work that feels thought through", sub: "Details matter here"   },
     ];
 
     const PROCESS = [
-      { n: "01", title: "Send your request or call",       desc: "Tell us what the car is doing and your preferred timing."                      },
-      { n: "02", title: "We review your needs",            desc: "We assess the vehicle, service type, and the right next step."                 },
-      { n: "03", title: "We confirm before you come in",   desc: "No appointment locked until the shop confirms it with you."                    },
+      { n: "01", title: "Send your request or call",     desc: "Tell us what the car is doing and your preferred timing."         },
+      { n: "02", title: "We review your needs",          desc: "We assess the vehicle, service type, and the right next step."    },
+      { n: "03", title: "We confirm before you come in", desc: "No appointment locked until the shop confirms it with you."       },
     ];
 
     const REVIEWS = [
@@ -55,6 +55,58 @@
       { name: "Tuzamo",  rating: 4, date: "a month ago", text: "Quick service and great customer experience. Will be back!" },
     ];
 
+    // ─── AVATAR COLOR ────────────────────────────────────────────────────────
+    const AVATAR_PALETTE = ["#b8400c", "#a03810", "#c84d12", "#8b3a0f", "#d05214", "#9a3f0e"];
+    const avatarColor = (name) => AVATAR_PALETTE[name.charCodeAt(0) % AVATAR_PALETTE.length];
+
+    // ─── SVG ICONS ───────────────────────────────────────────────────────────
+    function Icon({ name, size = 28 }) {
+      const s = { width: size, height: size, display: "block" };
+      const p = { fill: "none", stroke: "currentColor", strokeWidth: "1.8", strokeLinecap: "round", strokeLinejoin: "round" };
+      const icons = {
+        diagnostics: (
+          <svg style={s} viewBox="0 0 28 28" {...p}>
+            <rect x="3" y="5" width="22" height="15" rx="2"/>
+            <path d="M8 25H20M14 20V25"/>
+            <path d="M7.5 14.5l3-4 4 5 3-4 3 2.5"/>
+          </svg>
+        ),
+        oil: (
+          <svg style={s} viewBox="0 0 28 28" {...p}>
+            <path d="M14 2C14 2 6 11 6 17a8 8 0 0016 0c0-6-8-15-8-15z"/>
+            <path d="M10.5 19a3.5 3.5 0 003.5 2.5"/>
+          </svg>
+        ),
+        brakes: (
+          <svg style={s} viewBox="0 0 28 28" {...p}>
+            <circle cx="14" cy="14" r="11"/>
+            <circle cx="14" cy="14" r="4.5"/>
+            <path d="M14 3v4M14 21v4M3 14h4M21 14h4"/>
+          </svg>
+        ),
+        ac: (
+          <svg style={s} viewBox="0 0 28 28" {...p}>
+            <path d="M14 3v22M3 14h22M6.5 6.5l15 15M21.5 6.5l-15 15"/>
+            <circle cx="14" cy="14" r="3"/>
+          </svg>
+        ),
+        inspection: (
+          <svg style={s} viewBox="0 0 28 28" {...p}>
+            <rect x="6" y="3" width="16" height="22" rx="2"/>
+            <path d="M10 3v3h8V3"/>
+            <path d="M10 15l3 3 6-6"/>
+          </svg>
+        ),
+        repair: (
+          <svg style={s} viewBox="0 0 28 28" {...p}>
+            <path d="M19.5 4.5a4.5 4.5 0 00-4.08 6.45L6 20.37A2.5 2.5 0 009.63 24l9.37-9.42A4.5 4.5 0 1019.5 4.5z"/>
+            <path d="M19.5 6.5l2 2"/>
+          </svg>
+        ),
+      };
+      return icons[name] || null;
+    }
+
     // ─── GLOBAL STYLES ───────────────────────────────────────────────────────
     const globalStyles = `
       @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
@@ -62,15 +114,16 @@
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
       :root {
-        --black:   #0e0e0e;
-        --dark:    #161616;
-        --mid:     #222222;
-        --border:  #2e2e2e;
-        --muted:   #666;
-        --light:   #a0a0a0;
-        --white:   #f0ede8;
-        --orange:  #e85d04;
-        --orange2: #ff7a20;
+        --black:    #0e0e0e;
+        --dark:     #161616;
+        --charcoal: #1d1d1d;
+        --mid:      #222222;
+        --border:   #2e2e2e;
+        --muted:    #666;
+        --light:    #a0a0a0;
+        --white:    #f0ede8;
+        --orange:   #e85d04;
+        --orange2:  #ff7a20;
         --font-display: 'Barlow Condensed', sans-serif;
         --font-body:    'DM Sans', sans-serif;
       }
@@ -197,6 +250,8 @@
       @media (min-width: 769px) { .mobile-sticky { display: none !important; } }
       @media (max-width: 768px) {
         .desktop-nav { display: none !important; }
+        .hero-right { display: none !important; }
+        .hero-left { flex: 1 !important; padding: 80px 20px 80px !important; }
         .cred-badge { flex-direction: column !important; }
         .cred-badge-inner { justify-content: center !important; }
         .stats-row { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 0 !important; }
@@ -208,7 +263,10 @@
         .form-two-col { grid-template-columns: 1fr !important; }
         .form-three-col { grid-template-columns: 1fr !important; }
         .footer-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+        .footer-top-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
         footer { padding-bottom: 80px !important; }
+        .avail-days { flex-wrap: wrap !important; }
+        .avail-times { flex-wrap: wrap !important; }
       }
     `;
 
@@ -276,11 +334,11 @@
         <section style={{
           minHeight: "100vh",
           background: "var(--black)",
-          display: "flex", flexDirection: "column", justifyContent: "flex-end",
-          padding: "0 24px 80px",
           position: "relative",
           overflow: "hidden",
+          display: "flex",
         }}>
+          {/* Full-width grid background */}
           <div style={{
             position: "absolute", inset: 0,
             backgroundImage: "linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)",
@@ -288,88 +346,151 @@
             opacity: 0.3,
           }} />
 
+          {/* Orange left accent */}
           <div style={{
             position: "absolute", top: 0, left: 0,
             width: 4, height: "100%",
             background: "linear-gradient(to bottom, var(--orange), transparent)",
           }} />
 
-          <div style={{
-            position: "absolute", top: "50%", right: -20,
-            transform: "translateY(-60%)",
-            fontFamily: "var(--font-display)", fontWeight: 900,
-            fontSize: "clamp(120px, 25vw, 320px)",
-            textTransform: "uppercase",
-            color: "transparent",
-            WebkitTextStroke: "1px var(--border)",
-            whiteSpace: "nowrap",
-            userSelect: "none",
-            pointerEvents: "none",
-            lineHeight: 1,
+          {/* Left content */}
+          <div className="hero-left" style={{
+            flex: "0 0 57%",
+            display: "flex", flexDirection: "column", justifyContent: "flex-end",
+            padding: "120px 56px 80px 24px",
+            position: "relative", zIndex: 1,
           }}>
-            AUTO
+            <div style={{ maxWidth: 660 }}>
+              <div className="fade-up cred-badge" style={{ display: "inline-flex", alignItems: "stretch", marginBottom: 28, border: "1px solid var(--border)", overflow: "hidden" }}>
+                <div style={{ background: "var(--orange)", padding: "9px 16px", fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 12, letterSpacing: "0.14em", textTransform: "uppercase", color: "#fff", display: "flex", alignItems: "center" }}>
+                  Mississauga's Trusted Shop
+                </div>
+                <div className="cred-badge-inner" style={{ background: "var(--dark)", padding: "9px 20px", display: "flex", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
+                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13, letterSpacing: "0.06em", color: "var(--white)", whiteSpace: "nowrap" }}>
+                    <span style={{ color: "var(--orange)" }}>15+</span> Yrs Combined Experience
+                  </span>
+                  <span style={{ color: "var(--border)" }}>|</span>
+                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13, letterSpacing: "0.06em", color: "var(--white)", whiteSpace: "nowrap" }}>
+                    <span style={{ color: "var(--orange)" }}>5,000+</span> Cars Serviced
+                  </span>
+                </div>
+              </div>
+
+              <div className="fade-up" style={{ marginBottom: 8 }}>
+                <span className="label">Mississauga, Ontario</span>
+              </div>
+
+              <h1 className="h1 fade-up delay-1" style={{ marginBottom: 24 }}>
+                Reliable<br />
+                <span style={{ color: "var(--orange)" }}>Repairs.</span><br />
+                Enthusiast-Level<br />Care.
+              </h1>
+
+              <p className="fade-up delay-2" style={{
+                fontFamily: "var(--font-body)", fontWeight: 300,
+                fontSize: "clamp(16px, 2vw, 20px)",
+                color: "var(--light)", maxWidth: 520,
+                marginBottom: 40, lineHeight: 1.7,
+              }}>
+                From oil changes and brakes to diagnostics and more involved repair work —
+                Revworks brings 15+ years of combined mechanic experience to every job, with
+                over 5,000 vehicles serviced in Mississauga.
+              </p>
+
+              <div className="fade-up delay-3" style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+                <a href="#book" className="btn-primary">Request an Appointment →</a>
+                <a href={`tel:${PHONE.replace(/\D/g, "")}`} className="btn-ghost">📞 {PHONE}</a>
+                <a href="#contact" className="btn-ghost">Get Directions</a>
+              </div>
+
+              <div className="fade-up delay-4 stats-row" style={{
+                display: "flex", gap: 48, marginTop: 64,
+                paddingTop: 32, borderTop: "1px solid var(--border)",
+                flexWrap: "wrap",
+              }}>
+                {[
+                  { n: "15+",    sub: "Yrs Combined Experience" },
+                  { n: "5,000+", sub: "Cars Serviced"           },
+                  { n: "1-Hr",   sub: "Same-Day Diagnostics"    },
+                  { n: "100%",   sub: "Photo-Backed Work"       },
+                ].map(s => (
+                  <div key={s.n}>
+                    <div style={{ fontFamily: "var(--font-display)", fontSize: 28, fontWeight: 800, color: "var(--white)" }}>{s.n}</div>
+                    <div style={{ fontSize: 13, color: "var(--muted)", letterSpacing: "0.05em" }}>{s.sub}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
-          <div style={{ maxWidth: 1200, margin: "0 auto", width: "100%", position: "relative" }}>
+          {/* Right photo panel */}
+          <div className="hero-right" style={{
+            flex: 1,
+            position: "relative",
+            borderLeft: "1px solid var(--border)",
+            overflow: "hidden",
+            background: "#111111",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-end",
+            padding: 36,
+          }}>
+            {/* Diagonal fade from left so it blends into the content panel */}
+            <div style={{
+              position: "absolute", inset: 0,
+              background: "linear-gradient(100deg, var(--black) 0%, transparent 35%)",
+              zIndex: 1, pointerEvents: "none",
+            }} />
 
-            <div className="fade-up cred-badge" style={{ display: "inline-flex", alignItems: "stretch", marginBottom: 28, border: "1px solid var(--border)", overflow: "hidden" }}>
-              <div style={{ background: "var(--orange)", padding: "9px 16px", fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 12, letterSpacing: "0.14em", textTransform: "uppercase", color: "#fff", display: "flex", alignItems: "center" }}>
-                Mississauga's Trusted Shop
+            {/* Top orange stripe */}
+            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: "var(--orange)", zIndex: 2 }} />
+
+            {/* Photo placeholder stack */}
+            <div style={{ position: "relative", zIndex: 2, display: "flex", flexDirection: "column", gap: 10 }}>
+              {/* Main large slot */}
+              <div style={{
+                minHeight: 200,
+                background: "rgba(255,255,255,0.025)",
+                border: "1px solid var(--border)",
+                display: "flex", flexDirection: "column",
+                alignItems: "center", justifyContent: "center", gap: 14,
+              }}>
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="var(--border)" strokeWidth="1.4" strokeLinecap="round">
+                  <rect x="2" y="7" width="32" height="22" rx="3"/>
+                  <circle cx="18" cy="18" r="6"/>
+                  <circle cx="28" cy="11" r="2" fill="var(--border)" stroke="none"/>
+                </svg>
+                <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 10, letterSpacing: "0.25em", color: "var(--border)", textTransform: "uppercase" }}>Shop Interior</span>
               </div>
-              <div className="cred-badge-inner" style={{ background: "var(--dark)", padding: "9px 20px", display: "flex", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
-                <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13, letterSpacing: "0.06em", color: "var(--white)", whiteSpace: "nowrap" }}>
-                  <span style={{ color: "var(--orange)" }}>15+</span> Yrs Combined Experience
-                </span>
-                <span style={{ color: "var(--border)" }}>|</span>
-                <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13, letterSpacing: "0.06em", color: "var(--white)", whiteSpace: "nowrap" }}>
-                  <span style={{ color: "var(--orange)" }}>5,000+</span> Cars Serviced
-                </span>
+
+              {/* Two smaller slots */}
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+                {["Garage Bay", "Our Work"].map(label => (
+                  <div key={label} style={{
+                    height: 120,
+                    background: "rgba(255,255,255,0.018)",
+                    border: "1px solid var(--border)",
+                    display: "flex", flexDirection: "column",
+                    alignItems: "center", justifyContent: "center", gap: 10,
+                  }}>
+                    <svg width="22" height="22" viewBox="0 0 36 36" fill="none" stroke="var(--border)" strokeWidth="1.4" strokeLinecap="round">
+                      <rect x="2" y="7" width="32" height="22" rx="3"/>
+                      <circle cx="18" cy="18" r="6"/>
+                    </svg>
+                    <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 9, letterSpacing: "0.2em", color: "var(--border)", textTransform: "uppercase" }}>{label}</span>
+                  </div>
+                ))}
               </div>
             </div>
 
-            <div className="fade-up" style={{ marginBottom: 8 }}>
-              <span className="label">Mississauga, Ontario</span>
-            </div>
-
-            <h1 className="h1 fade-up delay-1" style={{ marginBottom: 24 }}>
-              Reliable<br />
-              <span style={{ color: "var(--orange)" }}>Repairs.</span><br />
-              Enthusiast-Level<br />Care.
-            </h1>
-
-            <p className="fade-up delay-2" style={{
-              fontFamily: "var(--font-body)", fontWeight: 300,
-              fontSize: "clamp(16px, 2vw, 20px)",
-              color: "var(--light)", maxWidth: 520,
-              marginBottom: 40, lineHeight: 1.7,
+            {/* Bottom badge */}
+            <div style={{
+              position: "absolute", bottom: 36, left: 36, zIndex: 3,
+              background: "var(--orange)", padding: "10px 16px",
             }}>
-              From oil changes and brakes to diagnostics and more involved repair work —
-              Revworks brings 15+ years of combined mechanic experience to every job, with
-              over 5,000 vehicles serviced in Mississauga.
-            </p>
-
-            <div className="fade-up delay-3" style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <a href="#book" className="btn-primary">Request an Appointment →</a>
-              <a href={`tel:${PHONE.replace(/\D/g, "")}`} className="btn-ghost">📞 {PHONE}</a>
-              <a href="#contact" className="btn-ghost">Get Directions</a>
-            </div>
-
-            <div className="fade-up delay-4 stats-row" style={{
-              display: "flex", gap: 48, marginTop: 64,
-              paddingTop: 32, borderTop: "1px solid var(--border)",
-              flexWrap: "wrap",
-            }}>
-              {[
-                { n: "15+",       sub: "Yrs Combined Experience"    },
-                { n: "5,000+",    sub: "Cars Serviced"               },
-                { n: "Same-Day",  sub: "Diagnostics Available"       },
-                { n: "Photo",     sub: "Backed Inspections"          },
-              ].map(s => (
-                <div key={s.n}>
-                  <div style={{ fontFamily: "var(--font-display)", fontSize: 28, fontWeight: 800, color: "var(--white)" }}>{s.n}</div>
-                  <div style={{ fontSize: 13, color: "var(--muted)", letterSpacing: "0.05em" }}>{s.sub}</div>
-                </div>
-              ))}
+              <span style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "#fff" }}>
+                Photos — Coming Soon
+              </span>
             </div>
           </div>
         </section>
@@ -379,8 +500,8 @@
     // ─── TRUST BAR ──────────────────────────────────────────────────────────
     function TrustBar() {
       return (
-        <section style={{ background: "var(--dark)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
-          <div className="section" style={{ padding: "48px 24px" }}>
+        <section style={{ background: "var(--charcoal)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
+          <div className="section" style={{ padding: "56px 24px" }}>
             <div className="label" style={{ marginBottom: 32 }}>Why people choose Revworks</div>
             <div style={{
               display: "grid",
@@ -437,7 +558,9 @@
                     borderLeft: hovered === i ? "3px solid var(--orange)" : "3px solid transparent",
                   }}
                 >
-                  <div style={{ fontSize: 28, marginBottom: 16 }}>{svc.icon}</div>
+                  <div style={{ color: "var(--orange)", marginBottom: 18 }}>
+                    <Icon name={svc.icon} size={28} />
+                  </div>
                   <div className="h3" style={{ marginBottom: 10, fontSize: 18 }}>{svc.title}</div>
                   <p style={{ fontSize: 14, color: "var(--light)", lineHeight: 1.65, fontWeight: 300 }}>{svc.desc}</p>
                 </div>
@@ -543,6 +666,19 @@
 
       const r = REVIEWS[active];
 
+      const navBtn = (label, onClick) => (
+        <button onClick={onClick} style={{
+          background: "var(--dark)", border: "1px solid var(--border)",
+          color: "var(--light)", cursor: "pointer", padding: "13px 28px",
+          fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13,
+          letterSpacing: "0.1em", textTransform: "uppercase",
+          transition: "all 0.2s",
+        }}
+          onMouseEnter={e => { e.currentTarget.style.background = "var(--orange)"; e.currentTarget.style.borderColor = "var(--orange)"; e.currentTarget.style.color = "#fff"; }}
+          onMouseLeave={e => { e.currentTarget.style.background = "var(--dark)"; e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--light)"; }}
+        >{label}</button>
+      );
+
       return (
         <section id="reviews" style={{ background: "var(--black)", borderTop: "1px solid var(--border)" }}>
           <div className="section">
@@ -566,7 +702,6 @@
               </a>
             </div>
 
-            {/* Carousel card */}
             <div style={{
               background: "var(--dark)",
               border: "1px solid var(--border)",
@@ -576,24 +711,20 @@
               opacity: visible ? 1 : 0,
               transition: "opacity 0.22s ease",
             }}>
-              {/* Orange top rule */}
               <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: "var(--orange)" }} />
 
-              {/* Large quote mark */}
               <div style={{
                 fontFamily: "Georgia, serif", fontSize: 96,
                 color: "var(--border)", lineHeight: 1,
                 marginBottom: 8, userSelect: "none",
               }}>"</div>
 
-              {/* Stars */}
               <div style={{ display: "flex", gap: 3, marginBottom: 20 }}>
                 {Array(r.rating).fill(0).map((_, j) => (
                   <span key={j} style={{ color: "var(--orange)", fontSize: 20 }}>★</span>
                 ))}
               </div>
 
-              {/* Review text */}
               <p style={{
                 fontSize: "clamp(16px, 2.2vw, 20px)",
                 color: "var(--white)", lineHeight: 1.75,
@@ -603,17 +734,17 @@
                 {r.text}
               </p>
 
-              {/* Attribution */}
               <div style={{
                 display: "flex", alignItems: "center", gap: 14,
                 paddingTop: 24, borderTop: "1px solid var(--border)",
                 flexWrap: "wrap",
               }}>
                 <div style={{
-                  width: 44, height: 44, background: "var(--mid)",
+                  width: 44, height: 44,
+                  background: avatarColor(r.name),
                   display: "flex", alignItems: "center", justifyContent: "center",
                   fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 18,
-                  flexShrink: 0,
+                  color: "#fff", flexShrink: 0,
                 }}>
                   {r.name[0]}
                 </div>
@@ -621,27 +752,15 @@
                   <div style={{ fontWeight: 500, fontSize: 15 }}>{r.name}</div>
                   <div style={{ fontSize: 12, color: "var(--muted)" }}>Google Review · {r.date}</div>
                 </div>
-                {/* Review counter */}
                 <div style={{ marginLeft: "auto", fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13, color: "var(--muted)", letterSpacing: "0.08em" }}>
                   {active + 1} / {REVIEWS.length}
                 </div>
               </div>
             </div>
 
-            {/* Controls */}
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 20, gap: 16 }}>
-              <button onClick={() => goTo(active - 1)} style={{
-                background: "transparent", border: "1px solid var(--border)",
-                color: "var(--light)", cursor: "pointer", padding: "10px 20px",
-                fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13,
-                letterSpacing: "0.1em", textTransform: "uppercase",
-                transition: "border-color 0.2s, color 0.2s",
-              }}
-                onMouseEnter={e => { e.target.style.borderColor = "var(--white)"; e.target.style.color = "var(--white)"; }}
-                onMouseLeave={e => { e.target.style.borderColor = "var(--border)"; e.target.style.color = "var(--light)"; }}
-              >← Prev</button>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 16, gap: 16 }}>
+              {navBtn("← Prev", () => goTo(active - 1))}
 
-              {/* Dot indicators */}
               <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
                 {REVIEWS.map((_, i) => (
                   <button key={i} onClick={() => goTo(i)} style={{
@@ -653,16 +772,7 @@
                 ))}
               </div>
 
-              <button onClick={() => goTo(active + 1)} style={{
-                background: "transparent", border: "1px solid var(--border)",
-                color: "var(--light)", cursor: "pointer", padding: "10px 20px",
-                fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13,
-                letterSpacing: "0.1em", textTransform: "uppercase",
-                transition: "border-color 0.2s, color 0.2s",
-              }}
-                onMouseEnter={e => { e.target.style.borderColor = "var(--white)"; e.target.style.color = "var(--white)"; }}
-                onMouseLeave={e => { e.target.style.borderColor = "var(--border)"; e.target.style.color = "var(--light)"; }}
-              >Next →</button>
+              {navBtn("Next →", () => goTo(active + 1))}
             </div>
           </div>
         </section>
@@ -671,8 +781,15 @@
 
     // ─── PROCESS ────────────────────────────────────────────────────────────
     function Process() {
+      const DAYS  = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      const TIMES = ["8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "1:00 PM", "2:00 PM", "3:00 PM"];
+      const FULL  = [3, 5];
+
+      const [selDay,  setSelDay]  = useState(1);
+      const [selTime, setSelTime] = useState(0);
+
       return (
-        <section style={{ background: "var(--dark)", borderTop: "1px solid var(--border)" }}>
+        <section style={{ background: "var(--charcoal)", borderTop: "1px solid var(--border)" }}>
           <div className="section">
             <div className="label">How it works</div>
             <h2 className="h2" style={{ marginBottom: 56 }}>How booking works.</h2>
@@ -685,7 +802,7 @@
               border: "1px solid var(--border)",
             }}>
               {PROCESS.map((step, i) => (
-                <div key={i} style={{ background: "var(--dark)", padding: "40px 32px" }}>
+                <div key={i} style={{ background: "var(--charcoal)", padding: "40px 32px" }}>
                   <div style={{
                     fontFamily: "var(--font-display)", fontWeight: 900,
                     fontSize: 56, color: "var(--border)",
@@ -695,6 +812,97 @@
                   <p style={{ fontSize: 14, color: "var(--light)", lineHeight: 1.65, fontWeight: 300 }}>{step.desc}</p>
                 </div>
               ))}
+            </div>
+
+            {/* Mock availability widget */}
+            <div style={{
+              marginTop: 40,
+              border: "1px solid var(--border)",
+              background: "var(--dark)",
+              overflow: "hidden",
+            }}>
+              <div style={{
+                padding: "16px 28px",
+                borderBottom: "1px solid var(--border)",
+                display: "flex", alignItems: "center", justifyContent: "space-between",
+                flexWrap: "wrap", gap: 12,
+              }}>
+                <div style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 15, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                  Check Availability
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <div style={{ width: 8, height: 8, background: "var(--orange)", borderRadius: "50%" }} />
+                  <span style={{ fontSize: 12, color: "var(--muted)", letterSpacing: "0.08em", fontFamily: "var(--font-display)", fontWeight: 700, textTransform: "uppercase" }}>
+                    Live Booking — Coming Soon
+                  </span>
+                </div>
+              </div>
+
+              <div style={{ padding: "28px 28px 0" }}>
+                {/* Day picker */}
+                <div style={{ fontSize: 11, fontFamily: "var(--font-display)", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--muted)", marginBottom: 12 }}>
+                  Select Day
+                </div>
+                <div className="avail-days" style={{ display: "flex", gap: 8, marginBottom: 24 }}>
+                  {DAYS.map((day, i) => (
+                    <button key={day} onClick={() => setSelDay(i)} style={{
+                      padding: "10px 18px",
+                      background: selDay === i ? "var(--orange)" : "var(--mid)",
+                      border: `1px solid ${selDay === i ? "var(--orange)" : "var(--border)"}`,
+                      color: selDay === i ? "#fff" : "var(--light)",
+                      fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13,
+                      letterSpacing: "0.08em", textTransform: "uppercase",
+                      cursor: "pointer", transition: "all 0.15s",
+                    }}>{day}</button>
+                  ))}
+                  <div style={{
+                    padding: "10px 18px",
+                    background: "transparent",
+                    border: "1px solid var(--border)",
+                    color: "var(--border)",
+                    fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13,
+                    letterSpacing: "0.08em", textTransform: "uppercase",
+                  }}>Sun — Closed</div>
+                </div>
+
+                {/* Time slots */}
+                <div style={{ fontSize: 11, fontFamily: "var(--font-display)", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--muted)", marginBottom: 12 }}>
+                  Select Time
+                </div>
+                <div className="avail-times" style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 28 }}>
+                  {TIMES.map((time, i) => {
+                    const full = FULL.includes(i);
+                    return (
+                      <button key={time} onClick={() => !full && setSelTime(i)} style={{
+                        padding: "9px 16px",
+                        background: full ? "transparent" : selTime === i ? "var(--orange)" : "var(--mid)",
+                        border: `1px solid ${full ? "var(--border)" : selTime === i ? "var(--orange)" : "var(--border)"}`,
+                        color: full ? "var(--border)" : selTime === i ? "#fff" : "var(--light)",
+                        fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 13,
+                        letterSpacing: "0.06em",
+                        cursor: full ? "default" : "pointer",
+                        opacity: full ? 0.5 : 1,
+                        transition: "all 0.15s",
+                        textDecoration: full ? "line-through" : "none",
+                      }}>{time}{full ? " — Full" : ""}</button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div style={{
+                padding: "20px 28px",
+                borderTop: "1px solid var(--border)",
+                background: "var(--mid)",
+                display: "flex", alignItems: "center", gap: 20, flexWrap: "wrap",
+              }}>
+                <a href="#book" className="btn-primary" style={{ flexShrink: 0 }}>
+                  Request This Slot →
+                </a>
+                <span style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.5 }}>
+                  Requests are reviewed and confirmed by the shop — not auto-booked.
+                </span>
+              </div>
             </div>
           </div>
         </section>
@@ -778,7 +986,6 @@
               gap: 40,
               alignItems: "start",
             }}>
-              {/* Form */}
               <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
 
                 <div className="form-two-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
@@ -969,8 +1176,117 @@
 
     // ─── FOOTER ─────────────────────────────────────────────────────────────
     function Footer() {
+      const SocialIcon = ({ href, label, path }) => (
+        <a href={href} target="_blank" rel="noreferrer" aria-label={label} style={{
+          width: 36, height: 36,
+          background: "var(--mid)",
+          border: "1px solid var(--border)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          color: "var(--light)", textDecoration: "none",
+          transition: "all 0.2s",
+        }}
+          onMouseEnter={e => { e.currentTarget.style.background = "var(--orange)"; e.currentTarget.style.borderColor = "var(--orange)"; e.currentTarget.style.color = "#fff"; }}
+          onMouseLeave={e => { e.currentTarget.style.background = "var(--mid)"; e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--light)"; }}
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            {path}
+          </svg>
+        </a>
+      );
+
       return (
         <footer id="contact" style={{ background: "var(--dark)", borderTop: "1px solid var(--border)" }}>
+          {/* Top nav/contact bar */}
+          <div style={{ borderBottom: "1px solid var(--border)", padding: "56px 24px" }}>
+            <div className="footer-top-grid" style={{
+              maxWidth: 1200, margin: "0 auto",
+              display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 56,
+            }}>
+              {/* Brand + social */}
+              <div>
+                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+                  <div style={{ width: 36, height: 36, background: "var(--orange)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <span style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 14, color: "#fff" }}>RW</span>
+                  </div>
+                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 18, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                    Revworks Automotive
+                  </span>
+                </div>
+                <p style={{ fontSize: 14, color: "var(--muted)", lineHeight: 1.7, maxWidth: 320, marginBottom: 24 }}>
+                  Honest automotive repair in Mississauga. 15+ years of combined experience,
+                  5,000+ vehicles serviced, and work you can see before you approve it.
+                </p>
+                <div style={{ display: "flex", gap: 8 }}>
+                  <SocialIcon href="#" label="Instagram" path={
+                    <>
+                      <rect x="2" y="2" width="20" height="20" rx="5"/>
+                      <circle cx="12" cy="12" r="4"/>
+                      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+                    </>
+                  }/>
+                  <SocialIcon href="#" label="Facebook" path={
+                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                  }/>
+                  <SocialIcon href="https://g.page/r/CfvN8xEx2wVYEAE/review" label="Google" path={
+                    <>
+                      <path d="M12 12h8a8 8 0 11-2.4-5.6"/>
+                      <path d="M12 12l4 4"/>
+                    </>
+                  }/>
+                </div>
+              </div>
+
+              {/* Nav links */}
+              <div>
+                <div className="label" style={{ marginBottom: 20 }}>Navigate</div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                  {[
+                    ["Services", "#services"],
+                    ["About", "#about"],
+                    ["Reviews", "#reviews"],
+                    ["Book Now", "#book"],
+                    ["Contact", "#contact"],
+                  ].map(([label, href]) => (
+                    <a key={label} href={href} style={{
+                      fontSize: 14, color: "var(--muted)", textDecoration: "none",
+                      fontFamily: "var(--font-display)", fontWeight: 700,
+                      letterSpacing: "0.06em", textTransform: "uppercase",
+                      transition: "color 0.2s",
+                    }}
+                      onMouseEnter={e => e.target.style.color = "var(--white)"}
+                      onMouseLeave={e => e.target.style.color = "var(--muted)"}
+                    >{label}</a>
+                  ))}
+                </div>
+              </div>
+
+              {/* Contact quick-access */}
+              <div>
+                <div className="label" style={{ marginBottom: 20 }}>Contact</div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                  <div>
+                    <div style={{ fontSize: 11, color: "var(--muted)", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 6, fontFamily: "var(--font-display)", fontWeight: 700 }}>Phone</div>
+                    <a href={`tel:${PHONE.replace(/\D/g, "")}`} style={{ fontSize: 16, color: "var(--orange)", fontFamily: "var(--font-display)", fontWeight: 700, textDecoration: "none" }}>{PHONE}</a>
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 11, color: "var(--muted)", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 6, fontFamily: "var(--font-display)", fontWeight: 700 }}>Address</div>
+                    <div style={{ fontSize: 14, color: "var(--light)", lineHeight: 1.6 }}>{ADDRESS}</div>
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 11, color: "var(--muted)", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 8, fontFamily: "var(--font-display)", fontWeight: 700 }}>Hours</div>
+                    {HOURS.map(h => (
+                      <div key={h.day} style={{ display: "flex", justifyContent: "space-between", padding: "6px 0", borderBottom: "1px solid var(--border)", fontSize: 13 }}>
+                        <span style={{ color: "var(--muted)" }}>{h.day}</span>
+                        <span style={{ color: h.time === "Closed" ? "var(--border)" : "var(--light)", fontWeight: 500 }}>{h.time}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA + Map */}
           <div className="section">
             <div className="footer-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, marginBottom: 64 }}>
               <div>
@@ -1007,20 +1323,14 @@
               display: "flex", justifyContent: "space-between", alignItems: "center",
               flexWrap: "wrap", gap: 16,
             }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <div style={{
-                  width: 28, height: 28, background: "var(--orange)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                }}>
-                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 12, color: "#fff" }}>RW</span>
-                </div>
-                <span style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 15, letterSpacing: "0.08em", textTransform: "uppercase" }}>
-                  Revworks Automotive
-                </span>
-              </div>
               <div style={{ fontSize: 13, color: "var(--muted)" }}>
                 © {new Date().getFullYear()} Revworks Automotive · Mississauga, ON ·{" "}
                 <a href="/privacy" style={{ color: "var(--muted)" }}>Privacy</a>
+              </div>
+              <div style={{ display: "flex", gap: 24 }}>
+                {[["Services", "#services"], ["About", "#about"], ["Book", "#book"]].map(([label, href]) => (
+                  <a key={label} href={href} style={{ fontSize: 12, color: "var(--border)", textDecoration: "none", fontFamily: "var(--font-display)", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>{label}</a>
+                ))}
               </div>
             </div>
           </div>
@@ -1037,9 +1347,9 @@
           gap: 1, background: "var(--border)",
         }} className="mobile-sticky">
           {[
-            { label: "📞 Call",        href: `tel:${PHONE.replace(/\D/g, "")}` },
-            { label: "📅 Book",        href: "#book" },
-            { label: "🗺 Directions",  href: `https://maps.google.com/?q=${encodeURIComponent(ADDRESS)}` },
+            { label: "📞 Call",       href: `tel:${PHONE.replace(/\D/g, "")}` },
+            { label: "📅 Book",       href: "#book" },
+            { label: "🗺 Directions", href: `https://maps.google.com/?q=${encodeURIComponent(ADDRESS)}` },
           ].map(item => (
             <a key={item.label} href={item.href}
               style={{
