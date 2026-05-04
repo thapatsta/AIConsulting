@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Revworks Automotive — Reliable Repairs in Mississauga, ON</title>
+  <meta name="description" content="Revworks Automotive in Mississauga. 15+ years combined experience, 5,000+ cars serviced. Diagnostics, brakes, oil, A/C, inspections and more." />
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    // ─── DATA ────────────────────────────────────────────────────────────────
+    const PHONE   = "(416) 562-1234";
+    const ADDRESS = "1788 Drew Rd Unit 6, Mississauga, ON L5S 1L7";
+    const HOURS = [
+      { day: "Mon – Fri",  time: "8:00 AM – 6:00 PM" },
+      { day: "Saturday",   time: "9:00 AM – 4:00 PM"  },
+      { day: "Sunday",     time: "Closed"              },
+    ];
+
+    const SERVICES = [
+      { icon: "⚡", title: "Diagnostics",        desc: "Warning lights, noises, drivability concerns, hard starts — we read the car, not just the code." },
+      { icon: "🔩", title: "Oil & Maintenance",  desc: "Routine service that keeps daily drivers dependable and your warranty intact." },
+      { icon: "🛑", title: "Brakes & Suspension",desc: "Safety-first work with clear explanations before anything gets touched." },
+      { icon: "❄️", title: "A/C & Heating",      desc: "Cabin comfort and system checks before seasonal extremes catch you off guard." },
+      { icon: "📋", title: "Inspections",         desc: "Pre-purchase, safety, and general condition checks done thoroughly." },
+      { icon: "🔧", title: "Repair Work",         desc: "When the issue goes beyond routine maintenance — diagnosed properly, fixed cleanly." },
+    ];
+
+    const TRUST_ITEMS = [
+      { label: "Practical recommendations", sub: "No generic upsells"          },
+      { label: "Photo-backed inspections",  sub: "See it before you approve it" },
+      { label: "Honest communication",      sub: "Plain language, every time"   },
+      { label: "Work that feels thought through", sub: "Details matter here"    },
+    ];
+
+    const PROCESS = [
+      { n: "01", title: "Send your request or call",       desc: "Tell us what the car is doing and your preferred timing."                      },
+      { n: "02", title: "We review your needs",            desc: "We assess the vehicle, service type, and the right next step."                 },
+      { n: "03", title: "We confirm before you come in",   desc: "No appointment locked until the shop confirms it with you."                    },
+    ];
+
+    const REVIEWS = [
+      { name: "Dillon",  rating: 5, date: "a month ago", text: "Brought my car in because it had a whining noise. They diagnosed it as the transmission and helped source a good quality replacement at a reasonable price. The turnaround time for the install was quick and they kept me updated throughout the process. While it was there I also had the engine and transmission mounts done, along with the control arm bushings. Everything was handled professionally and efficiently, and the car now drives great with no more noise. Really happy with the service and transparency. Highly recommend this shop to anyone looking for honest and reliable automotive work!" },
+      { name: "Arpit",   rating: 5, date: "a month ago", text: "Great service, fair pricing, and they got my car back on the road quickly — highly recommend!" },
+      { name: "Sehaj",   rating: 5, date: "a month ago", text: "Best place to get any services done to your vehicle. The team is exceptional and know what they are doing." },
+      { name: "Patrick", rating: 5, date: "a month ago", text: "The team was great, they took their time with reviewing my Honda Ridgeline's engine noise and then explaining it." },
+      { name: "Aesha",   rating: 5, date: "a month ago", text: "Best in the business!!" },
+      { name: "Tuzamo",  rating: 4, date: "a month ago", text: "Quick service and great customer experience. Will be back!" },
+    ];
+
+    // ─── GLOBAL STYLES ───────────────────────────────────────────────────────
+    const globalStyles = `
+      @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        --black:   #0e0e0e;
+        --dark:    #161616;
+        --mid:     #222222;
+        --border:  #2e2e2e;
+        --muted:   #666;
+        --light:   #a0a0a0;
+        --white:   #f0ede8;
+        --orange:  #e85d04;
+        --orange2: #ff7a20;
+        --font-display: 'Barlow Condensed', sans-serif;
+        --font-body:    'DM Sans', sans-serif;
+      }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        background: var(--black);
+        color: var(--white);
+        font-family: var(--font-body);
+        font-size: 16px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.4;
+      }
+
+      .display { font-family: var(--font-display); }
+
+      .section {
+        padding: 96px 24px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .label {
+        font-family: var(--font-display);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--orange);
+        margin-bottom: 16px;
+      }
+
+      .h1 {
+        font-family: var(--font-display);
+        font-size: clamp(64px, 10vw, 120px);
+        font-weight: 900;
+        line-height: 0.92;
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+      }
+
+      .h2 {
+        font-family: var(--font-display);
+        font-size: clamp(36px, 5vw, 60px);
+        font-weight: 800;
+        text-transform: uppercase;
+        line-height: 1;
+        letter-spacing: 0.01em;
+      }
+
+      .h3 {
+        font-family: var(--font-display);
+        font-size: 22px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--orange);
+        color: #fff;
+        font-family: var(--font-display);
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 16px 32px;
+        border: none;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.15s;
+        text-decoration: none;
+      }
+      .btn-primary:hover { background: var(--orange2); transform: translateY(-1px); }
+
+      .btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: transparent;
+        color: var(--white);
+        font-family: var(--font-display);
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 15px 31px;
+        border: 1px solid var(--border);
+        cursor: pointer;
+        transition: border-color 0.2s, color 0.2s;
+        text-decoration: none;
+      }
+      .btn-ghost:hover { border-color: var(--white); color: var(--white); }
+
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(24px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .fade-up { animation: fadeUp 0.7s ease both; }
+      .delay-1 { animation-delay: 0.1s; }
+      .delay-2 { animation-delay: 0.2s; }
+      .delay-3 { animation-delay: 0.3s; }
+      .delay-4 { animation-delay: 0.4s; }
+
+      @media (max-width: 768px) {
+        .section { padding: 64px 20px; }
+      }
+    `;
+
+    const responsiveStyles = `
+      @media (min-width: 769px) { .mobile-sticky { display: none !important; } }
+      @media (max-width: 768px) {
+        .desktop-nav { display: none !important; }
+        .cred-badge { flex-direction: column !important; }
+        .cred-badge-inner { justify-content: center !important; }
+        .stats-row { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 0 !important; }
+        .about-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+        .services-grid { grid-template-columns: 1fr !important; }
+        .reviews-grid { grid-template-columns: 1fr !important; }
+        .process-grid { grid-template-columns: 1fr !important; }
+        .form-layout { grid-template-columns: 1fr !important; gap: 32px !important; }
+        .form-two-col { grid-template-columns: 1fr !important; }
+        .form-three-col { grid-template-columns: 1fr !important; }
+        .footer-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+        footer { padding-bottom: 80px !important; }
+      }
+    `;
+
+    // ─── NAV ────────────────────────────────────────────────────────────────
+    function Nav() {
+      const [scrolled, setScrolled] = useState(false);
+      useEffect(() => {
+        const fn = () => setScrolled(window.scrollY > 40);
+        window.addEventListener("scroll", fn);
+        return () => window.removeEventListener("scroll", fn);
+      }, []);
+
+      return (
+        <nav style={{
+          position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
+          background: scrolled ? "rgba(14,14,14,0.97)" : "transparent",
+          backdropFilter: scrolled ? "blur(12px)" : "none",
+          borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
+          transition: "all 0.3s ease",
+          padding: "0 24px",
+        }}>
+          <div style={{
+            maxWidth: 1200, margin: "0 auto",
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+            height: 64,
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <div style={{
+                width: 32, height: 32,
+                background: "var(--orange)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+              }}>
+                <span style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 14, color: "#fff" }}>RW</span>
+              </div>
+              <span style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 18, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                Revworks
+              </span>
+            </div>
+
+            <div style={{ display: "flex", alignItems: "center", gap: 32 }} className="desktop-nav">
+              {["Services", "About", "Reviews", "Contact"].map(item => (
+                <a key={item} href={`#${item.toLowerCase()}`} style={{
+                  fontFamily: "var(--font-display)", fontSize: 13, fontWeight: 700,
+                  letterSpacing: "0.1em", textTransform: "uppercase",
+                  color: "var(--light)", textDecoration: "none",
+                  transition: "color 0.2s",
+                }}
+                  onMouseEnter={e => e.target.style.color = "var(--white)"}
+                  onMouseLeave={e => e.target.style.color = "var(--light)"}
+                >{item}</a>
+              ))}
+            </div>
+
+            <a href="#book" className="btn-primary" style={{ padding: "10px 24px", fontSize: 13 }}>
+              Book Now →
+            </a>
+          </div>
+        </nav>
+      );
+    }
+
+    // ─── HERO ───────────────────────────────────────────────────────────────
+    function Hero() {
+      return (
+        <section style={{
+          minHeight: "100vh",
+          background: "var(--black)",
+          display: "flex", flexDirection: "column", justifyContent: "flex-end",
+          padding: "0 24px 80px",
+          position: "relative",
+          overflow: "hidden",
+        }}>
+          <div style={{
+            position: "absolute", inset: 0,
+            backgroundImage: "linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)",
+            backgroundSize: "80px 80px",
+            opacity: 0.3,
+          }} />
+
+          <div style={{
+            position: "absolute", top: 0, left: 0,
+            width: 4, height: "100%",
+            background: "linear-gradient(to bottom, var(--orange), transparent)",
+          }} />
+
+          <div style={{
+            position: "absolute", top: "50%", right: -20,
+            transform: "translateY(-60%)",
+            fontFamily: "var(--font-display)", fontWeight: 900,
+            fontSize: "clamp(120px, 25vw, 320px)",
+            textTransform: "uppercase",
+            color: "transparent",
+            WebkitTextStroke: "1px var(--border)",
+            whiteSpace: "nowrap",
+            userSelect: "none",
+            pointerEvents: "none",
+            lineHeight: 1,
+          }}>
+            AUTO
+          </div>
+
+          <div style={{ maxWidth: 1200, margin: "0 auto", width: "100%", position: "relative" }}>
+
+            <div className="fade-up cred-badge" style={{ display: "inline-flex", alignItems: "stretch", marginBottom: 28, border: "1px solid var(--border)", overflow: "hidden" }}>
+              <div style={{ background: "var(--orange)", padding: "9px 16px", fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 12, letterSpacing: "0.14em", textTransform: "uppercase", color: "#fff", display: "flex", alignItems: "center" }}>
+                Mississauga's Trusted Shop
+              </div>
+              <div className="cred-badge-inner" style={{ background: "var(--dark)", padding: "9px 20px", display: "flex", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
+                <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13, letterSpacing: "0.06em", color: "var(--white)", whiteSpace: "nowrap" }}>
+                  <span style={{ color: "var(--orange)" }}>15+</span> Yrs Combined Experience
+                </span>
+                <span style={{ color: "var(--border)" }}>|</span>
+                <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13, letterSpacing: "0.06em", color: "var(--white)", whiteSpace: "nowrap" }}>
+                  <span style={{ color: "var(--orange)" }}>5,000+</span> Cars Serviced
+                </span>
+              </div>
+            </div>
+
+            <div className="fade-up" style={{ marginBottom: 8 }}>
+              <span className="label">Mississauga, Ontario</span>
+            </div>
+
+            <h1 className="h1 fade-up delay-1" style={{ marginBottom: 24 }}>
+              Reliable<br />
+              <span style={{ color: "var(--orange)" }}>Repairs.</span><br />
+              Enthusiast-Level<br />Care.
+            </h1>
+
+            <p className="fade-up delay-2" style={{
+              fontFamily: "var(--font-body)", fontWeight: 300,
+              fontSize: "clamp(16px, 2vw, 20px)",
+              color: "var(--light)", maxWidth: 520,
+              marginBottom: 40, lineHeight: 1.7,
+            }}>
+              From oil changes and brakes to diagnostics and more involved repair work —
+              Revworks brings 15+ years of combined mechanic experience to every job, with
+              over 5,000 vehicles serviced in Mississauga.
+            </p>
+
+            <div className="fade-up delay-3" style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+              <a href="#book" className="btn-primary">Request an Appointment →</a>
+              <a href={`tel:${PHONE.replace(/\D/g, "")}`} className="btn-ghost">📞 {PHONE}</a>
+              <a href="#contact" className="btn-ghost">Get Directions</a>
+            </div>
+
+            <div className="fade-up delay-4 stats-row" style={{
+              display: "flex", gap: 48, marginTop: 64,
+              paddingTop: 32, borderTop: "1px solid var(--border)",
+              flexWrap: "wrap",
+            }}>
+              {[
+                { n: "15+",       sub: "Yrs Combined Experience"    },
+                { n: "5,000+",    sub: "Cars Serviced"               },
+                { n: "Same-Day",  sub: "Diagnostics Available"       },
+                { n: "Photo",     sub: "Backed Inspections"          },
+              ].map(s => (
+                <div key={s.n}>
+                  <div style={{ fontFamily: "var(--font-display)", fontSize: 28, fontWeight: 800, color: "var(--white)" }}>{s.n}</div>
+                  <div style={{ fontSize: 13, color: "var(--muted)", letterSpacing: "0.05em" }}>{s.sub}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ─── TRUST BAR ──────────────────────────────────────────────────────────
+    function TrustBar() {
+      return (
+        <section style={{ background: "var(--dark)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
+          <div className="section" style={{ padding: "48px 24px" }}>
+            <div className="label" style={{ marginBottom: 32 }}>Why people choose Revworks</div>
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+              gap: 32,
+            }}>
+              {TRUST_ITEMS.map((item, i) => (
+                <div key={i} style={{ display: "flex", gap: 16, alignItems: "flex-start" }}>
+                  <div style={{
+                    width: 3, flexShrink: 0,
+                    height: 40, background: "var(--orange)", marginTop: 4,
+                  }} />
+                  <div>
+                    <div className="h3" style={{ fontSize: 16, marginBottom: 4 }}>{item.label}</div>
+                    <div style={{ fontSize: 13, color: "var(--muted)" }}>{item.sub}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ─── SERVICES ───────────────────────────────────────────────────────────
+    function Services() {
+      const [hovered, setHovered] = useState(null);
+      return (
+        <section id="services" style={{ background: "var(--black)" }}>
+          <div className="section">
+            <div className="label">What we do</div>
+            <h2 className="h2" style={{ marginBottom: 16 }}>Core Services</h2>
+            <p style={{ color: "var(--light)", fontSize: 17, maxWidth: 480, marginBottom: 56, fontWeight: 300 }}>
+              Start with the jobs that matter most — diagnosed properly, explained clearly.
+            </p>
+
+            <div className="services-grid" style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+              gap: 1,
+              background: "var(--border)",
+              border: "1px solid var(--border)",
+            }}>
+              {SERVICES.map((svc, i) => (
+                <div
+                  key={i}
+                  onMouseEnter={() => setHovered(i)}
+                  onMouseLeave={() => setHovered(null)}
+                  style={{
+                    background: hovered === i ? "var(--mid)" : "var(--dark)",
+                    padding: "36px 32px",
+                    cursor: "default",
+                    transition: "background 0.2s",
+                    borderLeft: hovered === i ? "3px solid var(--orange)" : "3px solid transparent",
+                  }}
+                >
+                  <div style={{ fontSize: 28, marginBottom: 16 }}>{svc.icon}</div>
+                  <div className="h3" style={{ marginBottom: 10, fontSize: 18 }}>{svc.title}</div>
+                  <p style={{ fontSize: 14, color: "var(--light)", lineHeight: 1.65, fontWeight: 300 }}>{svc.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ marginTop: 40 }}>
+              <a href="#book" className="btn-primary">Request a Service Check →</a>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ─── ABOUT ──────────────────────────────────────────────────────────────
+    function About() {
+      return (
+        <section id="about" style={{ background: "var(--dark)", borderTop: "1px solid var(--border)" }}>
+          <div className="section">
+            <div className="about-grid" style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: 80,
+              alignItems: "center",
+            }}>
+              <div>
+                <div className="label">15+ Yrs Combined Experience. 5,000+ Cars.</div>
+                <h2 className="h2" style={{ marginBottom: 28 }}>
+                  A mechanic shop that understands why details matter.
+                </h2>
+                <p style={{ color: "var(--light)", fontSize: 17, lineHeight: 1.75, fontWeight: 300, marginBottom: 20 }}>
+                  The mechanics at Revworks bring over 15 years of combined hands-on experience
+                  to every vehicle that comes through the door — and with 5,000+ cars serviced
+                  in Mississauga, not much surprises them.
+                </p>
+                <p style={{ color: "var(--light)", fontSize: 17, lineHeight: 1.75, fontWeight: 300, marginBottom: 40 }}>
+                  Whether your vehicle is a daily commuter, family hauler, or something you care
+                  a little too much about — the approach is the same: diagnose properly,
+                  communicate clearly, do the job cleanly.
+                </p>
+                <a href="#book" className="btn-primary">Start With Your Issue →</a>
+              </div>
+
+              <div style={{ position: "relative" }}>
+                <div style={{
+                  background: "var(--mid)",
+                  border: "1px solid var(--border)",
+                  padding: "40px 36px",
+                  position: "relative",
+                }}>
+                  <div style={{
+                    position: "absolute", top: -1, right: -1,
+                    width: 48, height: 48,
+                    background: "var(--orange)",
+                  }} />
+
+                  <div className="label" style={{ marginBottom: 24 }}>What sets us apart</div>
+                  {[
+                    "15+ years of combined mechanic experience",
+                    "5,000+ vehicles diagnosed and serviced",
+                    "Real recommendations, not generic upsells",
+                    "Practical repair priorities based on safety and reliability",
+                    "Photos and notes before you approve any work",
+                    "Servicing most makes and models",
+                  ].map((point, i) => (
+                    <div key={i} style={{
+                      display: "flex", gap: 14, alignItems: "flex-start",
+                      padding: "14px 0",
+                      borderBottom: i < 5 ? "1px solid var(--border)" : "none",
+                    }}>
+                      <span style={{ color: "var(--orange)", fontWeight: 700, flexShrink: 0, marginTop: 2 }}>→</span>
+                      <span style={{ fontSize: 15, color: "var(--white)", lineHeight: 1.5 }}>{point}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ─── REVIEWS ────────────────────────────────────────────────────────────
+    function Reviews() {
+      const [active, setActive]   = useState(0);
+      const [visible, setVisible] = useState(true);
+      const activeRef = useRef(0);
+
+      const goTo = (idx) => {
+        const next = ((idx % REVIEWS.length) + REVIEWS.length) % REVIEWS.length;
+        setVisible(false);
+        setTimeout(() => {
+          setActive(next);
+          activeRef.current = next;
+          setVisible(true);
+        }, 220);
+      };
+
+      useEffect(() => {
+        const id = setInterval(() => goTo(activeRef.current + 1), 6000);
+        return () => clearInterval(id);
+      }, []);
+
+      const r = REVIEWS[active];
+
+      return (
+        <section id="reviews" style={{ background: "var(--black)", borderTop: "1px solid var(--border)" }}>
+          <div className="section">
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 24, marginBottom: 48 }}>
+              <div>
+                <div className="label">Customer reviews</div>
+                <h2 className="h2" style={{ marginBottom: 12 }}>
+                  Trusted by drivers<br />who notice the difference.
+                </h2>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 16 }}>
+                  <div style={{ display: "flex", gap: 2 }}>
+                    {Array(5).fill(0).map((_, i) => <span key={i} style={{ color: "var(--orange)", fontSize: 18 }}>★</span>)}
+                  </div>
+                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 15, color: "var(--white)" }}>5.0</span>
+                  <span style={{ fontSize: 13, color: "var(--muted)" }}>· 16 Google reviews</span>
+                </div>
+              </div>
+              <a href="https://g.page/r/CfvN8xEx2wVYEAE/review" target="_blank" rel="noreferrer"
+                className="btn-ghost" style={{ padding: "12px 22px", fontSize: 12, whiteSpace: "nowrap" }}>
+                Leave a Google Review →
+              </a>
+            </div>
+
+            {/* Carousel card */}
+            <div style={{
+              background: "var(--dark)",
+              border: "1px solid var(--border)",
+              padding: "clamp(28px, 5vw, 56px)",
+              position: "relative",
+              minHeight: 260,
+              opacity: visible ? 1 : 0,
+              transition: "opacity 0.22s ease",
+            }}>
+              {/* Orange top rule */}
+              <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: "var(--orange)" }} />
+
+              {/* Large quote mark */}
+              <div style={{
+                fontFamily: "Georgia, serif", fontSize: 96,
+                color: "var(--border)", lineHeight: 1,
+                marginBottom: 8, userSelect: "none",
+              }}>"</div>
+
+              {/* Stars */}
+              <div style={{ display: "flex", gap: 3, marginBottom: 20 }}>
+                {Array(r.rating).fill(0).map((_, j) => (
+                  <span key={j} style={{ color: "var(--orange)", fontSize: 20 }}>★</span>
+                ))}
+              </div>
+
+              {/* Review text */}
+              <p style={{
+                fontSize: "clamp(16px, 2.2vw, 20px)",
+                color: "var(--white)", lineHeight: 1.75,
+                fontWeight: 300, maxWidth: 820,
+                marginBottom: 40,
+              }}>
+                {r.text}
+              </p>
+
+              {/* Attribution */}
+              <div style={{
+                display: "flex", alignItems: "center", gap: 14,
+                paddingTop: 24, borderTop: "1px solid var(--border)",
+                flexWrap: "wrap",
+              }}>
+                <div style={{
+                  width: 44, height: 44, background: "var(--mid)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 18,
+                  flexShrink: 0,
+                }}>
+                  {r.name[0]}
+                </div>
+                <div>
+                  <div style={{ fontWeight: 500, fontSize: 15 }}>{r.name}</div>
+                  <div style={{ fontSize: 12, color: "var(--muted)" }}>Google Review · {r.date}</div>
+                </div>
+                {/* Review counter */}
+                <div style={{ marginLeft: "auto", fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13, color: "var(--muted)", letterSpacing: "0.08em" }}>
+                  {active + 1} / {REVIEWS.length}
+                </div>
+              </div>
+            </div>
+
+            {/* Controls */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 20, gap: 16 }}>
+              <button onClick={() => goTo(active - 1)} style={{
+                background: "transparent", border: "1px solid var(--border)",
+                color: "var(--light)", cursor: "pointer", padding: "10px 20px",
+                fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13,
+                letterSpacing: "0.1em", textTransform: "uppercase",
+                transition: "border-color 0.2s, color 0.2s",
+              }}
+                onMouseEnter={e => { e.target.style.borderColor = "var(--white)"; e.target.style.color = "var(--white)"; }}
+                onMouseLeave={e => { e.target.style.borderColor = "var(--border)"; e.target.style.color = "var(--light)"; }}
+              >← Prev</button>
+
+              {/* Dot indicators */}
+              <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                {REVIEWS.map((_, i) => (
+                  <button key={i} onClick={() => goTo(i)} style={{
+                    width: i === active ? 28 : 8, height: 8,
+                    background: i === active ? "var(--orange)" : "var(--border)",
+                    border: "none", cursor: "pointer",
+                    transition: "all 0.3s ease", padding: 0,
+                  }} />
+                ))}
+              </div>
+
+              <button onClick={() => goTo(active + 1)} style={{
+                background: "transparent", border: "1px solid var(--border)",
+                color: "var(--light)", cursor: "pointer", padding: "10px 20px",
+                fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13,
+                letterSpacing: "0.1em", textTransform: "uppercase",
+                transition: "border-color 0.2s, color 0.2s",
+              }}
+                onMouseEnter={e => { e.target.style.borderColor = "var(--white)"; e.target.style.color = "var(--white)"; }}
+                onMouseLeave={e => { e.target.style.borderColor = "var(--border)"; e.target.style.color = "var(--light)"; }}
+              >Next →</button>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ─── PROCESS ────────────────────────────────────────────────────────────
+    function Process() {
+      return (
+        <section style={{ background: "var(--dark)", borderTop: "1px solid var(--border)" }}>
+          <div className="section">
+            <div className="label">How it works</div>
+            <h2 className="h2" style={{ marginBottom: 56 }}>How booking works.</h2>
+
+            <div className="process-grid" style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+              gap: 1,
+              background: "var(--border)",
+              border: "1px solid var(--border)",
+            }}>
+              {PROCESS.map((step, i) => (
+                <div key={i} style={{ background: "var(--dark)", padding: "40px 32px" }}>
+                  <div style={{
+                    fontFamily: "var(--font-display)", fontWeight: 900,
+                    fontSize: 56, color: "var(--border)",
+                    lineHeight: 1, marginBottom: 20,
+                  }}>{step.n}</div>
+                  <div className="h3" style={{ marginBottom: 10, fontSize: 17 }}>{step.title}</div>
+                  <p style={{ fontSize: 14, color: "var(--light)", lineHeight: 1.65, fontWeight: 300 }}>{step.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ─── BOOKING FORM ───────────────────────────────────────────────────────
+    function BookingForm() {
+      const [form, setForm] = useState({
+        firstName: "", lastName: "", phone: "", email: "",
+        year: "", make: "", model: "",
+        service: "", issue: "", preferredDay: "", timeWindow: "", driveable: "",
+      });
+      const [submitted, setSubmitted] = useState(false);
+
+      const update = (k, v) => setForm(f => ({ ...f, [k]: v }));
+
+      const inputStyle = {
+        width: "100%",
+        background: "var(--mid)",
+        border: "1px solid var(--border)",
+        color: "var(--white)",
+        fontFamily: "var(--font-body)",
+        fontSize: 15,
+        padding: "14px 16px",
+        outline: "none",
+        transition: "border-color 0.2s",
+      };
+
+      const labelStyle = {
+        fontFamily: "var(--font-display)",
+        fontSize: 11, fontWeight: 700,
+        letterSpacing: "0.15em",
+        textTransform: "uppercase",
+        color: "var(--light)",
+        display: "block", marginBottom: 8,
+      };
+
+      const focusOrange = e => e.target.style.borderColor = "var(--orange)";
+      const blurBorder  = e => e.target.style.borderColor = "var(--border)";
+
+      if (submitted) {
+        return (
+          <section id="book" style={{ background: "var(--black)", borderTop: "1px solid var(--border)" }}>
+            <div className="section" style={{ textAlign: "center", padding: "120px 24px" }}>
+              <div style={{
+                width: 64, height: 64,
+                background: "var(--orange)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                margin: "0 auto 32px",
+                fontSize: 28,
+              }}>✓</div>
+              <h2 className="h2" style={{ marginBottom: 16 }}>Request Received.</h2>
+              <p style={{ color: "var(--light)", fontSize: 17, maxWidth: 440, margin: "0 auto 32px", fontWeight: 300 }}>
+                A team member will review your request and reach out to confirm the next step.
+                This is not a confirmed appointment yet.
+              </p>
+              <p style={{ color: "var(--muted)", fontSize: 14, marginBottom: 40 }}>
+                If the vehicle is unsafe to drive, call us now:{" "}
+                <a href={`tel:${PHONE.replace(/\D/g, "")}`} style={{ color: "var(--orange)" }}>{PHONE}</a>
+              </p>
+              <button className="btn-ghost" onClick={() => setSubmitted(false)}>Submit Another Request</button>
+            </div>
+          </section>
+        );
+      }
+
+      return (
+        <section id="book" style={{ background: "var(--black)", borderTop: "1px solid var(--border)" }}>
+          <div className="section">
+            <div className="label">Get in touch</div>
+            <h2 className="h2" style={{ marginBottom: 12 }}>Request an Appointment.</h2>
+            <p style={{ color: "var(--light)", fontSize: 16, maxWidth: 480, marginBottom: 48, fontWeight: 300 }}>
+              Tell us what's going on with the vehicle and your preferred timing.
+              We'll review the request and confirm the right next step.
+            </p>
+
+            <div className="form-layout" style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: 40,
+              alignItems: "start",
+            }}>
+              {/* Form */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+
+                <div className="form-two-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+                  <div>
+                    <label style={labelStyle}>First Name *</label>
+                    <input style={inputStyle} value={form.firstName}
+                      onChange={e => update("firstName", e.target.value)}
+                      onFocus={focusOrange} onBlur={blurBorder}
+                    />
+                  </div>
+                  <div>
+                    <label style={labelStyle}>Last Name *</label>
+                    <input style={inputStyle} value={form.lastName}
+                      onChange={e => update("lastName", e.target.value)}
+                      onFocus={focusOrange} onBlur={blurBorder}
+                    />
+                  </div>
+                </div>
+
+                <div className="form-two-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+                  <div>
+                    <label style={labelStyle}>Phone *</label>
+                    <input style={inputStyle} type="tel" value={form.phone}
+                      onChange={e => update("phone", e.target.value)}
+                      onFocus={focusOrange} onBlur={blurBorder}
+                    />
+                  </div>
+                  <div>
+                    <label style={labelStyle}>Email</label>
+                    <input style={inputStyle} type="email" value={form.email}
+                      onChange={e => update("email", e.target.value)}
+                      onFocus={focusOrange} onBlur={blurBorder}
+                    />
+                  </div>
+                </div>
+
+                <div className="form-three-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
+                  {[["Year *", "year", "2018"], ["Make *", "make", "Honda"], ["Model *", "model", "Civic"]].map(([l, k, ph]) => (
+                    <div key={k}>
+                      <label style={labelStyle}>{l}</label>
+                      <input style={inputStyle} placeholder={ph} value={form[k]}
+                        onChange={e => update(k, e.target.value)}
+                        onFocus={focusOrange} onBlur={blurBorder}
+                      />
+                    </div>
+                  ))}
+                </div>
+
+                <div>
+                  <label style={labelStyle}>Service Needed *</label>
+                  <select style={{ ...inputStyle, appearance: "none" }}
+                    value={form.service} onChange={e => update("service", e.target.value)}
+                    onFocus={focusOrange} onBlur={blurBorder}
+                  >
+                    <option value="">Select a service…</option>
+                    {["Diagnostics", "Oil Change", "Brakes", "A/C & Heating", "Suspension", "Inspection", "Other"].map(s =>
+                      <option key={s} value={s}>{s}</option>
+                    )}
+                  </select>
+                </div>
+
+                <div>
+                  <label style={labelStyle}>Describe the Issue *</label>
+                  <textarea style={{ ...inputStyle, resize: "vertical", minHeight: 96 }}
+                    value={form.issue} onChange={e => update("issue", e.target.value)}
+                    placeholder="What is the vehicle doing? When does it happen?"
+                    onFocus={focusOrange} onBlur={blurBorder}
+                  />
+                </div>
+
+                <div className="form-two-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+                  <div>
+                    <label style={labelStyle}>Preferred Day *</label>
+                    <input style={inputStyle} type="date" value={form.preferredDay}
+                      onChange={e => update("preferredDay", e.target.value)}
+                      onFocus={focusOrange} onBlur={blurBorder}
+                    />
+                  </div>
+                  <div>
+                    <label style={labelStyle}>Time Window *</label>
+                    <select style={{ ...inputStyle, appearance: "none" }}
+                      value={form.timeWindow} onChange={e => update("timeWindow", e.target.value)}
+                      onFocus={focusOrange} onBlur={blurBorder}
+                    >
+                      <option value="">Select…</option>
+                      {["Morning", "Midday", "Afternoon", "Flexible"].map(t =>
+                        <option key={t} value={t}>{t}</option>
+                      )}
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label style={labelStyle}>Is the Vehicle Safe to Drive? *</label>
+                  <div style={{ display: "flex", gap: 12 }}>
+                    {["Yes", "No", "Unsure"].map(opt => (
+                      <button key={opt} type="button"
+                        onClick={() => update("driveable", opt)}
+                        style={{
+                          flex: 1, padding: "12px 8px",
+                          background: form.driveable === opt ? "var(--orange)" : "var(--mid)",
+                          border: "1px solid",
+                          borderColor: form.driveable === opt ? "var(--orange)" : "var(--border)",
+                          color: "var(--white)",
+                          fontFamily: "var(--font-display)",
+                          fontWeight: 700, fontSize: 13,
+                          letterSpacing: "0.1em", textTransform: "uppercase",
+                          cursor: "pointer", transition: "all 0.2s",
+                        }}
+                      >{opt}</button>
+                    ))}
+                  </div>
+                </div>
+
+                <div style={{
+                  background: "var(--mid)", border: "1px solid var(--border)",
+                  padding: "16px 18px", fontSize: 13, color: "var(--muted)", lineHeight: 1.6,
+                }}>
+                  ⚠ Submitting this form does <strong style={{ color: "var(--light)" }}>not</strong> confirm an appointment.
+                  We'll review your request and reply to confirm.
+                  <br /><br />
+                  If the vehicle is unsafe to drive, overheating, leaking fluids, or has brake/steering issues,{" "}
+                  <a href={`tel:${PHONE.replace(/\D/g, "")}`} style={{ color: "var(--orange)" }}>call us now at {PHONE}</a>.
+                </div>
+
+                <button
+                  className="btn-primary"
+                  style={{ width: "100%", justifyContent: "center", fontSize: 15, padding: "18px" }}
+                  onClick={() => {
+                    if (form.firstName && form.phone && form.year && form.make && form.model && form.issue) {
+                      setSubmitted(true);
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }
+                  }}
+                >
+                  Submit Request →
+                </button>
+              </div>
+
+              {/* Sidebar */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+                <div style={{ background: "var(--dark)", border: "1px solid var(--border)", padding: "32px 28px" }}>
+                  <div className="label" style={{ marginBottom: 20 }}>Contact &amp; Location</div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+                    <div>
+                      <div style={{ fontSize: 12, color: "var(--muted)", marginBottom: 4, letterSpacing: "0.1em", textTransform: "uppercase" }}>Phone</div>
+                      <a href={`tel:${PHONE.replace(/\D/g, "")}`} style={{ color: "var(--orange)", fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 22, textDecoration: "none" }}>{PHONE}</a>
+                    </div>
+                    <div>
+                      <div style={{ fontSize: 12, color: "var(--muted)", marginBottom: 4, letterSpacing: "0.1em", textTransform: "uppercase" }}>Address</div>
+                      <div style={{ fontSize: 15, color: "var(--light)" }}>{ADDRESS}</div>
+                    </div>
+                    <div>
+                      <div style={{ fontSize: 12, color: "var(--muted)", marginBottom: 12, letterSpacing: "0.1em", textTransform: "uppercase" }}>Hours</div>
+                      {HOURS.map(h => (
+                        <div key={h.day} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid var(--border)", fontSize: 14 }}>
+                          <span style={{ color: "var(--light)" }}>{h.day}</span>
+                          <span style={{ color: h.time === "Closed" ? "var(--muted)" : "var(--white)", fontWeight: 500 }}>{h.time}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ background: "var(--orange)", padding: "28px 28px" }}>
+                  <div style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 20, textTransform: "uppercase", marginBottom: 8 }}>
+                    Urgent Issue?
+                  </div>
+                  <p style={{ fontSize: 14, marginBottom: 20, opacity: 0.9, lineHeight: 1.6 }}>
+                    If the vehicle is unsafe to drive, don't use the form. Call us directly.
+                  </p>
+                  <a href={`tel:${PHONE.replace(/\D/g, "")}`} style={{
+                    display: "block", textAlign: "center",
+                    background: "#fff", color: "var(--orange)",
+                    fontFamily: "var(--font-display)", fontWeight: 800,
+                    fontSize: 16, letterSpacing: "0.08em", textTransform: "uppercase",
+                    padding: "14px 20px", textDecoration: "none",
+                  }}>
+                    📞 Call Now
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ─── FOOTER ─────────────────────────────────────────────────────────────
+    function Footer() {
+      return (
+        <footer id="contact" style={{ background: "var(--dark)", borderTop: "1px solid var(--border)" }}>
+          <div className="section">
+            <div className="footer-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, marginBottom: 64 }}>
+              <div>
+                <div className="label" style={{ marginBottom: 20 }}>Local shop. Easy next step.</div>
+                <h2 className="h2" style={{ fontSize: 42, marginBottom: 20 }}>
+                  Ready to sort out the issue?
+                </h2>
+                <p style={{ color: "var(--light)", fontSize: 16, lineHeight: 1.75, fontWeight: 300, marginBottom: 32 }}>
+                  Call, request a time, or use directions to find the shop in Mississauga.
+                  If the vehicle is unsafe to drive, call before bringing it in.
+                </p>
+                <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+                  <a href="#book" className="btn-primary">Request an Appointment →</a>
+                  <a href={`tel:${PHONE.replace(/\D/g, "")}`} className="btn-ghost">Call {PHONE}</a>
+                </div>
+              </div>
+
+              <div>
+                <div style={{ border: "1px solid var(--border)", overflow: "hidden", lineHeight: 0 }}>
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6958.122417743781!2d-79.66554469573205!3d43.684492976401316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b3f45dc47b881%3A0x5805cbd311f3cdfb!2sREVWORKS%20AUTOMOTIVE!5e0!3m2!1sen!2sca!4v1777916097425!5m2!1sen!2sca"
+                    width="100%" height="280"
+                    style={{ border: 0, display: "block", filter: "grayscale(1) invert(0.9) contrast(0.85)" }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div style={{
+              paddingTop: 32, borderTop: "1px solid var(--border)",
+              display: "flex", justifyContent: "space-between", alignItems: "center",
+              flexWrap: "wrap", gap: 16,
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <div style={{
+                  width: 28, height: 28, background: "var(--orange)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                }}>
+                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 12, color: "#fff" }}>RW</span>
+                </div>
+                <span style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 15, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                  Revworks Automotive
+                </span>
+              </div>
+              <div style={{ fontSize: 13, color: "var(--muted)" }}>
+                © {new Date().getFullYear()} Revworks Automotive · Mississauga, ON ·{" "}
+                <a href="/privacy" style={{ color: "var(--muted)" }}>Privacy</a>
+              </div>
+            </div>
+          </div>
+        </footer>
+      );
+    }
+
+    // ─── MOBILE STICKY BAR ──────────────────────────────────────────────────
+    function MobileStickyBar() {
+      return (
+        <div style={{
+          position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 200,
+          display: "grid", gridTemplateColumns: "1fr 1fr 1fr",
+          gap: 1, background: "var(--border)",
+        }} className="mobile-sticky">
+          {[
+            { label: "📞 Call",        href: `tel:${PHONE.replace(/\D/g, "")}` },
+            { label: "📅 Book",        href: "#book" },
+            { label: "🗺 Directions",  href: `https://maps.google.com/?q=${encodeURIComponent(ADDRESS)}` },
+          ].map(item => (
+            <a key={item.label} href={item.href}
+              style={{
+                display: "flex", alignItems: "center", justifyContent: "center",
+                background: "var(--dark)",
+                fontFamily: "var(--font-display)", fontWeight: 700,
+                fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase",
+                color: "var(--white)", textDecoration: "none",
+                padding: "16px 8px",
+              }}
+            >{item.label}</a>
+          ))}
+        </div>
+      );
+    }
+
+    // ─── APP ────────────────────────────────────────────────────────────────
+    function RevworksHomepage() {
+      return (
+        <>
+          <style dangerouslySetInnerHTML={{ __html: globalStyles + responsiveStyles }} />
+          <Nav />
+          <Hero />
+          <TrustBar />
+          <Services />
+          <About />
+          <Reviews />
+          <Process />
+          <BookingForm />
+          <Footer />
+          <MobileStickyBar />
+        </>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<RevworksHomepage />);
+  </script>
+</body>
+</html>
