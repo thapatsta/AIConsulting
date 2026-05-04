@@ -6,105 +6,153 @@
   <title>Revworks Automotive — Honest Auto Repair in Mississauga</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --bg:#07070b; --bg2:#0d0d14; --bg3:#111118; --blue:#4f8ef7; --blue-dim:#2a5cbf; --text:#e4e4ec; --muted:#6b6b7a; --border:rgba(255,255,255,0.07); }
-    html { scroll-behavior: smooth; }
-    body { background: radial-gradient(circle at 12% 14%, rgba(79,142,247,0.16), transparent 42%), radial-gradient(circle at 85% 80%, rgba(79,142,247,0.14), transparent 45%), linear-gradient(145deg, #06070f 0%, #0b0e19 50%, #080a12 100%); color: var(--text); font-family: 'Barlow', sans-serif; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
-    body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(79,142,247,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(79,142,247,0.03) 1px, transparent 1px), url('https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=1800&q=80'); background-size: 60px 60px, 60px 60px, cover; background-position: center; background-blend-mode: normal, normal, soft-light; opacity: 0.7; pointer-events: none; z-index: 0; }
-    body::after { content: ''; position: fixed; inset: 0; background: linear-gradient(180deg, rgba(7,7,11,0.5) 0%, rgba(7,7,11,0.75) 100%); pointer-events: none; z-index: 0; }
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 64px; background: rgba(7,7,11,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .nav-logo-mark { width: 32px; height: 32px; border: 1.5px solid var(--blue); display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--blue); letter-spacing: 0.05em; }
-    .nav-logo-text { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text); }
-    .nav-links { display: flex; gap: 36px; list-style: none; }
-    .nav-links a,.nav-cta,.section-label,.hero-eyebrow,.btn-primary,.btn-secondary { font-family: 'JetBrains Mono', monospace; text-transform: uppercase; }
-    .nav-links a { font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-decoration: none; }
-    .nav-cta { font-size: 11px; letter-spacing: 0.12em; color: var(--blue); text-decoration: none; border: 1px solid var(--blue); padding: 8px 20px; }
-    .section-label { font-size: 10px; letter-spacing: 0.18em; color: var(--blue); display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
-    .section-label::before { content: ''; display: inline-block; width: 28px; height: 1px; background: var(--blue); }
-    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; padding-top: 64px; }
-    .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 80px 48px 80px 80px; position: relative; z-index: 1; }
-    .hero-eyebrow { font-size: 11px; letter-spacing: 0.2em; color: var(--muted); margin-bottom: 32px; }
-    .hero-h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(64px, 8vw, 110px); line-height: 0.92; text-transform: uppercase; margin-bottom: 32px; }
-    .line-blue { color: var(--blue); } .line-dim { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.2); }
-    .hero-sub { font-size: 15px; color: var(--muted); max-width: 420px; line-height: 1.7; margin-bottom: 48px; border-left: 2px solid var(--blue-dim); padding-left: 20px; }
-    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
-    .btn-primary { background: var(--blue); color: #fff; text-decoration: none; font-size: 11px; letter-spacing: 0.12em; padding: 14px 28px; border-radius: 4px; }
-    .btn-secondary { color: var(--text); text-decoration: none; font-size: 11px; letter-spacing: 0.12em; padding: 14px 28px; border: 1px solid var(--border); border-radius: 4px; }
-    .hero-right { display: flex; flex-direction: column; justify-content: center; padding: 80px 80px 80px 48px; position: relative; z-index: 1; }
-    .data-panel { border: 1px solid var(--border); background: var(--bg2); padding: 32px; }
-    .data-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); margin-bottom: 1px; }
-    .data-cell,.data-cell-full { background: var(--bg2); padding: 20px 24px; }
-    .data-cell-full { grid-column: span 2; }
-    .stats-bar { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--border); }
-    .stat-item { padding: 32px 40px; border-right: 1px solid var(--border); }
-    section { position: relative; z-index: 1; }
-    .container { max-width: 1280px; margin: 0 auto; padding: 0 80px; }
-    .section-pad { padding: 100px 0; }
-    .services-grid,.reviews-grid,.how-grid { display: grid; gap: 1px; background: var(--border); }
-    .services-grid { grid-template-columns: repeat(3, 1fr); }
-    .reviews-grid { grid-template-columns: repeat(3, 1fr); }
-    .how-grid { grid-template-columns: repeat(4, 1fr); }
-    .service-card,.review-card,.how-step { background: var(--bg2); padding: 36px 32px; }
-    footer { border-top: 1px solid var(--border); padding: 32px 80px; display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; background: var(--bg); }
-    .service-card h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 28px; margin-bottom: 10px; text-transform: uppercase; }
-    .service-card p,.review-card p { color: var(--muted); font-size: 15px; }
-    .review-card .stars { color: #f6c453; margin-bottom: 8px; letter-spacing: 0.08em; }
-    .review-card .review-source { color: var(--text); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 10px; }
-    .sticky-cta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 120; display: none; gap: 10px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: rgba(7,7,11,0.96); border-top: 1px solid var(--border); }
-    .sticky-cta a { flex: 1; text-align: center; text-decoration: none; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; font-size: 12px; letter-spacing: 0.08em; padding: 16px 8px; border-radius: 6px; min-height: 48px; display:flex; align-items:center; justify-content:center; }
-    .sticky-call { border: 1px solid var(--border); color: var(--text); }
-    .sticky-book { background: var(--blue); color: #fff; }
-    .sticky-book.pulse { animation: pulse 1.8s ease-in-out infinite; }
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
-    .reveal.is-visible { opacity: 1; transform: translateY(0); }
-    .sticky-cta.is-hidden { transform: translateY(120%); }
-    .sticky-cta { transition: transform .25s ease; }
-    @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(79,142,247,.4);} 70% { box-shadow: 0 0 0 10px rgba(79,142,247,0);} }
-    
-    .quick-actions { display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:10px; margin-top: 18px; }
-    .quick-actions a { text-decoration:none; color: var(--text); border:1px solid var(--border); background: var(--bg2); border-radius: 6px; min-height: 54px; display:flex; flex-direction:column; justify-content:center; align-items:center; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; gap: 4px; }
-    .quick-actions .qa-icon { font-size: 14px; line-height:1; }
-    @media (max-width: 900px) { .quick-actions { grid-template-columns: repeat(2, minmax(0,1fr)); } }
-    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; } .hero-right { padding-top: 0; } .sticky-cta { display: flex; } body { padding-bottom: 84px; } .hero-actions { flex-direction: column; align-items: stretch; } .hero-actions a { text-align: center; } }
-
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#090b10;--bg2:#121722;--bg3:#191f2d;--text:#e8ebf2;--muted:#a6adbc;--line:rgba(255,255,255,.1);--brand:#4f8ef7;--brand2:#2d61ba;--ok:#f8d46a}
+    html{scroll-behavior:smooth}
+    body{font-family:'Barlow',sans-serif;background:radial-gradient(circle at 15% 8%,rgba(79,142,247,.16),transparent 40%),linear-gradient(155deg,#05070d,#0a0f19 55%,#070a12);color:var(--text);line-height:1.6}
+    body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(79,142,247,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(79,142,247,.035) 1px,transparent 1px);background-size:42px 42px;pointer-events:none;z-index:0}
+    section,nav,footer{position:relative;z-index:1}
+    nav{position:sticky;top:0;z-index:100;background:rgba(9,11,16,.92);backdrop-filter:blur(12px);height:68px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
+    .logo-mark{width:34px;height:34px;border:1.5px solid var(--brand);display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--brand)}
+    .logo span{font-family:'Barlow Condensed',sans-serif;font-size:21px;letter-spacing:.1em;text-transform:uppercase}
+    .nav-links{display:flex;gap:24px;list-style:none}
+    .nav-links a,.btn,.eyebrow,.section-label{font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.1em;font-size:11px;text-decoration:none}
+    .nav-links a{color:var(--muted)}
+    .btn{padding:13px 22px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.2s}
+    .btn:active{transform:translateY(1px)}
+    .btn-primary{background:var(--brand);color:#fff;border:1px solid transparent}
+    .btn-secondary{border:1px solid var(--line);color:var(--text);background:rgba(255,255,255,.02)}
+    .btn-primary:hover{background:#5b99ff}.btn-secondary:hover{border-color:rgba(255,255,255,.25)}
+    .nav-cta{margin-left:20px}
+    .container{max-width:1240px;margin:0 auto;padding:0 28px}
+    .hero{padding:68px 0 40px}
+    .hero-wrap{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+    .eyebrow{color:var(--muted);margin-bottom:16px}
+    h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(40px,7vw,72px);line-height:.95;text-transform:uppercase;margin-bottom:16px}
+    .hero-sub{max-width:620px;font-size:18px;color:#cfd5e4;margin-bottom:22px}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}
+    .chips{display:flex;flex-wrap:wrap;gap:10px}
+    .chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:rgba(255,255,255,.02);padding:10px 14px;border-radius:999px;font-size:13px;color:#d7dced}
+    .hero-media{position:relative}
+    .hero-media::before{content:'';position:absolute;inset:-14px;background:radial-gradient(circle at 70% 20%,rgba(79,142,247,.35),transparent 55%);filter:blur(8px)}
+    .img-card{position:relative;background:var(--bg2);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+    .img-card img{width:100%;height:100%;display:block;object-fit:cover;aspect-ratio:16/10}
+    .img-fallback{display:none;position:absolute;inset:0;background:linear-gradient(145deg,#111827,#1f2937);align-items:center;justify-content:center;color:#bfc7da;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+    .overlay-tag{position:absolute;right:16px;bottom:16px;border:1px solid rgba(255,255,255,.28);background:rgba(5,8,16,.72);padding:8px 12px;border-radius:999px;font-size:12px}
+    .trust-bar{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,255,255,.02)}
+    .trust-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+    .trust-item{padding:18px 16px;border-right:1px solid var(--line);font-size:14px;text-align:center}
+    .trust-item:last-child{border-right:none}
+    .section{padding:84px 0}
+    .section-label{color:var(--brand);display:flex;align-items:center;gap:10px;margin-bottom:18px}
+    .section-label::before{content:'';width:24px;height:1px;background:var(--brand)}
+    .section-title{font-family:'Barlow Condensed',sans-serif;font-size:44px;text-transform:uppercase;line-height:.95;margin-bottom:20px}
+    .services,.reviews{display:grid;gap:16px;grid-template-columns:repeat(4,1fr)}
+    .card{border:1px solid var(--line);border-radius:16px;background:var(--bg2);overflow:hidden;transition:.2s}
+    .card:hover{transform:translateY(-2px);border-color:rgba(79,142,247,.42)}
+    .card img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+    .card-body{padding:16px}
+    .card h3{font-family:'Barlow Condensed',sans-serif;font-size:28px;line-height:1;margin-bottom:8px;text-transform:uppercase}
+    .card p{color:var(--muted);font-size:15px}
+    .why{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:stretch}
+    .why-list{list-style:none;display:grid;gap:10px}
+    .why-list li{padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.02)}
+    .reviews{grid-template-columns:repeat(3,1fr)}
+    .review{padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--bg2)}
+    .stars{color:var(--ok);letter-spacing:.08em;margin-bottom:6px}
+    .review-meta{margin-top:10px;font-size:13px;color:#d4daea}
+    .badge{display:inline-block;margin-top:6px;padding:4px 8px;border:1px solid var(--line);border-radius:999px;font-size:11px;color:#c6cee0}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .step{border:1px solid var(--line);background:var(--bg2);padding:18px;border-radius:14px}
+    .step strong{font-family:'JetBrains Mono',monospace;color:var(--brand);font-size:12px}
+    .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}
+    .contact-box{border:1px solid var(--line);border-radius:16px;padding:20px;background:var(--bg2)}
+    .contact-box a{color:#d9e4ff}
+    footer{padding:24px 28px;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:var(--muted)}
+    .sticky-cta{display:none;position:fixed;left:0;right:0;bottom:0;z-index:120;background:rgba(9,11,16,.97);border-top:1px solid var(--line);padding:10px 12px calc(10px + env(safe-area-inset-bottom));gap:10px}
+    .sticky-cta .btn{flex:1;min-height:52px;font-size:12px}
+    @media (max-width:980px){
+      .nav-links{display:none}
+      .hero-wrap,.why,.contact-wrap{grid-template-columns:1fr}
+      .services{grid-template-columns:repeat(2,1fr)}
+      .reviews{grid-template-columns:1fr}
+      .steps{grid-template-columns:1fr}
+      .trust-grid{grid-template-columns:repeat(2,1fr)}
+      .trust-item:nth-child(2){border-right:none}
+      .hero{padding-top:38px}
+      .hero-sub{font-size:16px}
+      .cta-row{flex-direction:column}
+      .cta-row .btn{width:100%}
+      body{padding-bottom:86px}
+      .sticky-cta{display:flex}
+    }
   </style>
 </head>
 <body>
-  <div class="sticky-cta"><a class="sticky-call" href="tel:4165621234">Call Now</a><a class="sticky-book" href="#contact">Book Diagnostic</a></div>
-  <nav><a href="#" class="nav-logo"><div class="nav-logo-mark">RW</div><span class="nav-logo-text">Revworks</span></a><ul class="nav-links"><li><a href="#services">Services</a></li><li><a href="#about">About</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#contact">Contact</a></li></ul><a href="#contact" class="nav-cta">Book Diagnostic →</a></nav>
-  <section class="hero"><div class="hero-left"><div class="hero-eyebrow">Mississauga, Ontario · Est. 2009</div><h1 class="hero-h1"><span class="line-blue">REVWORKS</span><br>AUTOMOTIVE<br><span class="line-dim">MISSISSAUGA</span></h1><p class="hero-sub"><strong>Honest Auto Repair in Mississauga</strong><br>From oil changes and brakes to full diagnostics — 15+ years of experience, 5,000+ vehicles serviced.</p><div class="hero-actions"><a href="#contact" class="btn-primary">Book Diagnostic →</a><a href="tel:4165621234" class="btn-secondary">☏ (416) 562-1234</a></div><div class="quick-actions"><a href="tel:4165621234"><span class="qa-icon">☎</span><span>Call</span></a><a href="#contact"><span class="qa-icon">🛠</span><span>Get Quote</span></a><a href="https://maps.google.com/?q=1788+Drew+Rd+Unit+6+Mississauga+ON+L5S+1L7" target="_blank" rel="noopener"><span class="qa-icon">📍</span><span>Location</span></a><a href="#services"><span class="qa-icon">🔧</span><span>Services</span></a></div></div><div class="hero-right"><div class="data-panel"><div class="data-row"><div class="data-cell">15+ years experience</div><div class="data-cell">5,000+ vehicles</div></div><div class="data-row"><div class="data-cell-full">Diagnostics · Maintenance · Brakes · Inspections</div></div></div></div></section>
-  <div class="stats-bar reveal"><div class="stat-item">15+ Years</div><div class="stat-item">5,000+ Cars</div><div class="stat-item">1hr Avg Diagnostic</div><div class="stat-item">100% Photo Inspections</div></div>
-  <section class="services-section reveal" id="services"><div class="container section-pad"><div class="section-label">Core Services</div><div class="services-grid"><div class="service-card"><h3>Diagnostics</h3><p>Check engine lights, warning messages, leaks, noises, and drivability issues. We inspect, document, and explain before repairs.</p></div><div class="service-card"><h3>Oil &amp; Maintenance</h3><p>Regular oil service, filters, and fluid checks to keep your vehicle reliable and warranty-friendly.</p></div><div class="service-card"><h3>Brakes &amp; Suspension</h3><p>Brake pad/rotor inspections, suspension checks, and a clear safety-first plan before any work begins.</p></div></div></div></section>
-  <section class="reviews-section reveal" id="reviews"><div class="container section-pad"><div class="section-label">Customer Reviews</div><div class="reviews-grid"><div class="review-card"><div class="stars">★★★★★</div><p>Explained the issue clearly, sent photos, and had my brakes done the same day.</p><div class="review-source">— Google Review</div></div><div class="review-card"><div class="stars">★★★★★</div><p>Quick diagnostic, fair estimate, and no surprise add-ons. Exactly what I wanted.</p><div class="review-source">— Google Review</div></div><div class="review-card"><div class="stars">★★★★★</div><p>Professional team, transparent process, and great communication from start to finish.</p><div class="review-source">— Google Review</div></div></div></div></section>
-  <section class="how-section reveal" id="contact"><div class="container section-pad"><div class="section-label">Plan Your Visit</div><div class="how-grid"><div class="how-step">1. Submit a request</div><div class="how-step">2. We confirm timing</div><div class="how-step">3. Diagnose vehicle</div><div class="how-step">4. Approve and collect</div></div></div></section>
-  <footer><div>© 2026 Revworks Automotive · Mississauga, ON</div><div><a href="#services" class="btn-secondary">Services</a></div></footer>
+  <div class="sticky-cta"><a class="btn btn-secondary" href="tel:4165621234">Call Now</a><a class="btn btn-primary" href="#contact">Book Diagnostic</a></div>
+  <nav>
+    <a class="logo" href="#"><div class="logo-mark">RW</div><span>Revworks</span></a>
+    <ul class="nav-links"><li><a href="#services">Services</a></li><li><a href="#about">About</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#contact">Contact</a></li></ul>
+    <a href="#contact" class="btn btn-primary nav-cta">Book Diagnostic</a>
+  </nav>
 
-<script>
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const sticky = document.querySelector('.sticky-cta');
-  const stickyBook = document.querySelector('.sticky-book');
-  if (stickyBook && !prefersReducedMotion) stickyBook.classList.add('pulse');
+  <section class="hero">
+    <div class="container hero-wrap">
+      <div>
+        <div class="eyebrow">Mississauga, Ontario · Est. 2009</div>
+        <h1>Honest Auto Repair in Mississauga</h1>
+        <p class="hero-sub">Diagnostics, brakes, oil changes, inspections, and maintenance — with clear explanations, photo-based updates, and no surprise repairs.</p>
+        <div class="cta-row"><a class="btn btn-primary" href="#contact">Book Diagnostic</a><a class="btn btn-secondary" href="tel:4165621234">Call Now</a></div>
+        <div class="chips"><span class="chip">🛡 15+ Years Experience</span><span class="chip">🚗 5,000+ Vehicles Serviced</span><span class="chip">⏱ 1hr Avg Diagnostic</span><span class="chip">📷 Photo-Based Inspections</span></div>
+      </div>
+      <div class="hero-media">
+        <div class="img-card"><img data-rev-img="hero" alt="Mechanic performing diagnostics in a clean service bay" /><div class="img-fallback">Hero Diagnostics</div><div class="overlay-tag">Photo-Based Inspections</div></div>
+      </div>
+    </div>
+  </section>
 
-  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-  } else {
-    document.querySelectorAll('.reveal').forEach((el) => el.classList.add('is-visible'));
-  }
+  <div class="trust-bar"><div class="container trust-grid"><div class="trust-item">15+ Years Experience</div><div class="trust-item">5,000+ Vehicles Serviced</div><div class="trust-item">1hr Avg Diagnostic</div><div class="trust-item">Photo-Based Inspections</div></div></div>
 
-  let previousY = window.scrollY;
-  window.addEventListener('scroll', () => {
-    if (!sticky || window.innerWidth > 900) return;
-    const currentY = window.scrollY;
-    const shouldHide = currentY > previousY && currentY > 180;
-    sticky.classList.toggle('is-hidden', shouldHide);
-    previousY = currentY;
-  }, { passive: true });
-</script>
+  <section class="section" id="services"><div class="container"><div class="section-label">Core Services</div><h2 class="section-title">What We Fix</h2><div class="services">
+    <article class="card"><img data-rev-img="diagnostics" alt="Mechanic using scan tool for diagnostics" /><div class="img-fallback">Diagnostics</div><div class="card-body"><h3>Diagnostics</h3><p>Check engine lights, warning messages, leaks, noises, and drivability issues with documented findings.</p></div></article>
+    <article class="card"><img data-rev-img="maintenance" alt="Oil change and maintenance under hood" /><div class="img-fallback">Oil & Maintenance</div><div class="card-body"><h3>Oil & Maintenance</h3><p>Regular oil service, filters, and fluid checks to keep your vehicle reliable and warranty-friendly.</p></div></article>
+    <article class="card"><img data-rev-img="brakes" alt="Brake rotor inspection close-up" /><div class="img-fallback">Brakes & Suspension</div><div class="card-body"><h3>Brakes & Suspension</h3><p>Brake pad and rotor inspections, plus suspension checks with clear safety-first recommendations.</p></div></article>
+    <article class="card"><img data-rev-img="inspections" alt="Vehicle lift safety inspection" /><div class="img-fallback">Inspections</div><div class="card-body"><h3>Inspections</h3><p>Pre-purchase and safety inspections with plain-language reports and practical next steps.</p></div></article>
+  </div></div></section>
+
+  <section class="section" id="about"><div class="container why"><div><div class="section-label">Why Revworks</div><h2 class="section-title">Clear Diagnostics. No Surprise Repairs.</h2><ul class="why-list"><li><strong>No surprise repairs:</strong> We explain the issue before work starts.</li><li><strong>Photo-based inspections:</strong> See what we see before approving any work.</li><li><strong>Clear estimates:</strong> We document findings and recommend the next best step.</li><li><strong>Local Mississauga service:</strong> Practical repair support for everyday drivers.</li></ul></div><div class="img-card"><img data-rev-img="why" alt="Mechanic reviewing findings with customer" /><div class="img-fallback">Why Revworks</div></div></div></section>
+
+  <section class="section" id="reviews"><div class="container"><div class="section-label">Customer Reviews</div><div class="reviews"><article class="review"><div class="stars">★★★★★</div><p>Explained the issue clearly, sent photos, and had my brakes done the same day.</p><div class="review-meta">Brake Service Customer</div><span class="badge">Google Review</span></article><article class="review"><div class="stars">★★★★★</div><p>Quick diagnostic, fair estimate, and no surprise add-ons. Exactly what I wanted.</p><div class="review-meta">Diagnostic Customer</div><span class="badge">Google Review</span></article><article class="review"><div class="stars">★★★★★</div><p>Professional team, transparent process, and great communication from start to finish.</p><div class="review-meta">Maintenance Customer</div><span class="badge">Google Review</span></article></div></div></section>
+
+  <section class="section" id="contact"><div class="container"><div class="section-label">Plan Your Visit</div><div class="steps"><article class="step"><strong>01</strong><p>Submit a request online or call.</p></article><article class="step"><strong>02</strong><p>We confirm timing and service details.</p></article><article class="step"><strong>03</strong><p>We diagnose your vehicle with photos.</p></article><article class="step"><strong>04</strong><p>You approve and collect with confidence.</p></article></div><div class="cta-row" style="margin-top:18px"><a href="#contact" class="btn btn-primary">Book Diagnostic</a><a href="tel:4165621234" class="btn btn-secondary">Call Now</a></div><div class="contact-wrap" style="margin-top:16px"><div class="contact-box"><h3 style="font-family:'Barlow Condensed',sans-serif;font-size:32px;text-transform:uppercase;line-height:1;margin-bottom:10px">Plan Your Visit</h3><p>1788 Drew Rd Unit 6, Mississauga, ON L5S 1L7</p><p><a href="tel:4165621234">(416) 562-1234</a></p><p>Mon–Fri: 8:00 AM – 6:00 PM · Sat: 9:00 AM – 3:00 PM</p><p><a target="_blank" rel="noopener" href="https://maps.google.com/?q=1788+Drew+Rd+Unit+6+Mississauga+ON+L5S+1L7">Open in Google Maps</a></p></div><div class="img-card"><img data-rev-img="location" alt="Auto shop exterior in Mississauga" /><div class="img-fallback">Shop Location</div></div></div></div></section>
+
+  <footer><div>© 2026 Revworks Automotive · Mississauga, ON</div><div>Reliable repairs · Clear diagnostics · Photo updates</div></footer>
+
+  <script>
+    const revworksImages = {
+      hero: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1400&q=80',
+      diagnostics: 'https://images.unsplash.com/photo-1486006920555-c77dcf18193c?auto=format&fit=crop&w=1200&q=80',
+      maintenance: 'https://images.unsplash.com/photo-1632823469850-2f77dd9c7f93?auto=format&fit=crop&w=1200&q=80',
+      brakes: 'https://images.unsplash.com/photo-1625047509248-ec889cbff17f?auto=format&fit=crop&w=1200&q=80',
+      inspections: 'https://images.unsplash.com/photo-1619642751101-29a4f27480fd?auto=format&fit=crop&w=1200&q=80',
+      why: 'https://images.unsplash.com/photo-1599256872237-5dcc0fbe9668?auto=format&fit=crop&w=1200&q=80',
+      location: 'https://images.unsplash.com/photo-1625047509168-a7026f36de04?auto=format&fit=crop&w=1200&q=80'
+    };
+
+    document.querySelectorAll('[data-rev-img]').forEach((img) => {
+      const key = img.dataset.revImg;
+      const src = revworksImages[key];
+      if (!src) return;
+      img.src = src;
+      img.addEventListener('error', () => {
+        img.style.display = 'none';
+        const fallback = img.parentElement.querySelector('.img-fallback');
+        if (fallback) fallback.style.display = 'flex';
+      });
+    });
+  </script>
 </body>
 </html>
