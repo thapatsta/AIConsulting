@@ -13,7 +13,7 @@
   <div id="root"></div>
 
   <script type="text/babel">
-    const { useState, useEffect } = React;
+    const { useState, useEffect, useRef } = React;
 
     // ─── DATA ────────────────────────────────────────────────────────────────
     const PHONE   = "(416) 562-1234";
@@ -47,9 +47,12 @@
     ];
 
     const REVIEWS = [
-      { name: "Marcus T.", rating: 5, text: "Brought in my Civic for a weird noise — they found the actual cause, explained it clearly, and fixed it same day. Refreshing to deal with a shop that doesn't talk in circles." },
-      { name: "Priya S.",  rating: 5, text: "Finally a mechanic in Mississauga that treats you like an adult. Showed me photos of the issue before quoting anything. I'll be back." },
-      { name: "Derek L.",  rating: 5, text: "Brought my Golf GTI in for suspension work. These guys actually care about doing it right. Turnaround was fast and the communication was excellent." },
+      { name: "Dillon",  rating: 5, date: "a month ago", text: "Brought my car in because it had a whining noise. They diagnosed it as the transmission and helped source a good quality replacement at a reasonable price. The turnaround time for the install was quick and they kept me updated throughout the process. While it was there I also had the engine and transmission mounts done, along with the control arm bushings. Everything was handled professionally and efficiently, and the car now drives great with no more noise. Really happy with the service and transparency. Highly recommend this shop to anyone looking for honest and reliable automotive work!" },
+      { name: "Arpit",   rating: 5, date: "a month ago", text: "Great service, fair pricing, and they got my car back on the road quickly — highly recommend!" },
+      { name: "Sehaj",   rating: 5, date: "a month ago", text: "Best place to get any services done to your vehicle. The team is exceptional and know what they are doing." },
+      { name: "Patrick", rating: 5, date: "a month ago", text: "The team was great, they took their time with reviewing my Honda Ridgeline's engine noise and then explaining it." },
+      { name: "Aesha",   rating: 5, date: "a month ago", text: "Best in the business!!" },
+      { name: "Tuzamo",  rating: 4, date: "a month ago", text: "Quick service and great customer experience. Will be back!" },
     ];
 
     // ─── GLOBAL STYLES ───────────────────────────────────────────────────────
@@ -519,77 +522,147 @@
 
     // ─── REVIEWS ────────────────────────────────────────────────────────────
     function Reviews() {
+      const [active, setActive]   = useState(0);
+      const [visible, setVisible] = useState(true);
+      const activeRef = useRef(0);
+
+      const goTo = (idx) => {
+        const next = ((idx % REVIEWS.length) + REVIEWS.length) % REVIEWS.length;
+        setVisible(false);
+        setTimeout(() => {
+          setActive(next);
+          activeRef.current = next;
+          setVisible(true);
+        }, 220);
+      };
+
+      useEffect(() => {
+        const id = setInterval(() => goTo(activeRef.current + 1), 6000);
+        return () => clearInterval(id);
+      }, []);
+
+      const r = REVIEWS[active];
+
       return (
         <section id="reviews" style={{ background: "var(--black)", borderTop: "1px solid var(--border)" }}>
           <div className="section">
-            <div className="label">Customer reviews</div>
-            <h2 className="h2" style={{ marginBottom: 16 }}>
-              Trusted by drivers who notice the difference.
-            </h2>
-            <p style={{ color: "var(--light)", fontSize: 16, maxWidth: 440, marginBottom: 56, fontWeight: 300 }}>
-              Drivers come back when a shop communicates well, does the work properly,
-              and keeps surprises to a minimum.
-            </p>
-
-            <div className="reviews-grid" style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: 24,
-            }}>
-              {REVIEWS.map((r, i) => (
-                <div key={i} style={{
-                  background: "var(--dark)",
-                  border: "1px solid var(--border)",
-                  padding: "32px 28px",
-                  position: "relative",
-                }}>
-                  <div style={{
-                    position: "absolute", top: 0, left: 0,
-                    width: "100%", height: 3,
-                    background: i === 0 ? "var(--orange)" : "transparent",
-                  }} />
-                  <div style={{ display: "flex", gap: 2, marginBottom: 20 }}>
-                    {Array(r.rating).fill(0).map((_, j) => (
-                      <span key={j} style={{ color: "var(--orange)", fontSize: 16 }}>★</span>
-                    ))}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 24, marginBottom: 48 }}>
+              <div>
+                <div className="label">Customer reviews</div>
+                <h2 className="h2" style={{ marginBottom: 12 }}>
+                  Trusted by drivers<br />who notice the difference.
+                </h2>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 16 }}>
+                  <div style={{ display: "flex", gap: 2 }}>
+                    {Array(5).fill(0).map((_, i) => <span key={i} style={{ color: "var(--orange)", fontSize: 18 }}>★</span>)}
                   </div>
-                  <p style={{ fontSize: 15, color: "var(--light)", lineHeight: 1.7, fontWeight: 300, marginBottom: 24, fontStyle: "italic" }}>
-                    "{r.text}"
-                  </p>
-                  <div style={{
-                    display: "flex", alignItems: "center", gap: 12,
-                    paddingTop: 20, borderTop: "1px solid var(--border)",
-                  }}>
-                    <div style={{
-                      width: 36, height: 36,
-                      background: "var(--mid)",
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 14,
-                    }}>
-                      {r.name[0]}
-                    </div>
-                    <div>
-                      <div style={{ fontWeight: 500, fontSize: 14 }}>{r.name}</div>
-                      <div style={{ fontSize: 12, color: "var(--muted)" }}>Mississauga</div>
-                    </div>
-                  </div>
+                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 15, color: "var(--white)" }}>5.0</span>
+                  <span style={{ fontSize: 13, color: "var(--muted)" }}>· 16 Google reviews</span>
                 </div>
-              ))}
-            </div>
-
-            <div style={{
-              marginTop: 48,
-              padding: "24px 28px",
-              background: "var(--dark)",
-              border: "1px solid var(--border)",
-              display: "flex", gap: 20, alignItems: "center", flexWrap: "wrap",
-            }}>
-              <div style={{ fontSize: 13, color: "var(--muted)", flex: 1, minWidth: 200 }}>
-                These are placeholder reviews. Replace with your actual Google reviews before launch.
               </div>
-              <a href="#" className="btn-ghost" style={{ padding: "10px 20px", fontSize: 12 }}>
+              <a href="https://g.page/r/CfvN8xEx2wVYEAE/review" target="_blank" rel="noreferrer"
+                className="btn-ghost" style={{ padding: "12px 22px", fontSize: 12, whiteSpace: "nowrap" }}>
                 Leave a Google Review →
               </a>
+            </div>
+
+            {/* Carousel card */}
+            <div style={{
+              background: "var(--dark)",
+              border: "1px solid var(--border)",
+              padding: "clamp(28px, 5vw, 56px)",
+              position: "relative",
+              minHeight: 260,
+              opacity: visible ? 1 : 0,
+              transition: "opacity 0.22s ease",
+            }}>
+              {/* Orange top rule */}
+              <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: "var(--orange)" }} />
+
+              {/* Large quote mark */}
+              <div style={{
+                fontFamily: "Georgia, serif", fontSize: 96,
+                color: "var(--border)", lineHeight: 1,
+                marginBottom: 8, userSelect: "none",
+              }}>"</div>
+
+              {/* Stars */}
+              <div style={{ display: "flex", gap: 3, marginBottom: 20 }}>
+                {Array(r.rating).fill(0).map((_, j) => (
+                  <span key={j} style={{ color: "var(--orange)", fontSize: 20 }}>★</span>
+                ))}
+              </div>
+
+              {/* Review text */}
+              <p style={{
+                fontSize: "clamp(16px, 2.2vw, 20px)",
+                color: "var(--white)", lineHeight: 1.75,
+                fontWeight: 300, maxWidth: 820,
+                marginBottom: 40,
+              }}>
+                {r.text}
+              </p>
+
+              {/* Attribution */}
+              <div style={{
+                display: "flex", alignItems: "center", gap: 14,
+                paddingTop: 24, borderTop: "1px solid var(--border)",
+                flexWrap: "wrap",
+              }}>
+                <div style={{
+                  width: 44, height: 44, background: "var(--mid)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 18,
+                  flexShrink: 0,
+                }}>
+                  {r.name[0]}
+                </div>
+                <div>
+                  <div style={{ fontWeight: 500, fontSize: 15 }}>{r.name}</div>
+                  <div style={{ fontSize: 12, color: "var(--muted)" }}>Google Review · {r.date}</div>
+                </div>
+                {/* Review counter */}
+                <div style={{ marginLeft: "auto", fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13, color: "var(--muted)", letterSpacing: "0.08em" }}>
+                  {active + 1} / {REVIEWS.length}
+                </div>
+              </div>
+            </div>
+
+            {/* Controls */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 20, gap: 16 }}>
+              <button onClick={() => goTo(active - 1)} style={{
+                background: "transparent", border: "1px solid var(--border)",
+                color: "var(--light)", cursor: "pointer", padding: "10px 20px",
+                fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13,
+                letterSpacing: "0.1em", textTransform: "uppercase",
+                transition: "border-color 0.2s, color 0.2s",
+              }}
+                onMouseEnter={e => { e.target.style.borderColor = "var(--white)"; e.target.style.color = "var(--white)"; }}
+                onMouseLeave={e => { e.target.style.borderColor = "var(--border)"; e.target.style.color = "var(--light)"; }}
+              >← Prev</button>
+
+              {/* Dot indicators */}
+              <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                {REVIEWS.map((_, i) => (
+                  <button key={i} onClick={() => goTo(i)} style={{
+                    width: i === active ? 28 : 8, height: 8,
+                    background: i === active ? "var(--orange)" : "var(--border)",
+                    border: "none", cursor: "pointer",
+                    transition: "all 0.3s ease", padding: 0,
+                  }} />
+                ))}
+              </div>
+
+              <button onClick={() => goTo(active + 1)} style={{
+                background: "transparent", border: "1px solid var(--border)",
+                color: "var(--light)", cursor: "pointer", padding: "10px 20px",
+                fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13,
+                letterSpacing: "0.1em", textTransform: "uppercase",
+                transition: "border-color 0.2s, color 0.2s",
+              }}
+                onMouseEnter={e => { e.target.style.borderColor = "var(--white)"; e.target.style.color = "var(--white)"; }}
+                onMouseLeave={e => { e.target.style.borderColor = "var(--border)"; e.target.style.color = "var(--light)"; }}
+              >Next →</button>
             </div>
           </div>
         </section>
@@ -916,22 +989,15 @@
               </div>
 
               <div>
-                <div style={{
-                  background: "var(--mid)", border: "1px solid var(--border)",
-                  height: 240, display: "flex", flexDirection: "column",
-                  alignItems: "center", justifyContent: "center",
-                  gap: 12,
-                }}>
-                  <div style={{ fontSize: 32 }}>📍</div>
-                  <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 16, letterSpacing: "0.05em", textAlign: "center", padding: "0 20px" }}>
-                    {ADDRESS}
-                  </div>
-                  <a href={`https://maps.google.com/?q=${encodeURIComponent(ADDRESS)}`}
-                    target="_blank" rel="noreferrer"
-                    className="btn-ghost" style={{ fontSize: 12, padding: "8px 16px" }}>
-                    Get Directions →
-                  </a>
-                  <p style={{ fontSize: 11, color: "var(--muted)" }}>Replace with Google Maps embed</p>
+                <div style={{ border: "1px solid var(--border)", overflow: "hidden", lineHeight: 0 }}>
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6958.122417743781!2d-79.66554469573205!3d43.684492976401316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b3f45dc47b881%3A0x5805cbd311f3cdfb!2sREVWORKS%20AUTOMOTIVE!5e0!3m2!1sen!2sca!4v1777916097425!5m2!1sen!2sca"
+                    width="100%" height="280"
+                    style={{ border: 0, display: "block", filter: "grayscale(1) invert(0.9) contrast(0.85)" }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
                 </div>
               </div>
             </div>
