@@ -346,7 +346,7 @@
     function Hero() {
       return (
         <section style={{
-          minHeight: "100vh",
+          minHeight: "clamp(560px, 90vh, 860px)",
           background: "var(--black)",
           position: "relative",
           overflow: "hidden",
@@ -370,7 +370,7 @@
           {/* Left content */}
           <div className="hero-left" style={{
             flex: "0 0 57%",
-            display: "flex", flexDirection: "column", justifyContent: "flex-end",
+            display: "flex", flexDirection: "column", justifyContent: "center",
             padding: "120px 56px 80px 24px",
             position: "relative", zIndex: 1,
           }}>
@@ -446,7 +446,7 @@
             background: "#111111",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "flex-end",
+            justifyContent: "center",
             padding: 36,
           }}>
             {/* Diagonal fade from left so it blends into the content panel */}
@@ -497,15 +497,6 @@
               </div>
             </div>
 
-            {/* Bottom badge */}
-            <div style={{
-              position: "absolute", bottom: 36, left: 36, zIndex: 3,
-              background: "var(--orange)", padding: "10px 16px",
-            }}>
-              <span style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "#fff" }}>
-                Photos — Coming Soon
-              </span>
-            </div>
           </div>
         </section>
       );
