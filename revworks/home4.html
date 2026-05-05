@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Revworks Automotive — Honest Auto Repair in Mississauga</title>
-  <meta name="description" content="Honest auto repair in Mississauga. Fair pricing, clear explanations, fast turnaround. Diagnostics, brakes, transmission, maintenance and more. 16 Google reviews, 5.0 rating." />
+  <meta name="description" content="Local auto repair in Mississauga. Diagnostics, brakes, oil changes, suspension, A/C, inspections, and general repairs. Fair pricing, clear explanations. 16 Google reviews, 5.0 rating." />
   <meta property="og:image" content="./images/hero-garage.jpg" />
   <meta property="og:title" content="Revworks Automotive — Honest Auto Repair in Mississauga" />
-  <meta property="og:description" content="Fair pricing, clear explanations, fast turnaround. 16 Google reviews, 5.0 rating." />
+  <meta property="og:description" content="Diagnostics first, fair pricing, clear communication. 16 Google reviews, 5.0 rating. 1788 Drew Rd Unit 6, Mississauga." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -55,7 +55,7 @@
       "worstRating": "1"
     },
     "priceRange": "$$",
-    "description": "Honest auto repair in Mississauga. Fair pricing, clear explanations, and fast turnaround. Diagnostics, transmission, brakes, maintenance and more.",
+    "description": "Local auto repair in Mississauga. Diagnostics first, fair pricing, clear explanations. Oil changes, brakes, suspension, A/C, inspections, and general repairs.",
     "areaServed": {
       "@type": "City",
       "name": "Mississauga"
@@ -63,471 +63,629 @@
   }
   </script>
 
-    <link rel="stylesheet" href="./home4.css" />
-
-
+  <link rel="stylesheet" href="./home4.css" />
 </head>
 <body>
 
-<!-- ── NAV ──────────────────────────────────────────────────────────────── -->
+<!-- ── 1. NAV ─────────────────────────────────────────────────────────────── -->
 <nav id="nav">
-  <a href="#" class="nav-logo">
-    <div class="nav-logo-mark">RW</div>
-    <span class="nav-logo-text">Revworks</span>
+  <a href="#" class="nav-logo" aria-label="Revworks Automotive — home">
+    <div class="nav-logo-mark" aria-hidden="true">RW</div>
+    <span class="nav-logo-text">Revworks Automotive</span>
   </a>
-  <ul class="nav-links">
+  <ul class="nav-links" role="list">
     <li><a href="#services">Services</a></li>
-    <li><a href="#about">About</a></li>
     <li><a href="#reviews">Reviews</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#book">Book</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#booking">Book</a></li>
+    <li><a href="#location">Location</a></li>
   </ul>
-  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+  <a href="tel:4165621234" class="nav-cta"
+     data-analytics="revworks_header_call_click"
+     aria-label="Call Revworks Automotive at 416-562-1234">Call 416-562-1234</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <!-- mobile drawer -->
-<div id="nav-overlay"></div>
-<div id="nav-drawer">
+<div id="nav-overlay" aria-hidden="true"></div>
+<div id="nav-drawer" role="dialog" aria-label="Navigation menu">
   <a class="drawer-link" href="#services" data-close-drawer>Services</a>
-  <a class="drawer-link" href="#about" data-close-drawer>About</a>
   <a class="drawer-link" href="#reviews" data-close-drawer>Reviews</a>
-  <a class="drawer-link" href="#faq" data-close-drawer>FAQ</a>
-  <a class="drawer-link" href="#book" data-close-drawer>Book</a>
-  <a class="drawer-link" href="#contact" data-close-drawer>Contact</a>
+  <a class="drawer-link" href="#booking" data-close-drawer>Book</a>
+  <a class="drawer-link" href="#location" data-close-drawer>Location</a>
+  <a class="drawer-link primary" href="tel:4165621234" data-close-drawer
+     data-analytics="revworks_header_call_click">Call 416-562-1234</a>
 </div>
 
-<!-- ── HERO ─────────────────────────────────────────────────────────────── -->
-<section id="hero">
-  <div class="hero-inner">
-    <div class="hero-eyebrow"><span>Mississauga Auto Repair</span><span>Diagnostics · Brakes · Maintenance</span></div>
+<!-- ── 2. HERO ────────────────────────────────────────────────────────────── -->
+<section id="hero" aria-label="Revworks Automotive — Mississauga auto repair">
+  <div class="hero-inner hero-layout">
 
-    <h1 class="h1 hero-title">
-      <span class="hero-h1-blue">Honest Auto</span><br>
-      Repair in<br>
-      <span class="hero-h1-outline">Mississauga</span>
-    </h1>
+    <!-- Left: text content -->
+    <div class="hero-content">
+      <p class="hero-eyebrow">Mississauga Auto Repair &bull; 1788 Drew Rd Unit 6</p>
 
-    <p class="hero-sub">
-      From engine noises and warning lights to brakes, maintenance, and major
-      repairs — Revworks helps you understand the issue, approve the right fix,
-      and get back on the road quickly.
-    </p>
+      <h1 class="h1 hero-title">
+        Honest diagnostics.<br>
+        Fair pricing.<br>
+        <span class="hero-h1-outline">Reliable repairs.</span>
+      </h1>
 
-    <div class="hero-actions">
-      <a href="#book" class="btn-primary">Request a Service Check →</a>
-      <a href="tel:4165621234" class="btn-ghost">☏ (416) 562-1234</a>
+      <p class="hero-sub">
+        Revworks Automotive helps Mississauga drivers with oil changes, brakes, engine noise,
+        suspension, A/C, inspections, and full diagnostics &mdash; with the work explained
+        before repairs begin.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#booking" class="btn-primary"
+           data-analytics="revworks_hero_book_click">Request an Appointment</a>
+        <a href="tel:4165621234" class="btn-ghost"
+           data-analytics="revworks_hero_call_click">Call 416-562-1234</a>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=1788+Drew+Rd+Unit+6+Mississauga+ON+L5S+1L7"
+           target="_blank" rel="noopener noreferrer"
+           class="btn-text-link"
+           data-analytics="revworks_hero_directions_click"
+           aria-label="Get directions to Revworks Automotive (opens Google Maps)">Get Directions &rarr;</a>
+      </div>
+
+      <div class="hero-trust-row" aria-label="Shop credentials">
+        <div class="hero-trust-item">
+          <span class="hero-trust-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="hero-trust-label">5.0 Google rating</span>
+        </div>
+        <div class="hero-trust-item">
+          <span class="hero-trust-num">16</span>
+          <span class="hero-trust-label">Google reviews</span>
+        </div>
+        <div class="hero-trust-item">
+          <span class="hero-trust-num">15+</span>
+          <span class="hero-trust-label">Yrs combined experience</span>
+        </div>
+        <div class="hero-trust-item">
+          <span class="hero-trust-num">5,000+</span>
+          <span class="hero-trust-label">Vehicles serviced</span>
+        </div>
+      </div>
+
+      <p class="hero-microcopy">No repair starts until you understand the recommendation.</p>
     </div>
 
-    <div class="hero-rating">
-      <span class="hero-stars">★★★★★</span>
-      <span class="hero-rating-score">5.0 ★ Rated · 16 Verified Reviews</span>
-      <span class="hero-rating-sub">15 five-star ratings · Customers mention fair pricing, quick service, and honest communication</span>
+    <!-- Right: visual card -->
+    <div class="hero-visual-card" aria-label="Common issues we diagnose">
+      <p class="hero-card-label">Start with the symptom</p>
+      <ul class="hero-card-items" role="list">
+        <li>Whining noise?</li>
+        <li>Brake vibration?</li>
+        <li>Check engine light?</li>
+        <li>Fluid leak?</li>
+      </ul>
+      <p class="hero-card-footer">Tell us what you&rsquo;re noticing &mdash; we&rsquo;ll help narrow it down.</p>
+      <a href="#booking" class="btn-primary hero-card-cta"
+         data-analytics="revworks_hero_book_click">Request an Appointment</a>
     </div>
 
-    <div class="quick-actions">
-      <a href="tel:4165621234"><span class="qa-icon">☎</span><span>Call</span></a>
-      <a href="#book"><span class="qa-icon">🛠</span><span>Get Quote</span></a>
-      <a href="https://maps.google.com/?q=1788+Drew+Rd+Unit+6+Mississauga+ON+L5S+1L7" target="_blank" rel="noopener"><span class="qa-icon">📍</span><span>Location</span></a>
-      <a href="#services"><span class="qa-icon">🔧</span><span>Services</span></a>
-    </div>
-
-    <div class="hero-stats">
-      <div class="stat-item">
-        <div class="stat-num">15+</div>
-        <div class="stat-sub">Yrs Combined Experience</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">5,000+</div>
-        <div class="stat-sub">Cars Serviced</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">Fast</div>
-        <div class="stat-sub">Turnaround</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">Clear</div>
-        <div class="stat-sub">Updates Every Step</div>
-      </div>
-    </div>
   </div>
 </section>
 
-<!-- ── TRUST BAR ─────────────────────────────────────────────────────────── -->
-<section id="trust" class="reveal">
+<!-- ── 3. TRUST PROOF STRIP ───────────────────────────────────────────────── -->
+<section id="trust" class="reveal" aria-label="Why drivers choose Revworks">
   <div class="wrap">
-    <div class="section-label">What customers consistently mention</div>
-    <div class="trust-grid">
-      <div class="trust-item">
-        <div class="trust-accent"></div>
-        <div>
-          <div class="trust-label">Fair Pricing</div>
-          <div class="trust-sub">"Fair pricing…" — Arpit (★★★★★)</div>
+    <div class="trust-badges" role="list">
+
+      <div class="trust-badge" role="listitem">
+        <div class="trust-badge-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
         </div>
+        <div class="trust-badge-label">Local Mississauga Shop</div>
+        <div class="trust-badge-desc">Conveniently located near Drew Road</div>
       </div>
-      <div class="trust-item">
-        <div class="trust-accent"></div>
-        <div>
-          <div class="trust-label">Quick Turnaround</div>
-          <div class="trust-sub">"Got my car back on the road quickly…" — Arpit (★★★★★)</div>
+
+      <div class="trust-badge" role="listitem">
+        <div class="trust-badge-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+          </svg>
         </div>
+        <div class="trust-badge-label">Diagnostics First</div>
+        <div class="trust-badge-desc">We start by understanding the issue</div>
       </div>
-      <div class="trust-item">
-        <div class="trust-accent"></div>
-        <div>
-          <div class="trust-label">Clear Explanations</div>
-          <div class="trust-sub">"They took their time… explaining it." — Patrick (★★★★★)</div>
+
+      <div class="trust-badge" role="listitem">
+        <div class="trust-badge-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
+          </svg>
         </div>
+        <div class="trust-badge-label">No Unapproved Repairs</div>
+        <div class="trust-badge-desc">You approve the work before it starts</div>
       </div>
-      <div class="trust-item">
-        <div class="trust-accent"></div>
-        <div>
-          <div class="trust-label">Honest Work</div>
-          <div class="trust-sub">"Honest and reliable automotive work." — Dillon (★★★★★)</div>
+
+      <div class="trust-badge" role="listitem">
+        <div class="trust-badge-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+          </svg>
         </div>
+        <div class="trust-badge-label">Most Makes &amp; Models</div>
+        <div class="trust-badge-desc">Daily drivers, imports, and domestic vehicles</div>
       </div>
+
+      <div class="trust-badge" role="listitem">
+        <div class="trust-badge-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+          </svg>
+        </div>
+        <div class="trust-badge-label">Fair Pricing</div>
+        <div class="trust-badge-desc">Clear recommendations before repair</div>
+      </div>
+
+      <div class="trust-badge" role="listitem">
+        <div class="trust-badge-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <div class="trust-badge-label">Fast Turnaround</div>
+        <div class="trust-badge-desc">Efficient service when parts are available</div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- ── SERVICES ──────────────────────────────────────────────────────────── -->
+<!-- ── 4. SERVICES ────────────────────────────────────────────────────────── -->
 <section id="services" class="section-pad reveal">
   <div class="wrap">
-    <div class="section-label">What we do</div>
-    <h2 class="h2 mb-16">Core Services</h2>
+    <div class="section-label">Services</div>
+    <h2 class="h2 mb-16">Repairs and maintenance without the guesswork.</h2>
     <p class="section-intro">
-      Common issues handled properly — diagnosed clearly, explained before work begins.
+      Choose a service if you know what you need &mdash; or start with diagnostics if you&rsquo;re unsure.
     </p>
 
     <div class="services-grid">
+
       <div class="service-card">
         <div class="svc-img-strip">
           <img src="./images/service-diagnostics.jpg"
-               alt="Mechanic using diagnostic scanner"
+               alt="Mechanic using diagnostic scanner on a vehicle"
                loading="lazy" />
         </div>
-        <div class="svc-icon">
+        <div class="svc-icon" aria-hidden="true">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="5" width="22" height="15" rx="2"/><path d="M8 25H20M14 20V25"/><path d="M7.5 14.5l3-4 4 5 3-4 3 2.5"/>
           </svg>
         </div>
-        <h3>Diagnostics &amp; Engine Noises</h3>
-        <p>For warning lights, whining noises, engine sounds, no-start issues, and
-        drivability problems. We take the time to inspect the issue and explain what
-        we find before repair work begins.</p>
+        <h3>Diagnostics</h3>
+        <p>For warning lights, strange noises, leaks, shaking, rough starts, and issues that need a closer look.</p>
+        <a href="#booking" class="svc-cta" data-service="Diagnostics / Not sure"
+           data-analytics="revworks_service_diagnostics_click">Start with diagnostics &rarr;</a>
       </div>
+
       <div class="service-card">
-        <div class="svc-img-strip">
-          <img src="./images/service-transmission.jpg"
-               alt="Mechanic working under vehicle"
-               loading="lazy" />
-        </div>
-        <div class="svc-icon">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M19.5 4.5a4.5 4.5 0 00-4.08 6.45L6 20.37A2.5 2.5 0 009.63 24l9.37-9.42A4.5 4.5 0 1019.5 4.5z"/><path d="M19.5 6.5l2 2"/>
-          </svg>
-        </div>
-        <h3>Transmission &amp; Drivetrain</h3>
-        <p>Whining noises, transmission concerns, mounts, bushings, and related repairs.
-        We help identify the issue, source quality parts where needed, and keep you
-        updated through the process.</p>
-      </div>
-      <div class="service-card">
-        <div class="svc-img-strip">
-          <img src="./images/service-brakes.jpg"
-               alt="Mechanic servicing brakes"
-               loading="lazy" />
-        </div>
-        <div class="svc-icon">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="14" cy="14" r="11"/><circle cx="14" cy="14" r="4.5"/><path d="M14 3v4M14 21v4M3 14h4M21 14h4"/>
-          </svg>
-        </div>
-        <h3>Brakes &amp; Suspension</h3>
-        <p>Brake noise, worn pads and rotors, suspension clunks, control arm bushings,
-        mounts, and ride-quality issues. Safety-first with clear explanations before
-        anything gets touched.</p>
-      </div>
-      <div class="service-card">
-        <div class="svc-icon">
+        <div class="svc-icon" aria-hidden="true">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M14 2C14 2 6 11 6 17a8 8 0 0016 0c0-6-8-15-8-15z"/><path d="M10.5 19a3.5 3.5 0 003.5 2.5"/>
           </svg>
         </div>
-        <h3>Oil &amp; Maintenance</h3>
-        <p>Oil changes, filters, fluids, inspections, and routine maintenance to keep
-        your vehicle reliable between bigger services.</p>
+        <h3>Oil Changes</h3>
+        <p>Routine oil and filter service to keep your engine protected and running smoothly.</p>
+        <a href="#booking" class="svc-cta" data-service="Oil Change"
+           data-analytics="revworks_service_oil_change_click">Book oil change &rarr;</a>
       </div>
+
       <div class="service-card">
-        <div class="svc-icon">
+        <div class="svc-img-strip">
+          <img src="./images/service-brakes.jpg"
+               alt="Mechanic servicing brake components"
+               loading="lazy" />
+        </div>
+        <div class="svc-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="14" cy="14" r="11"/><circle cx="14" cy="14" r="4.5"/><path d="M14 3v4M14 21v4M3 14h4M21 14h4"/>
+          </svg>
+        </div>
+        <h3>Brakes</h3>
+        <p>For squeaking, grinding, vibration, soft brake pedal, or brake maintenance.</p>
+        <a href="#booking" class="svc-cta" data-service="Brakes"
+           data-analytics="revworks_service_brakes_click">Check my brakes &rarr;</a>
+      </div>
+
+      <div class="service-card">
+        <div class="svc-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 14s0-6 10-6 10 6 10 6-4 6-10 6S4 14 4 14z"/><path d="M18 14l4-4M6 14l4-4M18 14l4 4M6 14l4 4"/>
+          </svg>
+        </div>
+        <h3>A/C &amp; Heating</h3>
+        <p>For weak airflow, A/C not cold, heat not working, or cabin comfort issues.</p>
+        <a href="#booking" class="svc-cta" data-service="A/C & Heating"
+           data-analytics="revworks_service_ac_heating_click">Fix A/C or heat &rarr;</a>
+      </div>
+
+      <div class="service-card">
+        <div class="svc-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19.5 4.5a4.5 4.5 0 00-4.08 6.45L6 20.37A2.5 2.5 0 009.63 24l9.37-9.42A4.5 4.5 0 1019.5 4.5z"/><path d="M19.5 6.5l2 2"/>
+          </svg>
+        </div>
+        <h3>Suspension</h3>
+        <p>For clunks, rough rides, pulling, uneven tire wear, or steering and suspension concerns.</p>
+        <a href="#booking" class="svc-cta" data-service="Suspension"
+           data-analytics="revworks_service_suspension_click">Check suspension &rarr;</a>
+      </div>
+
+      <div class="service-card">
+        <div class="svc-icon" aria-hidden="true">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <rect x="6" y="3" width="16" height="22" rx="2"/><path d="M10 3v3h8V3"/><path d="M10 15l3 3 6-6"/>
           </svg>
         </div>
         <h3>Inspections</h3>
-        <p>Pre-purchase checks, safety inspections, seasonal checks, and issue
-        confirmation before bigger repairs. Done thoroughly, explained clearly.</p>
+        <p>For pre-purchase checks, safety concerns, maintenance reviews, and peace of mind.</p>
+        <a href="#booking" class="svc-cta" data-service="Inspection"
+           data-analytics="revworks_service_inspection_click">Request inspection &rarr;</a>
       </div>
+
       <div class="service-card">
-        <div class="svc-icon">
+        <div class="svc-icon" aria-hidden="true">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M19.5 4.5a4.5 4.5 0 00-4.08 6.45L6 20.37A2.5 2.5 0 009.63 24l9.37-9.42A4.5 4.5 0 1019.5 4.5z"/><path d="M19.5 6.5l2 2"/>
           </svg>
         </div>
         <h3>General Repairs</h3>
-        <p>From small issues to larger repairs — clear communication, fair pricing,
-        and work done properly. Most makes and models serviced.</p>
+        <p>For mounts, leaks, spark plugs, filters, belts, hoses, and other common repairs.</p>
+        <a href="#booking" class="svc-cta" data-service="General Repair"
+           data-analytics="revworks_service_general_repairs_click">Request repair &rarr;</a>
       </div>
-    </div>
 
-    <div class="mt-40">
-      <a href="#book" class="btn-primary">Request a Service Check →</a>
     </div>
   </div>
 </section>
 
-<!-- ── REAL ISSUES ────────────────────────────────────────────────────────── -->
-<section id="examples" class="section-pad reveal">
+<!-- ── 5. ISSUES ──────────────────────────────────────────────────────────── -->
+<section id="issues" class="section-pad reveal">
   <div class="wrap">
-    <div class="section-label">Real customer cases</div>
-    <h2 class="h2 mb-16">Real issues.<br>Clear next steps.</h2>
+    <h2 class="h2 mb-16">What&rsquo;s going on with your car?</h2>
+    <p class="section-intro">Not sure what service to pick? Start with what you&rsquo;re noticing.</p>
+
+    <div class="issues-grid">
+
+      <div class="issue-card">
+        <div class="issue-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5"/><path d="M17.5 3.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 7.5-7.5z"/>
+          </svg>
+        </div>
+        <h3 class="issue-title">Car making a noise</h3>
+        <p class="issue-desc">Whining, grinding, clunking, rattling, or humming sounds while driving or turning.</p>
+        <a href="#booking" class="issue-cta" data-service="Diagnostics / Not sure"
+           data-analytics="revworks_issue_noise_click">Start with a diagnostic &rarr;</a>
+      </div>
+
+      <div class="issue-card">
+        <div class="issue-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+        </div>
+        <h3 class="issue-title">Warning light is on</h3>
+        <p class="issue-desc">Check engine light, battery light, oil light, ABS, or other dashboard warnings.</p>
+        <a href="#booking" class="issue-cta" data-service="Diagnostics / Not sure"
+           data-analytics="revworks_issue_warning_light_click">Check the warning light &rarr;</a>
+      </div>
+
+      <div class="issue-card">
+        <div class="issue-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
+          </svg>
+        </div>
+        <h3 class="issue-title">Brakes feel off</h3>
+        <p class="issue-desc">Squeaking, shaking, soft pedal, grinding, or longer stopping distance.</p>
+        <a href="#booking" class="issue-cta" data-service="Brakes"
+           data-analytics="revworks_issue_brakes_click">Inspect my brakes &rarr;</a>
+      </div>
+
+      <div class="issue-card">
+        <div class="issue-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/>
+          </svg>
+        </div>
+        <h3 class="issue-title">Car shaking or pulling</h3>
+        <p class="issue-desc">Vibration, pulling to one side, rough ride, or steering feel changes.</p>
+        <a href="#booking" class="issue-cta" data-service="Suspension"
+           data-analytics="revworks_issue_shaking_click">Check steering/suspension &rarr;</a>
+      </div>
+
+      <div class="issue-card">
+        <div class="issue-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>
+          </svg>
+        </div>
+        <h3 class="issue-title">A/C or heat not working</h3>
+        <p class="issue-desc">A/C not cold, heat not warm, weak airflow, or unusual cabin smells.</p>
+        <a href="#booking" class="issue-cta" data-service="A/C & Heating"
+           data-analytics="revworks_issue_ac_heat_click">Fix A/C or heat &rarr;</a>
+      </div>
+
+      <div class="issue-card">
+        <div class="issue-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+          </svg>
+        </div>
+        <h3 class="issue-title">Leak under the car</h3>
+        <p class="issue-desc">Oil, coolant, transmission fluid, or unknown fluid showing under the vehicle.</p>
+        <a href="#booking" class="issue-cta" data-service="Diagnostics / Not sure"
+           data-analytics="revworks_issue_leak_click">Find the leak &rarr;</a>
+      </div>
+
+      <div class="issue-card">
+        <div class="issue-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <h3 class="issue-title">Due for maintenance</h3>
+        <p class="issue-desc">Oil change, filters, spark plugs, fluids, belts, or seasonal maintenance.</p>
+        <a href="#booking" class="issue-cta" data-service="Oil Change"
+           data-analytics="revworks_issue_maintenance_click">Book maintenance &rarr;</a>
+      </div>
+
+      <div class="issue-card issue-card-highlight">
+        <div class="issue-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+        </div>
+        <h3 class="issue-title">Not sure what&rsquo;s wrong</h3>
+        <p class="issue-desc">Describe what you&rsquo;re feeling, hearing, seeing, or smelling. We&rsquo;ll help from there.</p>
+        <a href="#booking" class="issue-cta" data-service="Diagnostics / Not sure"
+           data-analytics="revworks_issue_unsure_click">Help me figure it out &rarr;</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── 6. GALLERY ─────────────────────────────────────────────────────────── -->
+<!-- TODO: Replace placeholder panels and generic images with real Revworks shop photos or Instagram images. -->
+<section id="gallery" class="section-pad reveal">
+  <div class="wrap">
+    <h2 class="h2 mb-16">Recent work at the shop</h2>
     <p class="section-intro">
-      What service actually looks like at Revworks — straight from customer accounts.
+      From routine maintenance to deeper diagnostics, Revworks handles the issues drivers actually come in for.
     </p>
-    <div class="examples-grid">
 
-      <div class="example-card">
-        <div class="example-theme">Clear explanation</div>
-        <h3 class="example-title">Engine noise diagnosis</h3>
-        <p class="example-text">
-          A Honda Ridgeline came in with an engine noise. The team took time to review
-          the issue thoroughly and explain what they found clearly before any repair
-          decisions were made.
-        </p>
+    <div class="gallery-grid">
+
+      <div class="gallery-card">
+        <div class="gallery-img-wrap">
+          <img src="./images/service-brakes.jpg"
+               alt="Brake service — pads, rotors, and caliper inspection"
+               loading="lazy" />
+          <span class="gallery-label">Safety</span>
+        </div>
+        <div class="gallery-card-body">
+          <h3 class="gallery-title">Brake service</h3>
+          <p class="gallery-desc">Brake inspections and repairs for noise, vibration, worn pads, and stopping concerns.</p>
+        </div>
       </div>
 
-      <div class="example-card">
-        <div class="example-theme">Honest diagnosis + strong communication</div>
-        <h3 class="example-title">Whining noise diagnosed</h3>
-        <p class="example-text">
-          A vehicle came in with a whining noise. Revworks diagnosed it as
-          transmission-related, helped source a quality replacement at a reasonable
-          price, and kept the customer updated throughout the repair. Engine and
-          transmission mounts and control arm bushings were also addressed.
-        </p>
+      <div class="gallery-card">
+        <div class="gallery-img-wrap">
+          <img src="./images/service-diagnostics.jpg"
+               alt="Engine diagnostics — mechanic reading scan tool"
+               loading="lazy" />
+          <span class="gallery-label">Diagnostics</span>
+        </div>
+        <div class="gallery-card-body">
+          <h3 class="gallery-title">Engine diagnostics</h3>
+          <p class="gallery-desc">Troubleshooting noises, warning lights, rough running, and performance issues.</p>
+        </div>
       </div>
 
-      <div class="example-card">
-        <div class="example-theme">Fast turnaround</div>
-        <h3 class="example-title">Back on the road quickly</h3>
-        <p class="example-text">
-          Customers mention quick service, fair pricing, and getting their vehicles
-          back on the road without unnecessary delays — whether it's routine
-          maintenance or a more involved repair.
-        </p>
+      <div class="gallery-card">
+        <div class="gallery-img-wrap">
+          <img src="./images/service-transmission.jpg"
+               alt="Leak repair — oil pan and undercarriage inspection"
+               loading="lazy" />
+          <span class="gallery-label">Repair</span>
+        </div>
+        <div class="gallery-card-body">
+          <h3 class="gallery-title">Oil pan / leak repair</h3>
+          <p class="gallery-desc">Finding and fixing leaks before they become bigger problems.</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="gallery-img-wrap">
+          <img src="./images/about-mechanic.jpg"
+               alt="Mechanic performing routine maintenance on vehicle engine"
+               loading="lazy" />
+          <span class="gallery-label">Maintenance</span>
+        </div>
+        <div class="gallery-card-body">
+          <h3 class="gallery-title">Spark plugs &amp; maintenance</h3>
+          <p class="gallery-desc">Routine maintenance items like plugs, filters, fluids, and tune-up related work.</p>
+        </div>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ── ABOUT ──────────────────────────────────────────────────────────────── -->
-<section id="about" class="section-pad reveal">
+<!-- ── 7. PROCESS ─────────────────────────────────────────────────────────── -->
+<section id="process" class="section-pad reveal">
   <div class="wrap">
-    <div class="about-grid">
-      <div>
-        <div class="section-label">Mississauga · 15+ Yrs Combined Experience</div>
-        <h2 class="h2 mb-28">
-          A shop built around clear answers, fair pricing, and honest work.
-        </h2>
-        <p class="about-sub">
-          Revworks Automotive helps drivers understand what is actually happening with
-          their vehicle before approving repairs. Whether it's an engine noise, warning
-          light, brake issue, maintenance visit, or larger repair — the focus is on
-          proper diagnostics, clear communication, and work that gets you confidently
-          back on the road.
-        </p>
-        <a href="#book" class="btn-primary">Request a Service Check →</a>
+    <div class="section-label">How it works</div>
+    <h2 class="h2 mb-16">No surprises. Just clear next steps.</h2>
+    <p class="section-intro">
+      Getting your car repaired should not feel like a guessing game. Revworks starts with the issue,
+      explains the recommendation, and gets approval before work begins.
+    </p>
+
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="step-num" aria-hidden="true">01</div>
+        <h3 class="step-title">Tell us what&rsquo;s happening</h3>
+        <p class="step-desc">Noise, leak, warning light, vibration, smell, or maintenance need &mdash; start with what you&rsquo;re noticing.</p>
       </div>
+      <div class="process-step">
+        <div class="step-num" aria-hidden="true">02</div>
+        <h3 class="step-title">We inspect and diagnose</h3>
+        <p class="step-desc">The vehicle is reviewed so the real issue can be identified before parts are replaced.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num" aria-hidden="true">03</div>
+        <h3 class="step-title">We explain the recommendation</h3>
+        <p class="step-desc">You get a clear explanation of what needs attention, what can wait, and what the next step is.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num" aria-hidden="true">04</div>
+        <h3 class="step-title">You approve the repair</h3>
+        <p class="step-desc">No repair starts until the work is reviewed with you and approved.</p>
+      </div>
+    </div>
 
-      <div>
-        <div class="about-photo-wrap">
-          <img
-            src="./images/about-mechanic.jpg"
-            alt="Revworks mechanic inspecting vehicle engine"
-            class="about-photo"
-            loading="lazy"
-          />
-          <div class="about-photo-badge">
-            <span class="about-photo-badge-line">Diagnostics before repair</span>
-            <span class="about-photo-badge-sub">Every vehicle, every time</span>
-          </div>
-        </div>
-
-        <div class="about-panel mt-20">
-          <div class="about-corner"></div>
-          <div class="section-label mb-24">What customers consistently mention</div>
-          <div class="about-point"><span class="about-arrow">→</span><span>Fair pricing on every job</span></div>
-          <div class="about-point"><span class="about-arrow">→</span><span>Quick service and fast turnaround</span></div>
-          <div class="about-point"><span class="about-arrow">→</span><span>Clear explanations before work begins</span></div>
-          <div class="about-point"><span class="about-arrow">→</span><span>Updates throughout the repair process</span></div>
-          <div class="about-point"><span class="about-arrow">→</span><span>Honest and reliable work — no generic upsells</span></div>
-          <div class="about-point"><span class="about-arrow">→</span><span>Photo-backed inspections so you see it before you approve it</span></div>
-        </div>
+    <div class="process-bullets" aria-label="Process commitments">
+      <div class="process-bullet">
+        <span class="process-bullet-dot" aria-hidden="true"></span>No generic upsells
+      </div>
+      <div class="process-bullet">
+        <span class="process-bullet-dot" aria-hidden="true"></span>Practical repair priorities
+      </div>
+      <div class="process-bullet">
+        <span class="process-bullet-dot" aria-hidden="true"></span>Clear communication
+      </div>
+      <div class="process-bullet">
+        <span class="process-bullet-dot" aria-hidden="true"></span>Photos or notes where helpful
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── REVIEWS ────────────────────────────────────────────────────────────── -->
+<!-- ── 8. REVIEWS ─────────────────────────────────────────────────────────── -->
+<!-- GOOGLE_REVIEW_URL: https://g.page/r/CfvN8xEx2wVYEAE/review -->
 <section id="reviews" class="section-pad reveal">
   <div class="wrap">
-    <div class="reviews-header">
-      <div>
-        <div class="section-label">Customer reviews</div>
-        <h2 class="h2">Trusted by<br>Mississauga drivers.</h2>
-        <div class="reviews-stars">
-          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-        </div>
-        <div class="reviews-score">
-          <span class="score-num">5.0</span>
-          <span class="score-count">· 16 verified reviews</span>
-        </div>
-        <p class="reviews-sub">16 verified reviews · 15 five-star ratings · Customers mention quick service,
-        fair pricing, transparency, and clear communication.</p>
-      </div>
-      <a href="https://g.page/r/CfvN8xEx2wVYEAE/review" target="_blank" rel="noreferrer"
-        class="btn-ghost btn-review">
-        Leave a Review →
-      </a>
+    <div class="section-label">Customer Reviews</div>
+    <h2 class="h2 mb-16">Drivers come back for the transparency.</h2>
+    <div class="reviews-score-row" aria-label="5.0 out of 5, 16 Google reviews">
+      <span class="reviews-stars" aria-label="5 stars">
+        <span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      </span>
+      <span class="reviews-score-text">5.0 &middot; 16 Google reviews</span>
     </div>
 
-    <div class="reviews-grid">
+    <div class="reviews-grid" role="list">
 
-      <!-- Featured 3 -->
-      <div class="rcard rcard-featured">
-        <div class="rcard-stars">★★★★★</div>
-        <p class="rcard-text">"Really happy with the service and transparency. Highly recommend this shop to anyone looking for honest and reliable automotive work!"</p>
-        <div class="rcard-footer">
-          <div class="rcard-avatar avatar-1">D</div>
+      <article class="rcard rcard-featured" role="listitem" aria-label="Review by Dillon Rambhajue, 5 stars">
+        <div class="rcard-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+        <p class="rcard-text">&ldquo;Brought my car in because it had a whining noise. They diagnosed it as the transmission and helped source a good quality replacement at a reasonable price. The turnaround time for the install was quick and they kept me updated throughout the process.&rdquo;</p>
+        <footer class="rcard-footer">
+          <div class="rcard-avatar avatar-1" aria-hidden="true">D</div>
           <div>
-            <div class="rcard-name">Dillon R.</div>
-            <div class="rcard-source">★★★★★ · Verified Review</div>
+            <div class="rcard-name">Dillon Rambhajue</div>
+            <div class="rcard-source">&#9733;&#9733;&#9733;&#9733;&#9733; &middot; Google Review</div>
           </div>
-        </div>
-      </div>
+        </footer>
+      </article>
 
-      <div class="rcard rcard-featured">
-        <div class="rcard-stars">★★★★★</div>
-        <p class="rcard-text">"Great service, fair pricing, and they got my car back on the road quickly — highly recommend!"</p>
-        <div class="rcard-footer">
-          <div class="rcard-avatar avatar-2">A</div>
+      <article class="rcard rcard-featured" role="listitem" aria-label="Review by Arpit, 5 stars">
+        <div class="rcard-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+        <p class="rcard-text">&ldquo;Great service, fair pricing, and they got my car back on the road quickly &mdash; highly recommend!&rdquo;</p>
+        <footer class="rcard-footer">
+          <div class="rcard-avatar avatar-2" aria-hidden="true">A</div>
           <div>
             <div class="rcard-name">Arpit</div>
-            <div class="rcard-source">★★★★★ · Verified Review</div>
+            <div class="rcard-source">&#9733;&#9733;&#9733;&#9733;&#9733; &middot; Google Review</div>
           </div>
-        </div>
-      </div>
+        </footer>
+      </article>
 
-      <div class="rcard rcard-featured">
-        <div class="rcard-stars">★★★★★</div>
-        <p class="rcard-text">"The team was great, they took their time with reviewing my Honda Ridgeline's engine noise and then explaining it."</p>
-        <div class="rcard-footer">
-          <div class="rcard-avatar avatar-3">P</div>
+      <article class="rcard rcard-featured" role="listitem" aria-label="Review by Patrick Deshwal, 5 stars">
+        <div class="rcard-stars" aria-label="5 out of 5 stars"><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+        <p class="rcard-text">&ldquo;The team was great, they took their time with reviewing my Honda Ridgeline&rsquo;s engine noise and then explaining it.&rdquo;</p>
+        <footer class="rcard-footer">
+          <div class="rcard-avatar avatar-3" aria-hidden="true">P</div>
           <div>
-            <div class="rcard-name">Patrick D.</div>
-            <div class="rcard-source">★★★★★ · Verified Review</div>
+            <div class="rcard-name">Patrick Deshwal</div>
+            <div class="rcard-source">&#9733;&#9733;&#9733;&#9733;&#9733; &middot; Google Review</div>
           </div>
-        </div>
-      </div>
+        </footer>
+      </article>
 
-      <!-- Secondary 3 -->
-      <div class="rcard">
-        <div class="rcard-stars stars-small">★★★★<span class="muted">★</span></div>
-        <p class="rcard-text">"Quick service and great customer experience. Will be back!"</p>
-        <div class="rcard-footer">
-          <div class="rcard-avatar avatar-4">T</div>
+      <article class="rcard" role="listitem" aria-label="Review by Tuzamo, 4 stars">
+        <div class="rcard-stars stars-small" aria-label="4 out of 5 stars">
+          <span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;<span class="muted">&#9733;</span></span>
+        </div>
+        <p class="rcard-text">&ldquo;Quick service and great customer experience. Will be back!&rdquo;</p>
+        <footer class="rcard-footer">
+          <div class="rcard-avatar avatar-4" aria-hidden="true">T</div>
           <div>
             <div class="rcard-name">Tuzamo</div>
-            <div class="rcard-source">★★★★★ · Verified Review</div>
+            <div class="rcard-source">&#9733;&#9733;&#9733;&#9733; &middot; Google Review</div>
           </div>
-        </div>
-      </div>
+        </footer>
+      </article>
 
-      <div class="rcard">
-        <div class="rcard-stars stars-small">★★★★★</div>
-        <p class="rcard-text">"Best in the business!!"</p>
-        <div class="rcard-footer">
-          <div class="rcard-avatar avatar-5">A</div>
+      <article class="rcard" role="listitem" aria-label="Review by AeshaJ, 5 stars">
+        <div class="rcard-stars stars-small" aria-label="5 out of 5 stars"><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+        <p class="rcard-text">&ldquo;Best in the business!!&rdquo;</p>
+        <footer class="rcard-footer">
+          <div class="rcard-avatar avatar-5" aria-hidden="true">A</div>
           <div>
             <div class="rcard-name">AeshaJ</div>
-            <div class="rcard-source">★★★★★ · Verified Review</div>
+            <div class="rcard-source">&#9733;&#9733;&#9733;&#9733;&#9733; &middot; Google Review</div>
           </div>
-        </div>
-      </div>
+        </footer>
+      </article>
 
-      <div class="rcard">
-        <div class="rcard-stars stars-small">★★★★★</div>
-        <p class="rcard-text">"Best place to get any services done to your vehicle. The team is exceptional and know what they are doing."</p>
-        <div class="rcard-footer">
-          <div class="rcard-avatar avatar-6">S</div>
+      <article class="rcard" role="listitem" aria-label="Review by Sehaj S., 5 stars">
+        <div class="rcard-stars stars-small" aria-label="5 out of 5 stars"><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+        <p class="rcard-text">&ldquo;Best place to get any services done to your vehicle. The team is exceptional and know what they are doing.&rdquo;</p>
+        <footer class="rcard-footer">
+          <div class="rcard-avatar avatar-6" aria-hidden="true">S</div>
           <div>
             <div class="rcard-name">Sehaj S.</div>
-            <div class="rcard-source">★★★★★ · Verified Review</div>
+            <div class="rcard-source">&#9733;&#9733;&#9733;&#9733;&#9733; &middot; Google Review</div>
           </div>
-        </div>
-      </div>
+        </footer>
+      </article>
 
     </div>
 
     <p class="reviews-also">
-      Also rated ★★★★★ by Denis Patel, Purab Prajapati, Janvi Prajapati, Tony Sandhu,
+      Also rated &#9733;&#9733;&#9733;&#9733;&#9733; by Denis Patel, Purab Prajapati, Janvi Prajapati, Tony Sandhu,
       Arti Patel, Param Oza, Harsh Mistry, XO Slatt, Aaron Sanghera, and Megha Mistry.
     </p>
-  </div>
-</section>
 
-<!-- ── PROCESS ────────────────────────────────────────────────────────────── -->
-<section id="process" class="section-pad reveal">
-  <div class="wrap">
-    <div class="section-label">How it works</div>
-    <h2 class="h2 mb-48">Tell us what's going on. We'll help you understand the next step.</h2>
-
-    <div class="process-grid">
-      <div class="process-step">
-        <div class="step-num">01</div>
-        <div class="step-title">Share the issue</div>
-        <p class="step-desc">Tell us the vehicle, symptoms, and whether it's safe to drive.</p>
-      </div>
-      <div class="process-step">
-        <div class="step-num">02</div>
-        <div class="step-title">We review the problem</div>
-        <p class="step-desc">The team looks at the details and recommends the right next step.</p>
-      </div>
-      <div class="process-step">
-        <div class="step-num">03</div>
-        <div class="step-title">You get a confirmed plan</div>
-        <p class="step-desc">We confirm timing, diagnostic needs, and next steps before you come in.</p>
-      </div>
-    </div>
-
-    <div class="process-note">
-      <strong>Note:</strong> Customers mention being kept updated, having repairs
-      explained clearly, and getting their vehicles back on the road quickly.
-      We confirm all requests manually — no auto-booking.
+    <div class="reviews-cta-row">
+      <p class="reviews-cta-text">See why Mississauga drivers choose Revworks.</p>
+      <a href="https://g.page/r/CfvN8xEx2wVYEAE/review"
+         target="_blank" rel="noopener noreferrer"
+         class="btn-ghost"
+         data-analytics="revworks_reviews_google_click"
+         aria-label="Read Google Reviews for Revworks Automotive (opens in new tab)">Read Google Reviews &rarr;</a>
     </div>
   </div>
 </section>
 
-<!-- ── BOOKING FORM ────────────────────────────────────────────────────────── -->
-<section id="book" class="section-pad">
+<!-- ── 9. BOOKING FORM ────────────────────────────────────────────────────── -->
+<section id="booking" class="section-pad">
   <div class="wrap">
 
     <!-- success state (hidden by default) -->
-    <div id="form-success">
-      <div class="success-icon">✓</div>
+    <div id="form-success" aria-live="polite" aria-atomic="true">
+      <div class="success-icon" aria-hidden="true">&#10003;</div>
       <h2 class="h2 mb-16">Request Received.</h2>
       <p class="success-text">
         A team member will review your request and reach out to confirm the next step.
@@ -535,20 +693,26 @@
       </p>
       <p class="success-callout">
         If the vehicle is unsafe to drive, call us now:
-        <a href="tel:4165621234" class="link-blue">(416) 562-1234</a>
+        <a href="tel:4165621234" class="link-blue">416-562-1234</a>
       </p>
       <button class="btn-ghost" id="form-reset">Submit Another Request</button>
     </div>
 
     <!-- form body -->
     <div id="form-body">
-      <div class="section-label">Get in touch</div>
-      <h2 class="h2 mb-12">Request a Service Check.</h2>
+      <div class="section-label">Book</div>
+      <h2 class="h2 mb-12">Request an appointment</h2>
       <p class="section-intro">
-        Tell us what's going on with the vehicle and your preferred timing.
-        We'll review it and confirm the right next step — no auto-booking,
-        no wasted trip.
+        Not sure what service you need? Choose Diagnostics and describe what you&rsquo;re noticing.
       </p>
+
+      <!-- unsafe-to-drive warning -->
+      <div class="unsafe-warning" role="alert">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+        <span>If the vehicle feels unsafe to drive, <a href="tel:4165621234">call us before bringing it in</a> &mdash; especially for brake, steering, overheating, leaking fluid, or severe noise issues.</span>
+      </div>
 
       <div class="form-layout">
         <!-- left: form fields -->
@@ -556,70 +720,75 @@
 
           <div class="form-two-col">
             <div>
-              <label class="field-label">First Name *</label>
-              <input id="f-first" class="field-input" type="text" />
+              <label class="field-label" for="f-first">First Name <span aria-label="required">*</span></label>
+              <input id="f-first" class="field-input" type="text" autocomplete="given-name" required />
             </div>
             <div>
-              <label class="field-label">Last Name *</label>
-              <input id="f-last" class="field-input" type="text" />
+              <label class="field-label" for="f-last">Last Name <span aria-label="required">*</span></label>
+              <input id="f-last" class="field-input" type="text" autocomplete="family-name" required />
             </div>
           </div>
 
           <div class="form-two-col">
             <div>
-              <label class="field-label">Phone *</label>
-              <input id="f-phone" class="field-input" type="tel" />
+              <label class="field-label" for="f-phone">Phone <span aria-label="required">*</span></label>
+              <input id="f-phone" class="field-input" type="tel" autocomplete="tel" required />
             </div>
             <div>
-              <label class="field-label">Email</label>
-              <input id="f-email" class="field-input" type="email" />
+              <label class="field-label" for="f-email">Email <span class="field-label-optional">(optional)</span></label>
+              <input id="f-email" class="field-input" type="email" autocomplete="email" />
             </div>
           </div>
 
           <div class="form-three-col">
             <div>
-              <label class="field-label">Year *</label>
-              <input id="f-year" class="field-input" type="text" placeholder="2018" />
+              <label class="field-label" for="f-year">Year <span aria-label="required">*</span></label>
+              <input id="f-year" class="field-input" type="text" placeholder="2018" required />
             </div>
             <div>
-              <label class="field-label">Make *</label>
-              <input id="f-make" class="field-input" type="text" placeholder="Honda" />
+              <label class="field-label" for="f-make">Make <span aria-label="required">*</span></label>
+              <input id="f-make" class="field-input" type="text" placeholder="Honda" required />
             </div>
             <div>
-              <label class="field-label">Model *</label>
-              <input id="f-model" class="field-input" type="text" placeholder="Civic" />
+              <label class="field-label" for="f-model">Model <span aria-label="required">*</span></label>
+              <input id="f-model" class="field-input" type="text" placeholder="Civic" required />
             </div>
           </div>
 
           <div>
-            <label class="field-label">Service Needed *</label>
+            <label class="field-label" for="f-service">Service Needed <span aria-label="required">*</span></label>
             <select id="f-service" class="field-input">
-              <option value="">Select a service…</option>
-              <option>Diagnostics</option>
-              <option>Transmission &amp; Drivetrain</option>
-              <option>Brakes</option>
-              <option>Suspension</option>
-              <option>Oil &amp; Maintenance</option>
-              <option>Inspection</option>
-              <option>General Repair</option>
-              <option>Other</option>
+              <option value="">Select a service&hellip;</option>
+              <option value="Diagnostics / Not sure">Diagnostics / Not sure</option>
+              <option value="Oil Change">Oil Change</option>
+              <option value="Brakes">Brakes</option>
+              <option value="A/C & Heating">A/C &amp; Heating</option>
+              <option value="Suspension">Suspension</option>
+              <option value="Inspection">Inspection</option>
+              <option value="General Repair">General Repair</option>
+              <option value="Other">Other</option>
             </select>
           </div>
 
           <div>
-            <label class="field-label">Describe the Issue *</label>
-            <textarea id="f-issue" class="field-input" placeholder="What is the vehicle doing? When does it happen?"></textarea>
+            <label class="field-label" for="f-issue">Describe the Issue <span aria-label="required">*</span></label>
+            <textarea id="f-issue" class="field-input"
+              placeholder="What is the vehicle doing? When does it happen?"
+              aria-describedby="f-issue-hint" required></textarea>
+            <p id="f-issue-hint" class="field-hint">
+              Example: whining noise when accelerating, brake vibration, check engine light, leaking fluid, A/C not cold.
+            </p>
           </div>
 
           <div class="form-two-col">
             <div>
-              <label class="field-label">Preferred Day *</label>
-              <input id="f-date" class="field-input" type="date" />
+              <label class="field-label" for="f-date">Preferred Day <span aria-label="required">*</span></label>
+              <input id="f-date" class="field-input" type="date" required />
             </div>
             <div>
-              <label class="field-label">Time Window *</label>
+              <label class="field-label" for="f-time">Time Window <span aria-label="required">*</span></label>
               <select id="f-time" class="field-input">
-                <option value="">Select…</option>
+                <option value="">Select&hellip;</option>
                 <option>Morning</option>
                 <option>Midday</option>
                 <option>Afternoon</option>
@@ -629,8 +798,8 @@
           </div>
 
           <div>
-            <label class="field-label">Is the Vehicle Safe to Drive? *</label>
-            <div class="drive-toggle">
+            <label class="field-label" id="drive-label">Is the Vehicle Safe to Drive? <span aria-label="required">*</span></label>
+            <div class="drive-toggle" role="group" aria-labelledby="drive-label">
               <button type="button" class="drive-btn" data-val="Yes">Yes</button>
               <button type="button" class="drive-btn" data-val="No">No</button>
               <button type="button" class="drive-btn" data-val="Unsure">Unsure</button>
@@ -638,15 +807,13 @@
           </div>
 
           <div class="form-note">
-            ⚠ Submitting this form does <strong>not</strong> confirm an appointment.
-            We'll review your request and reply to confirm.<br><br>
-            If the vehicle is unsafe to drive, overheating, leaking fluids, or has brake/steering issues,
-            <a href="tel:4165621234">call us now at (416) 562-1234</a>.
+            <strong>Note:</strong> Submitting this request does <strong>not</strong> confirm your appointment.
+            The shop will contact you to confirm availability.
           </div>
 
-          <button type="button" class="btn-primary" id="form-submit"
-            class="btn-primary btn-submit">
-            Submit Request →
+          <button type="button" class="btn-primary btn-submit" id="form-submit"
+                  data-analytics="revworks_form_submit">
+            Request Appointment &rarr;
           </button>
         </div>
 
@@ -657,7 +824,7 @@
             <div class="col-gap-20">
               <div class="sidebar-field">
                 <span class="sidebar-field-label">Phone</span>
-                <a href="tel:4165621234" class="sidebar-phone">(416) 562-1234</a>
+                <a href="tel:4165621234" class="sidebar-phone">416-562-1234</a>
               </div>
               <div class="sidebar-field">
                 <span class="sidebar-field-label">Address</span>
@@ -666,12 +833,12 @@
               <div>
                 <span class="sidebar-field-label hours-label">Hours</span>
                 <div class="hours-row">
-                  <span class="hours-day">Mon – Fri</span>
-                  <span class="hours-time">8:00 AM – 6:00 PM</span>
+                  <span class="hours-day">Mon &ndash; Fri</span>
+                  <span class="hours-time">8:00 AM &ndash; 6:00 PM</span>
                 </div>
                 <div class="hours-row">
                   <span class="hours-day">Saturday</span>
-                  <span class="hours-time">9:00 AM – 4:00 PM</span>
+                  <span class="hours-time">9:00 AM &ndash; 4:00 PM</span>
                 </div>
                 <div class="hours-row">
                   <span class="hours-day">Sunday</span>
@@ -682,11 +849,12 @@
           </div>
 
           <div class="urgent-panel">
-            <div class="urgent-title">Urgent Issue?</div>
+            <div class="urgent-title">Unsafe to drive?</div>
             <p class="urgent-desc">
-              If the vehicle is unsafe to drive, don't use the form. Call us directly.
+              Don&rsquo;t use the form. Call us directly before bringing the vehicle in.
             </p>
-            <a href="tel:4165621234" class="urgent-call">📞 Call Now</a>
+            <a href="tel:4165621234" class="urgent-call"
+               aria-label="Call Revworks Automotive now">Call 416-562-1234</a>
           </div>
         </div>
       </div>
@@ -695,94 +863,127 @@
   </div>
 </section>
 
+<!-- ── 10. LOCATION ───────────────────────────────────────────────────────── -->
+<section id="location" class="section-pad reveal">
+  <div class="wrap">
+    <div class="location-grid">
+
+      <div class="location-content">
+        <div class="section-label">Location</div>
+        <h2 class="h2 mb-16">Auto repair in Mississauga, near Drew Road</h2>
+        <p class="location-text">
+          Revworks Automotive is a local Mississauga auto repair shop at 1788 Drew Rd Unit 6.
+          Drivers come to us for diagnostics, brakes, oil changes, suspension work, A/C and heating
+          issues, engine noise, leaks, inspections, and general repairs.
+        </p>
+        <p class="location-text">
+          Whether you know the repair you need or you&rsquo;re just hearing a new noise, start
+          with the issue and we&rsquo;ll help confirm the next step.
+        </p>
+
+        <div class="location-info">
+          <div class="location-info-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+            <address class="location-addr">1788 Drew Rd Unit 6, Mississauga, ON L5S 1L7</address>
+          </div>
+          <div class="location-info-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.1 1.27a2 2 0 012-2.18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 6a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 12.92v4z"/>
+            </svg>
+            <a href="tel:4165621234" class="location-phone">416-562-1234</a>
+          </div>
+        </div>
+
+        <a href="https://www.google.com/maps/dir/?api=1&destination=1788+Drew+Rd+Unit+6+Mississauga+ON+L5S+1L7"
+           target="_blank" rel="noopener noreferrer"
+           class="btn-primary"
+           data-analytics="revworks_location_directions_click"
+           aria-label="Get directions to Revworks Automotive (opens Google Maps)">Get Directions &rarr;</a>
+      </div>
+
+      <div class="location-map-wrap">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6958.122417743781!2d-79.66554469573205!3d43.684492976401316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b3f45dc47b881%3A0x5805cbd311f3cdfb!2sREVWORKS%20AUTOMOTIVE!5e0!3m2!1sen!2sca!4v1777916097425!5m2!1sen!2sca"
+          width="100%" height="320"
+          class="map-frame"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Revworks Automotive at 1788 Drew Rd Unit 6, Mississauga"
+        ></iframe>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── 11. FAQ ─────────────────────────────────────────────────────────────── -->
 <section id="faq" class="section-pad reveal">
   <div class="wrap">
     <div class="section-label">Common questions</div>
-    <h2 class="h2 mb-48">FAQ</h2>
+    <h2 class="h2 mb-48">Questions before you book?</h2>
 
-    <div class="faq-list">
+    <div class="faq-list" role="list">
 
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          Do I need to call ahead or can I just show up?
-          <span class="faq-chevron">↓</span>
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-a-1">
+          Do I need to know what service I need before booking?
+          <span class="faq-chevron" aria-hidden="true">&#8595;</span>
         </button>
-        <div class="faq-a">
-          <p>We recommend submitting a request or calling ahead so we can confirm
-          timing and make sure the right resources are available for your vehicle.
-          Walk-ins are welcome but confirmed requests get priority scheduling.</p>
+        <div class="faq-a" id="faq-a-1">
+          <p>No. If you&rsquo;re unsure, choose Diagnostics and describe what the vehicle is doing. Tell us what you&rsquo;re hearing, seeing, feeling, or smelling &mdash; the shop can start from there.</p>
         </div>
       </div>
 
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          Does submitting the form confirm my appointment?
-          <span class="faq-chevron">↓</span>
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-a-2">
+          Is submitting the form a confirmed appointment?
+          <span class="faq-chevron" aria-hidden="true">&#8595;</span>
         </button>
-        <div class="faq-a">
-          <p>No — submitting the form sends us your request. A team member will
-          review it and reach out to confirm the details before anything is set.
-          You won't be locked in until we confirm with you directly.</p>
+        <div class="faq-a" id="faq-a-2">
+          <p>No. The shop reviews the request first and confirms the appointment with you. You won&rsquo;t be locked in until a team member reaches out to confirm timing and details.</p>
         </div>
       </div>
 
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-a-3">
+          What should I do if my car feels unsafe to drive?
+          <span class="faq-chevron" aria-hidden="true">&#8595;</span>
+        </button>
+        <div class="faq-a" id="faq-a-3">
+          <p>Call the shop directly at <a href="tel:4165621234" class="link-blue">416-562-1234</a> before driving it in, especially for brake, steering, overheating, leaking fluid, or severe noise issues. We can advise on the safest next step.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-a-4">
+          Do you work on most makes and models?
+          <span class="faq-chevron" aria-hidden="true">&#8595;</span>
+        </button>
+        <div class="faq-a" id="faq-a-4">
+          <p>Yes. Revworks services most daily drivers, family vehicles, imports, and domestic vehicles. If you want to confirm before coming in, mention the vehicle year, make, and model in the request form or call us.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-a-5">
+          Will I know the cost before repairs start?
+          <span class="faq-chevron" aria-hidden="true">&#8595;</span>
+        </button>
+        <div class="faq-a" id="faq-a-5">
+          <p>The recommendation is reviewed with you before work begins. We explain what needs attention, what can wait, and what the cost is &mdash; no repair starts until you approve it.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-a-6">
           How long will my car be at the shop?
-          <span class="faq-chevron">↓</span>
+          <span class="faq-chevron" aria-hidden="true">&#8595;</span>
         </button>
-        <div class="faq-a">
-          <p>It depends on the service. Diagnostics and routine maintenance are
-          typically same-day. Larger repairs involving parts sourcing may take
-          longer — we'll give you a clear timeline before work begins and keep
-          you updated throughout.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          Do you work on all makes and models?
-          <span class="faq-chevron">↓</span>
-        </button>
-        <div class="faq-a">
-          <p>Yes — we service most makes and models, domestic and import. If you
-          have a specific vehicle and want to confirm before coming in, call us
-          or mention it in the request form.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          I'm not sure what's wrong with my car. Can you still help?
-          <span class="faq-chevron">↓</span>
-        </button>
-        <div class="faq-a">
-          <p>Yes — that's what diagnostics are for. Describe what the vehicle is
-          doing (noise, warning light, behaviour) and we'll identify the issue and
-          explain what we found before recommending any repair work.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          Do you provide estimates before starting work?
-          <span class="faq-chevron">↓</span>
-        </button>
-        <div class="faq-a">
-          <p>Yes. We review the issue, explain what we find, and confirm pricing
-          before any repair work begins. Nothing gets done without your approval first.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          My vehicle isn't safe to drive. What should I do?
-          <span class="faq-chevron">↓</span>
-        </button>
-        <div class="faq-a">
-          <p>Call us directly at <a href="tel:4165621234" class="link-blue">(416) 562-1234</a>
-          rather than using the form. We can advise on the safest next step — whether
-          that's a tow, a mobile assessment, or coming in at a specific time.</p>
+        <div class="faq-a" id="faq-a-6">
+          <p>It depends on the service. Diagnostics and routine maintenance are typically same-day when possible. Larger repairs involving parts sourcing may take longer &mdash; we&rsquo;ll give you a clear timeline before work begins and keep you updated throughout.</p>
         </div>
       </div>
 
@@ -790,7 +991,32 @@
   </div>
 </section>
 
-<!-- ── FOOTER ─────────────────────────────────────────────────────────────── -->
+<!-- ── 12. FINAL CTA ──────────────────────────────────────────────────────── -->
+<section id="final-cta" class="section-pad reveal" aria-label="Contact and booking">
+  <div class="wrap">
+    <div class="final-cta-inner">
+      <h2 class="h2 mb-16">Not sure what&rsquo;s wrong? Start with a diagnostic.</h2>
+      <p class="final-cta-sub">
+        Call the shop or request a time online. We&rsquo;ll review the issue and confirm
+        the next step before anything is booked.
+      </p>
+      <div class="final-cta-btns">
+        <a href="#booking" class="btn-primary"
+           data-analytics="revworks_footer_book_click">Request an Appointment</a>
+        <a href="tel:4165621234" class="btn-ghost"
+           data-analytics="revworks_footer_call_click"
+           aria-label="Call Revworks Automotive at 416-562-1234">Call 416-562-1234</a>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=1788+Drew+Rd+Unit+6+Mississauga+ON+L5S+1L7"
+           target="_blank" rel="noopener noreferrer"
+           class="btn-ghost"
+           data-analytics="revworks_footer_directions_click"
+           aria-label="Get directions to Revworks Automotive (opens Google Maps)">Get Directions &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 13. FOOTER ─────────────────────────────────────────────────────────── -->
 <footer id="contact">
   <div class="footer-top">
     <div class="footer-top-grid">
@@ -798,26 +1024,27 @@
       <!-- brand -->
       <div>
         <div class="footer-brand">
-          <div class="footer-brand-mark">RW</div>
+          <div class="footer-brand-mark" aria-hidden="true">RW</div>
           <span class="footer-brand-name">Revworks Automotive</span>
         </div>
         <p class="footer-tagline">
-          Honest auto repair in Mississauga. Fair pricing, clear explanations,
-          and fast turnaround — backed by 16 verified reviews and a 5.0 rating.
+          Local Mississauga auto repair for diagnostics, maintenance, and general repairs.
+          Fair pricing and clear communication, backed by 16 Google reviews and a 5.0 rating.
         </p>
         <div class="footer-socials">
-          <a href="#" class="social-btn" aria-label="Instagram">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <a href="#" class="social-btn" aria-label="Revworks Automotive on Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
             </svg>
           </a>
-          <a href="#" class="social-btn" aria-label="Facebook">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <a href="#" class="social-btn" aria-label="Revworks Automotive on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
             </svg>
           </a>
-          <a href="https://g.page/r/CfvN8xEx2wVYEAE/review" class="social-btn" aria-label="Google">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <a href="https://g.page/r/CfvN8xEx2wVYEAE/review" target="_blank" rel="noopener noreferrer"
+             class="social-btn" aria-label="Revworks Automotive on Google (opens in new tab)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M12 12h8a8 8 0 11-2.4-5.6"/><path d="M12 12l4 4"/>
             </svg>
           </a>
@@ -827,14 +1054,16 @@
       <!-- nav -->
       <div>
         <div class="footer-nav-title">Navigate</div>
-        <div class="footer-nav-links">
+        <nav class="footer-nav-links" aria-label="Footer navigation">
           <a href="#services">Services</a>
-          <a href="#about">About</a>
           <a href="#reviews">Reviews</a>
+          <a href="#booking">Book</a>
+          <a href="#location">Location</a>
           <a href="#faq">FAQ</a>
-          <a href="#book">Book Diagnostic</a>
-          <a href="#contact">Contact</a>
-        </div>
+          <a href="https://g.page/r/CfvN8xEx2wVYEAE/review"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Google Reviews for Revworks Automotive (opens in new tab)">Google Reviews</a>
+        </nav>
       </div>
 
       <!-- contact -->
@@ -842,84 +1071,71 @@
         <div class="footer-nav-title">Contact</div>
         <div class="footer-contact-item">
           <div class="footer-contact-label">Phone</div>
-          <a href="tel:4165621234" class="footer-contact-phone">(416) 562-1234</a>
+          <a href="tel:4165621234" class="footer-contact-phone">416-562-1234</a>
         </div>
         <div class="footer-contact-item">
           <div class="footer-contact-label">Address</div>
-          <div class="footer-contact-addr">1788 Drew Rd Unit 6,<br>Mississauga, ON L5S 1L7</div>
+          <address class="footer-contact-addr">1788 Drew Rd Unit 6,<br>Mississauga, ON L5S 1L7</address>
         </div>
         <div class="footer-contact-item">
           <div class="footer-contact-label mb-8">Hours</div>
-          <div class="hours-row"><span class="hours-day">Mon – Fri</span><span class="hours-time">8:00 AM – 6:00 PM</span></div>
-          <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">9:00 AM – 4:00 PM</span></div>
+          <div class="hours-row"><span class="hours-day">Mon &ndash; Fri</span><span class="hours-time">8:00 AM &ndash; 6:00 PM</span></div>
+          <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">9:00 AM &ndash; 4:00 PM</span></div>
           <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time closed">Closed</span></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- CTA + map -->
   <div class="wrap">
-    <div class="footer-cta-section">
-      <div class="footer-cta-grid">
-        <div>
-          <div class="section-label">Local shop. Easy next step.</div>
-          <h2 class="h2 footer-cta-title">
-            Tell us what's going on. We'll help you understand the next step.
-          </h2>
-          <p class="footer-cta-sub">
-            Call the shop, request a time, or use directions to find us in Mississauga.
-            Customers mention being kept updated and getting clear answers at every step.
-            If the vehicle is unsafe to drive, call before bringing it in.
-          </p>
-          <div class="footer-cta-btns">
-            <a href="#book" class="btn-primary">Request an Appointment →</a>
-            <a href="tel:4165621234" class="btn-ghost">Call (416) 562-1234</a>
-          </div>
-        </div>
-
-        <div>
-          <div class="footer-map-wrap">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6958.122417743781!2d-79.66554469573205!3d43.684492976401316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b3f45dc47b881%3A0x5805cbd311f3cdfb!2sREVWORKS%20AUTOMOTIVE!5e0!3m2!1sen!2sca!4v1777916097425!5m2!1sen!2sca"
-              width="100%" height="280"
-              class="map-frame"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              title="Revworks Automotive location"
-            ></iframe>
-          </div>
-        </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-copy">
+        &copy; <span id="yr"></span> Revworks Automotive &middot; Mississauga, ON &middot;
+        1788 Drew Rd Unit 6 &middot;
+        <a href="tel:4165621234">416-562-1234</a>
       </div>
-
-      <div class="footer-bottom">
-        <div class="footer-bottom-copy">
-          © <span id="yr"></span> Revworks Automotive · Mississauga, ON ·
-          <a href="/privacy">Privacy</a>
-        </div>
-        <div class="footer-bottom-links">
-          <a href="#services">Services</a>
-          <a href="#about">About</a>
-          <a href="#book">Book</a>
-        </div>
+      <div class="footer-bottom-links">
+        <a href="#services">Services</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#booking">Book</a>
+        <a href="#location">Location</a>
       </div>
     </div>
   </div>
 </footer>
 
-<!-- ── MOBILE STICKY BAR ──────────────────────────────────────────────────── -->
-<div id="sticky-bar">
-  <a href="tel:4165621234" class="sticky-bar-btn">📞 Call</a>
-  <a href="#book" class="sticky-bar-btn primary">📅 Book</a>
-  <a href="https://maps.google.com/?q=1788+Drew+Rd+Unit+6+Mississauga+ON+L5S+1L7"
-     target="_blank" rel="noopener" class="sticky-bar-btn">🗺 Directions</a>
+<!-- ── 14. MOBILE STICKY CTA ─────────────────────────────────────────────── -->
+<div id="sticky-bar" role="navigation" aria-label="Quick actions">
+  <a href="tel:4165621234" class="sticky-bar-btn"
+     data-analytics="revworks_mobile_call_click"
+     aria-label="Call Revworks Automotive">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.1 1.27a2 2 0 012-2.18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 6a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 12.92v4z"/>
+    </svg>
+    Call
+  </a>
+  <a href="#booking" class="sticky-bar-btn primary"
+     data-analytics="revworks_mobile_book_click"
+     aria-label="Book an appointment with Revworks Automotive">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+    </svg>
+    Book
+  </a>
+  <a href="https://www.google.com/maps/dir/?api=1&destination=1788+Drew+Rd+Unit+6+Mississauga+ON+L5S+1L7"
+     target="_blank" rel="noopener noreferrer"
+     class="sticky-bar-btn"
+     data-analytics="revworks_mobile_directions_click"
+     aria-label="Get directions to Revworks Automotive">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+    </svg>
+    Directions
+  </a>
 </div>
 
 <!-- ── SCRIPTS ────────────────────────────────────────────────────────────── -->
 <script src="./home4.js" defer></script>
-
-
 
 </body>
 </html>
