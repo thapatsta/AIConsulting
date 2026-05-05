@@ -137,6 +137,44 @@
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
   }
 
+  // ── tab navigation ───────────────────────────────────────────────────────
+  const tabs   = Array.from(document.querySelectorAll('[role="tab"]'));
+  const panels = document.querySelectorAll('[role="tabpanel"]');
+
+  function activateTab(tab) {
+    tabs.forEach(t => {
+      t.setAttribute('aria-selected', 'false');
+      t.setAttribute('tabindex', '-1');
+    });
+    panels.forEach(p => p.setAttribute('hidden', ''));
+
+    tab.setAttribute('aria-selected', 'true');
+    tab.removeAttribute('tabindex');
+    const panel = document.getElementById(tab.getAttribute('aria-controls'));
+    if (panel) panel.removeAttribute('hidden');
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => activateTab(tab));
+    tab.addEventListener('keydown', (e) => {
+      const idx = tabs.indexOf(tab);
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        const next = tabs[(idx + 1) % tabs.length];
+        activateTab(next);
+        next.focus();
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        const prev = tabs[(idx - 1 + tabs.length) % tabs.length];
+        activateTab(prev);
+        prev.focus();
+      } else if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        activateTab(tab);
+      }
+    });
+  });
+
   // ── FAQ accordion ──────────────────────────────────────────────────────
   document.querySelectorAll('.faq-q').forEach(btn => {
     btn.addEventListener('click', () => {
