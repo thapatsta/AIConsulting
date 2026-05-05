@@ -1,0 +1,1862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Revworks Automotive — Reliable Repairs in Mississauga, ON</title>
+  <meta name="description" content="Revworks Automotive in Mississauga. 15+ years experience, 5,000+ cars serviced. Diagnostics, brakes, oil, A/C, inspections and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── RESET & ROOT ────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #07070b;
+      --bg2:       #0d0d14;
+      --bg3:       #111118;
+      --bg4:       #161622;
+      --blue:      #4f8ef7;
+      --blue-dim:  #2a5cbf;
+      --blue-lite: #6ba3f9;
+      --text:      #e4e4ec;
+      --muted:     #6b6b7a;
+      --border:    rgba(255,255,255,0.07);
+      --border2:   rgba(79,142,247,0.18);
+      --fd: 'Barlow Condensed', sans-serif;
+      --fb: 'Barlow', sans-serif;
+      --fm: 'JetBrains Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background:
+        radial-gradient(circle at 12% 14%, rgba(79,142,247,0.16), transparent 42%),
+        radial-gradient(circle at 85% 80%, rgba(79,142,247,0.14), transparent 45%),
+        linear-gradient(145deg, #06070f 0%, #0b0e19 50%, #080a12 100%);
+      color: var(--text);
+      font-family: var(--fb);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* subtle grid + photo overlay on body */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(79,142,247,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79,142,247,0.03) 1px, transparent 1px),
+        url('https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=1800&q=80');
+      background-size: 60px 60px, 60px 60px, cover;
+      background-position: center;
+      background-blend-mode: normal, normal, soft-light;
+      opacity: 0.6;
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(7,7,11,0.55) 0%, rgba(7,7,11,0.78) 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── LAYOUT HELPERS ──────────────────────────────────────────────────── */
+    .wrap {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    .section-pad { padding: 96px 0; }
+    section { position: relative; z-index: 1; }
+
+    .section-label {
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--blue);
+      flex-shrink: 0;
+    }
+
+    /* ── TYPOGRAPHY ──────────────────────────────────────────────────────── */
+    .h1 {
+      font-family: var(--fd);
+      font-weight: 900;
+      font-size: clamp(64px, 9vw, 112px);
+      line-height: 0.92;
+      text-transform: uppercase;
+    }
+    .h2 {
+      font-family: var(--fd);
+      font-weight: 800;
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: 0.95;
+      text-transform: uppercase;
+    }
+    .h3 {
+      font-family: var(--fd);
+      font-weight: 700;
+      font-size: 22px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── BUTTONS ─────────────────────────────────────────────────────────── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blue);
+      color: #fff;
+      font-family: var(--fm);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--blue-lite); transform: translateY(-1px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text);
+      font-family: var(--fm);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 13px 27px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* ── NAV ─────────────────────────────────────────────────────────────── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 64px;
+      background: rgba(7,7,11,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo-mark {
+      width: 32px; height: 32px;
+      border: 1.5px solid var(--blue);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--fm);
+      font-size: 11px;
+      color: var(--blue);
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+    }
+    .nav-logo-text {
+      font-family: var(--fd);
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      text-decoration: none;
+      border: 1px solid var(--blue);
+      padding: 8px 20px;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-cta:hover { background: var(--blue); color: #fff; }
+
+    /* hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* mobile drawer */
+    #nav-drawer {
+      position: fixed;
+      top: 64px; right: 0;
+      width: 280px; height: calc(100vh - 64px);
+      background: var(--bg2);
+      border-left: 1px solid var(--border);
+      z-index: 190;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    #nav-drawer.open { transform: translateX(0); }
+
+    .drawer-link {
+      display: block;
+      font-family: var(--fm);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+    .drawer-link:hover { color: var(--text); }
+    .drawer-link.primary { color: var(--blue); border-color: var(--blue-dim); }
+
+    #nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 180;
+      background: rgba(0,0,0,0.5);
+    }
+    #nav-overlay.open { display: block; }
+
+    /* ── HERO ────────────────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 40px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-inner { max-width: 760px; }
+
+    .hero-eyebrow {
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .hero-h1-blue { color: var(--blue); }
+    .hero-h1-outline {
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 460px;
+      line-height: 1.75;
+      margin-bottom: 40px;
+      border-left: 2px solid var(--blue-dim);
+      padding-left: 20px;
+      font-weight: 300;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    /* quick actions */
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      max-width: 540px;
+      margin-bottom: 56px;
+    }
+    .quick-actions a {
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid var(--border);
+      background: rgba(13,13,20,0.8);
+      border-radius: 6px;
+      min-height: 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      gap: 5px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .quick-actions a:hover { border-color: var(--blue); background: rgba(79,142,247,0.08); }
+    .qa-icon { font-size: 15px; line-height: 1; }
+
+    /* stats row */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, auto);
+      gap: 0;
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+      max-width: 580px;
+    }
+    .stat-item {
+      padding: 0 32px 0 0;
+    }
+    .stat-num {
+      font-family: var(--fd);
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1;
+    }
+    .stat-sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── TRUST BAR ───────────────────────────────────────────────────────── */
+    #trust {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      padding: 56px 0;
+    }
+    .trust-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .trust-accent {
+      width: 2px; height: 36px;
+      background: var(--blue);
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+    .trust-label {
+      font-family: var(--fd);
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 3px;
+    }
+    .trust-sub {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── SERVICES ────────────────────────────────────────────────────────── */
+    #services { background: var(--bg); position: relative; z-index: 1; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-bottom: 40px;
+    }
+    .service-card {
+      background: var(--bg2);
+      padding: 36px 32px;
+      border-left: 3px solid transparent;
+      transition: background 0.2s, border-color 0.2s;
+      cursor: default;
+    }
+    .service-card:hover {
+      background: var(--bg3);
+      border-left-color: var(--blue);
+    }
+    .svc-icon {
+      color: var(--blue);
+      margin-bottom: 18px;
+    }
+    .svc-icon svg { display: block; }
+    .service-card h3 {
+      font-family: var(--fd);
+      font-size: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+    .service-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    /* ── ABOUT ───────────────────────────────────────────────────────────── */
+    #about {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-sub {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 20px;
+    }
+    .about-panel {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 40px 36px;
+      position: relative;
+    }
+    .about-corner {
+      position: absolute;
+      top: -1px; right: -1px;
+      width: 48px; height: 48px;
+      background: var(--blue);
+    }
+    .about-point {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .about-point:last-child { border-bottom: none; }
+    .about-arrow { color: var(--blue); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .about-point span { font-size: 15px; line-height: 1.5; }
+
+    /* ── REVIEWS ─────────────────────────────────────────────────────────── */
+    #reviews {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+    .reviews-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    .reviews-stars { display: flex; gap: 3px; margin-top: 14px; }
+    .reviews-stars span { color: var(--blue); font-size: 18px; }
+    .reviews-score {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .score-num {
+      font-family: var(--fd);
+      font-weight: 800;
+      font-size: 16px;
+    }
+    .score-count { font-size: 13px; color: var(--muted); }
+
+    .review-box {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: clamp(28px, 5vw, 52px);
+      position: relative;
+      min-height: 260px;
+      transition: opacity 0.22s ease;
+    }
+    .review-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--blue);
+    }
+    .review-quote {
+      font-family: Georgia, serif;
+      font-size: 96px;
+      color: var(--border2);
+      line-height: 1;
+      margin-bottom: 8px;
+      user-select: none;
+    }
+    .review-rating { display: flex; gap: 3px; margin-bottom: 20px; }
+    .review-rating span { color: var(--blue); font-size: 20px; }
+    .review-text {
+      font-size: clamp(16px, 2.2vw, 19px);
+      color: var(--text);
+      line-height: 1.75;
+      font-weight: 300;
+      max-width: 820px;
+      margin-bottom: 40px;
+    }
+    .review-footer {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .review-avatar {
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--fd);
+      font-weight: 800;
+      font-size: 18px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .review-name { font-weight: 500; font-size: 15px; }
+    .review-source { font-size: 12px; color: var(--muted); }
+    .review-counter {
+      margin-left: auto;
+      font-family: var(--fm);
+      font-weight: 700;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    .reviews-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 16px;
+      gap: 16px;
+    }
+    .review-btn {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: pointer;
+      padding: 12px 28px;
+      font-family: var(--fm);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all 0.2s;
+      border-radius: 4px;
+    }
+    .review-btn:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
+
+    .review-dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .dot {
+      height: 8px;
+      background: var(--border2);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      width: 8px;
+    }
+    .dot.active { width: 28px; background: var(--blue); }
+
+    /* ── PROCESS ─────────────────────────────────────────────────────────── */
+    #process {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+    .process-step {
+      background: var(--bg2);
+      padding: 40px 32px;
+    }
+    .step-num {
+      font-family: var(--fd);
+      font-weight: 900;
+      font-size: 56px;
+      color: var(--border2);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    .step-title {
+      font-family: var(--fd);
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+    .step-desc { font-size: 14px; color: var(--muted); line-height: 1.65; font-weight: 300; }
+
+    .process-note {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--blue);
+      padding: 20px 24px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .process-note strong { color: var(--text); }
+
+    /* ── BOOKING FORM ────────────────────────────────────────────────────── */
+    #book {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+    .form-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .form-col { display: flex; flex-direction: column; gap: 24px; }
+    .form-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+    .field-label {
+      display: block;
+      font-family: var(--fm);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .field-input {
+      width: 100%;
+      background: var(--bg3);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text);
+      font-family: var(--fb);
+      font-size: 15px;
+      padding: 13px 16px;
+      outline: none;
+      border-radius: 4px;
+      transition: border-color 0.2s;
+      appearance: none;
+    }
+    .field-input:focus { border-color: var(--blue); }
+    .field-input option { background: #111118; }
+
+    textarea.field-input { resize: vertical; min-height: 96px; }
+
+    .drive-toggle { display: flex; gap: 10px; }
+    .drive-btn {
+      flex: 1;
+      padding: 12px 8px;
+      background: var(--bg3);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text);
+      font-family: var(--fm);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+    .drive-btn.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+
+    .form-note {
+      background: var(--bg3);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-left: 3px solid var(--blue-dim);
+      padding: 16px 18px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      border-radius: 0 4px 4px 0;
+    }
+    .form-note strong { color: var(--text); }
+    .form-note a { color: var(--blue); }
+
+    /* form sidebar */
+    .sidebar-panel {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 32px 28px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    .sidebar-field { display: flex; flex-direction: column; gap: 4px; }
+    .sidebar-field-label {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-family: var(--fm);
+    }
+    .sidebar-phone {
+      color: var(--blue);
+      font-family: var(--fd);
+      font-weight: 700;
+      font-size: 22px;
+      text-decoration: none;
+    }
+    .sidebar-address { font-size: 14px; color: var(--muted); line-height: 1.5; }
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-day { color: var(--muted); }
+    .hours-time { font-weight: 500; }
+    .hours-time.closed { color: var(--muted); }
+
+    .urgent-panel {
+      background: var(--blue);
+      padding: 28px 28px;
+      border-radius: 4px;
+    }
+    .urgent-title {
+      font-family: var(--fd);
+      font-weight: 900;
+      font-size: 20px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .urgent-desc { font-size: 14px; margin-bottom: 20px; opacity: 0.9; line-height: 1.6; }
+    .urgent-call {
+      display: block;
+      text-align: center;
+      background: #fff;
+      color: var(--blue-dim);
+      font-family: var(--fm);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px 20px;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    /* success state */
+    #form-success {
+      display: none;
+      text-align: center;
+      padding: 80px 24px;
+    }
+    .success-icon {
+      width: 64px; height: 64px;
+      background: var(--blue);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 32px;
+      font-size: 28px;
+      border-radius: 4px;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────────────────────── */
+    #contact {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      position: relative;
+      z-index: 1;
+    }
+    .footer-top {
+      border-bottom: 1px solid var(--border);
+      padding: 56px 40px;
+    }
+    .footer-top-grid {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 56px;
+    }
+
+    .footer-brand { margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    .footer-brand-mark {
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--blue);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--fm);
+      font-size: 11px;
+      color: var(--blue);
+    }
+    .footer-brand-name {
+      font-family: var(--fd);
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .footer-tagline { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 320px; margin-bottom: 24px; }
+    .footer-socials { display: flex; gap: 8px; }
+    .social-btn {
+      width: 36px; height: 36px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted);
+      text-decoration: none;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+    .social-btn:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
+
+    .footer-nav-title {
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-nav-title::before {
+      content: '';
+      display: inline-block;
+      width: 18px; height: 1px;
+      background: var(--blue);
+    }
+    .footer-nav-links { display: flex; flex-direction: column; gap: 12px; }
+    .footer-nav-links a {
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-nav-links a:hover { color: var(--text); }
+
+    .footer-contact-item { margin-bottom: 16px; }
+    .footer-contact-label {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+      font-family: var(--fm);
+    }
+    .footer-contact-phone {
+      font-size: 16px;
+      color: var(--blue);
+      font-family: var(--fd);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .footer-contact-addr { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    .footer-cta-section { padding: 80px 0 0; }
+    .footer-cta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      margin-bottom: 64px;
+    }
+    .footer-cta-sub { font-size: 16px; color: var(--muted); line-height: 1.75; font-weight: 300; margin-bottom: 32px; }
+    .footer-cta-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .footer-map-wrap {
+      border: 1px solid var(--border);
+      overflow: hidden;
+      line-height: 0;
+      border-radius: 4px;
+    }
+
+    .footer-bottom {
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-bottom-copy { font-size: 13px; color: var(--muted); }
+    .footer-bottom-copy a { color: var(--muted); }
+    .footer-bottom-links { display: flex; gap: 24px; }
+    .footer-bottom-links a {
+      font-size: 11px;
+      color: var(--muted);
+      text-decoration: none;
+      font-family: var(--fm);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-bottom-links a:hover { color: var(--blue); }
+
+    /* ── MOBILE STICKY BAR ───────────────────────────────────────────────── */
+    #sticky-bar {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 300;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+    }
+    .sticky-bar-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg2);
+      font-family: var(--fm);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      padding: 16px 8px;
+      transition: background 0.2s;
+    }
+    .sticky-bar-btn.primary { background: var(--blue); color: #fff; }
+    .sticky-bar-btn:hover { background: var(--blue-dim); color: #fff; }
+
+    /* ── REVEAL ANIMATION ────────────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────────────────── */
+    @media (min-width: 769px) {
+      #sticky-bar { display: none !important; }
+    }
+
+    @media (max-width: 768px) {
+      .wrap { padding: 0 20px; }
+      #nav { padding: 0 20px; }
+      .nav-links, .nav-cta { display: none !important; }
+      .nav-hamburger { display: flex; }
+      #sticky-bar { display: grid; }
+      body { padding-bottom: 80px; }
+
+      #hero { padding: 100px 20px 64px; }
+      .quick-actions { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
+      .hero-stats { grid-template-columns: 1fr 1fr; gap: 24px; }
+      .stat-item { padding: 0; }
+
+      .trust-grid { grid-template-columns: 1fr; padding: 40px 0; }
+      .services-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .process-grid { grid-template-columns: 1fr; }
+
+      .form-layout { grid-template-columns: 1fr; gap: 32px; }
+      .form-two-col { grid-template-columns: 1fr; }
+      .form-three-col { grid-template-columns: 1fr; }
+
+      .footer-top { padding: 40px 20px; }
+      .footer-top-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-cta-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; }
+      .hero-actions a { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────────────────────────── -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark">RW</div>
+    <span class="nav-logo-text">Revworks</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#book">Book</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#book" class="nav-cta">Book Diagnostic →</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- mobile drawer -->
+<div id="nav-overlay"></div>
+<div id="nav-drawer">
+  <a class="drawer-link" href="#services" data-close-drawer>Services</a>
+  <a class="drawer-link" href="#about" data-close-drawer>About</a>
+  <a class="drawer-link" href="#reviews" data-close-drawer>Reviews</a>
+  <a class="drawer-link" href="#book" data-close-drawer>Book</a>
+  <a class="drawer-link" href="#contact" data-close-drawer>Contact</a>
+  <a class="drawer-link primary" href="#book" data-close-drawer>Book Diagnostic →</a>
+</div>
+
+<!-- ── HERO ─────────────────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Mississauga, Ontario · Est. 2009</div>
+
+    <h1 class="h1" style="margin-bottom: 32px;">
+      <span class="hero-h1-blue">Revworks</span><br>
+      Auto Repair<br>
+      <span class="hero-h1-outline">Done Right</span>
+    </h1>
+
+    <p class="hero-sub">
+      From oil changes and brakes to full diagnostics — 15+ years of combined
+      experience, 5,000+ vehicles serviced in Mississauga.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#book" class="btn-primary">Request an Appointment →</a>
+      <a href="tel:4165621234" class="btn-ghost">☏ (416) 562-1234</a>
+    </div>
+
+    <div class="quick-actions">
+      <a href="tel:4165621234"><span class="qa-icon">☎</span><span>Call</span></a>
+      <a href="#book"><span class="qa-icon">🛠</span><span>Get Quote</span></a>
+      <a href="https://maps.google.com/?q=1788+Drew+Rd+Unit+6+Mississauga+ON+L5S+1L7" target="_blank" rel="noopener"><span class="qa-icon">📍</span><span>Location</span></a>
+      <a href="#services"><span class="qa-icon">🔧</span><span>Services</span></a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">15+</div>
+        <div class="stat-sub">Yrs Combined Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">5,000+</div>
+        <div class="stat-sub">Cars Serviced</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">1-Hr</div>
+        <div class="stat-sub">Same-Day Diagnostics</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-sub">Photo-Backed Work</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST BAR ─────────────────────────────────────────────────────────── -->
+<section id="trust" class="reveal">
+  <div class="wrap">
+    <div class="section-label">Why people choose Revworks</div>
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-accent"></div>
+        <div>
+          <div class="trust-label">Practical recommendations</div>
+          <div class="trust-sub">No generic upsells</div>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-accent"></div>
+        <div>
+          <div class="trust-label">Photo-backed inspections</div>
+          <div class="trust-sub">See it before you approve it</div>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-accent"></div>
+        <div>
+          <div class="trust-label">Honest communication</div>
+          <div class="trust-sub">Plain language, every time</div>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-accent"></div>
+        <div>
+          <div class="trust-label">Work that feels thought through</div>
+          <div class="trust-sub">Details matter here</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ──────────────────────────────────────────────────────────── -->
+<section id="services" class="section-pad reveal">
+  <div class="wrap">
+    <div class="section-label">What we do</div>
+    <h2 class="h2" style="margin-bottom: 16px;">Core Services</h2>
+    <p style="color: var(--muted); font-size: 16px; max-width: 480px; margin-bottom: 48px; font-weight: 300;">
+      Start with the jobs that matter most — diagnosed properly, explained clearly.
+    </p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="svc-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="22" height="15" rx="2"/><path d="M8 25H20M14 20V25"/><path d="M7.5 14.5l3-4 4 5 3-4 3 2.5"/>
+          </svg>
+        </div>
+        <h3>Diagnostics</h3>
+        <p>Warning lights, noises, drivability concerns, hard starts — we read the car, not just the code.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2C14 2 6 11 6 17a8 8 0 0016 0c0-6-8-15-8-15z"/><path d="M10.5 19a3.5 3.5 0 003.5 2.5"/>
+          </svg>
+        </div>
+        <h3>Oil &amp; Maintenance</h3>
+        <p>Routine service that keeps daily drivers dependable and your warranty intact.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="14" cy="14" r="11"/><circle cx="14" cy="14" r="4.5"/><path d="M14 3v4M14 21v4M3 14h4M21 14h4"/>
+          </svg>
+        </div>
+        <h3>Brakes &amp; Suspension</h3>
+        <p>Safety-first work with clear explanations before anything gets touched.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 3v22M3 14h22M6.5 6.5l15 15M21.5 6.5l-15 15"/><circle cx="14" cy="14" r="3"/>
+          </svg>
+        </div>
+        <h3>A/C &amp; Heating</h3>
+        <p>Cabin comfort and system checks before seasonal extremes catch you off guard.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="3" width="16" height="22" rx="2"/><path d="M10 3v3h8V3"/><path d="M10 15l3 3 6-6"/>
+          </svg>
+        </div>
+        <h3>Inspections</h3>
+        <p>Pre-purchase, safety, and general condition checks done thoroughly.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19.5 4.5a4.5 4.5 0 00-4.08 6.45L6 20.37A2.5 2.5 0 009.63 24l9.37-9.42A4.5 4.5 0 1019.5 4.5z"/><path d="M19.5 6.5l2 2"/>
+          </svg>
+        </div>
+        <h3>Repair Work</h3>
+        <p>When the issue goes beyond routine maintenance — diagnosed properly, fixed cleanly.</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 40px;">
+      <a href="#book" class="btn-primary">Request a Service Check →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ──────────────────────────────────────────────────────────────── -->
+<section id="about" class="section-pad reveal">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <div class="section-label">15+ Yrs Combined Experience · 5,000+ Cars</div>
+        <h2 class="h2" style="margin-bottom: 28px;">
+          A mechanic shop that understands why details matter.
+        </h2>
+        <p class="about-sub">
+          The mechanics at Revworks bring over 15 years of hands-on experience
+          to every vehicle that comes through the door — and with 5,000+ cars serviced
+          in Mississauga, not much surprises them.
+        </p>
+        <p class="about-sub">
+          Whether your vehicle is a daily commuter, family hauler, or something you care
+          a little too much about — the approach is the same: diagnose properly,
+          communicate clearly, do the job cleanly.
+        </p>
+        <a href="#book" class="btn-primary">Start With Your Issue →</a>
+      </div>
+
+      <div>
+        <div class="about-panel">
+          <div class="about-corner"></div>
+          <div class="section-label" style="margin-bottom: 24px;">What sets us apart</div>
+          <div class="about-point"><span class="about-arrow">→</span><span>15+ years of mechanic experience</span></div>
+          <div class="about-point"><span class="about-arrow">→</span><span>5,000+ vehicles diagnosed and serviced</span></div>
+          <div class="about-point"><span class="about-arrow">→</span><span>Real recommendations, not generic upsells</span></div>
+          <div class="about-point"><span class="about-arrow">→</span><span>Practical repair priorities based on safety and reliability</span></div>
+          <div class="about-point"><span class="about-arrow">→</span><span>Photos and notes before you approve any work</span></div>
+          <div class="about-point"><span class="about-arrow">→</span><span>Servicing most makes and models</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── REVIEWS ────────────────────────────────────────────────────────────── -->
+<section id="reviews" class="section-pad reveal">
+  <div class="wrap">
+    <div class="reviews-header">
+      <div>
+        <div class="section-label">Customer reviews</div>
+        <h2 class="h2">Trusted by drivers<br>who notice the difference.</h2>
+        <div class="reviews-stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <div class="reviews-score">
+          <span class="score-num">5.0</span>
+          <span class="score-count">· 16 Google reviews</span>
+        </div>
+      </div>
+      <a href="https://g.page/r/CfvN8xEx2wVYEAE/review" target="_blank" rel="noreferrer"
+        class="btn-ghost" style="white-space: nowrap; font-size: 11px;">
+        Leave a Google Review →
+      </a>
+    </div>
+
+    <div class="review-box" id="review-box">
+      <div class="review-quote">"</div>
+      <div class="review-rating" id="review-rating"></div>
+      <p class="review-text" id="review-text"></p>
+      <div class="review-footer">
+        <div class="review-avatar" id="review-avatar"></div>
+        <div>
+          <div class="review-name" id="review-name"></div>
+          <div class="review-source">Google Review · <span id="review-date"></span></div>
+        </div>
+        <div class="review-counter" id="review-counter"></div>
+      </div>
+    </div>
+
+    <div class="reviews-nav">
+      <button class="review-btn" id="review-prev">← Prev</button>
+      <div class="review-dots" id="review-dots"></div>
+      <button class="review-btn" id="review-next">Next →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESS ────────────────────────────────────────────────────────────── -->
+<section id="process" class="section-pad reveal">
+  <div class="wrap">
+    <div class="section-label">How it works</div>
+    <h2 class="h2" style="margin-bottom: 48px;">How booking works.</h2>
+
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <div class="step-title">Send your request or call</div>
+        <p class="step-desc">Tell us what the car is doing and your preferred timing.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <div class="step-title">We review your needs</div>
+        <p class="step-desc">We assess the vehicle, service type, and the right next step.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <div class="step-title">We confirm before you come in</div>
+        <p class="step-desc">No appointment locked until the shop confirms it with you.</p>
+      </div>
+    </div>
+
+    <div class="process-note">
+      <strong>Note:</strong> We manually confirm all appointment requests within a few hours.
+      You'll hear from us before anything is set — no auto-booking.
+    </div>
+  </div>
+</section>
+
+<!-- ── BOOKING FORM ────────────────────────────────────────────────────────── -->
+<section id="book" class="section-pad">
+  <div class="wrap">
+
+    <!-- success state (hidden by default) -->
+    <div id="form-success">
+      <div class="success-icon">✓</div>
+      <h2 class="h2" style="margin-bottom: 16px;">Request Received.</h2>
+      <p style="color: var(--muted); font-size: 16px; max-width: 440px; margin: 0 auto 32px; font-weight: 300;">
+        A team member will review your request and reach out to confirm the next step.
+        This is not a confirmed appointment yet.
+      </p>
+      <p style="color: var(--muted); font-size: 14px; margin-bottom: 40px;">
+        If the vehicle is unsafe to drive, call us now:
+        <a href="tel:4165621234" style="color: var(--blue);">(416) 562-1234</a>
+      </p>
+      <button class="btn-ghost" id="form-reset">Submit Another Request</button>
+    </div>
+
+    <!-- form body -->
+    <div id="form-body">
+      <div class="section-label">Get in touch</div>
+      <h2 class="h2" style="margin-bottom: 12px;">Request an Appointment.</h2>
+      <p style="color: var(--muted); font-size: 16px; max-width: 480px; margin-bottom: 48px; font-weight: 300;">
+        Tell us what's going on with the vehicle and your preferred timing.
+        We'll review the request and confirm the right next step.
+      </p>
+
+      <div class="form-layout">
+        <!-- left: form fields -->
+        <div class="form-col">
+
+          <div class="form-two-col">
+            <div>
+              <label class="field-label">First Name *</label>
+              <input id="f-first" class="field-input" type="text" />
+            </div>
+            <div>
+              <label class="field-label">Last Name *</label>
+              <input id="f-last" class="field-input" type="text" />
+            </div>
+          </div>
+
+          <div class="form-two-col">
+            <div>
+              <label class="field-label">Phone *</label>
+              <input id="f-phone" class="field-input" type="tel" />
+            </div>
+            <div>
+              <label class="field-label">Email</label>
+              <input id="f-email" class="field-input" type="email" />
+            </div>
+          </div>
+
+          <div class="form-three-col">
+            <div>
+              <label class="field-label">Year *</label>
+              <input id="f-year" class="field-input" type="text" placeholder="2018" />
+            </div>
+            <div>
+              <label class="field-label">Make *</label>
+              <input id="f-make" class="field-input" type="text" placeholder="Honda" />
+            </div>
+            <div>
+              <label class="field-label">Model *</label>
+              <input id="f-model" class="field-input" type="text" placeholder="Civic" />
+            </div>
+          </div>
+
+          <div>
+            <label class="field-label">Service Needed *</label>
+            <select id="f-service" class="field-input">
+              <option value="">Select a service…</option>
+              <option>Diagnostics</option>
+              <option>Oil Change</option>
+              <option>Brakes</option>
+              <option>A/C &amp; Heating</option>
+              <option>Suspension</option>
+              <option>Inspection</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="field-label">Describe the Issue *</label>
+            <textarea id="f-issue" class="field-input" placeholder="What is the vehicle doing? When does it happen?"></textarea>
+          </div>
+
+          <div class="form-two-col">
+            <div>
+              <label class="field-label">Preferred Day *</label>
+              <input id="f-date" class="field-input" type="date" />
+            </div>
+            <div>
+              <label class="field-label">Time Window *</label>
+              <select id="f-time" class="field-input">
+                <option value="">Select…</option>
+                <option>Morning</option>
+                <option>Midday</option>
+                <option>Afternoon</option>
+                <option>Flexible</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="field-label">Is the Vehicle Safe to Drive? *</label>
+            <div class="drive-toggle">
+              <button type="button" class="drive-btn" data-val="Yes">Yes</button>
+              <button type="button" class="drive-btn" data-val="No">No</button>
+              <button type="button" class="drive-btn" data-val="Unsure">Unsure</button>
+            </div>
+          </div>
+
+          <div class="form-note">
+            ⚠ Submitting this form does <strong>not</strong> confirm an appointment.
+            We'll review your request and reply to confirm.<br><br>
+            If the vehicle is unsafe to drive, overheating, leaking fluids, or has brake/steering issues,
+            <a href="tel:4165621234">call us now at (416) 562-1234</a>.
+          </div>
+
+          <button type="button" class="btn-primary" id="form-submit"
+            style="width: 100%; justify-content: center; font-size: 14px; padding: 18px;">
+            Submit Request →
+          </button>
+        </div>
+
+        <!-- right: sidebar -->
+        <div>
+          <div class="sidebar-panel">
+            <div class="section-label" style="margin-bottom: 20px;">Contact &amp; Location</div>
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+              <div class="sidebar-field">
+                <span class="sidebar-field-label">Phone</span>
+                <a href="tel:4165621234" class="sidebar-phone">(416) 562-1234</a>
+              </div>
+              <div class="sidebar-field">
+                <span class="sidebar-field-label">Address</span>
+                <span class="sidebar-address">1788 Drew Rd Unit 6,<br>Mississauga, ON L5S 1L7</span>
+              </div>
+              <div>
+                <span class="sidebar-field-label" style="display: block; margin-bottom: 12px;">Hours</span>
+                <div class="hours-row">
+                  <span class="hours-day">Mon – Fri</span>
+                  <span class="hours-time">8:00 AM – 6:00 PM</span>
+                </div>
+                <div class="hours-row">
+                  <span class="hours-day">Saturday</span>
+                  <span class="hours-time">9:00 AM – 4:00 PM</span>
+                </div>
+                <div class="hours-row">
+                  <span class="hours-day">Sunday</span>
+                  <span class="hours-time closed">Closed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="urgent-panel">
+            <div class="urgent-title">Urgent Issue?</div>
+            <p class="urgent-desc">
+              If the vehicle is unsafe to drive, don't use the form. Call us directly.
+            </p>
+            <a href="tel:4165621234" class="urgent-call">📞 Call Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────────────────── -->
+<footer id="contact">
+  <div class="footer-top">
+    <div class="footer-top-grid">
+
+      <!-- brand -->
+      <div>
+        <div class="footer-brand">
+          <div class="footer-brand-mark">RW</div>
+          <span class="footer-brand-name">Revworks Automotive</span>
+        </div>
+        <p class="footer-tagline">
+          Honest automotive repair in Mississauga. 15+ years of experience,
+          5,000+ vehicles serviced, and work you can see before you approve it.
+        </p>
+        <div class="footer-socials">
+          <a href="#" class="social-btn" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+            </svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+            </svg>
+          </a>
+          <a href="https://g.page/r/CfvN8xEx2wVYEAE/review" class="social-btn" aria-label="Google">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 12h8a8 8 0 11-2.4-5.6"/><path d="M12 12l4 4"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- nav -->
+      <div>
+        <div class="footer-nav-title">Navigate</div>
+        <div class="footer-nav-links">
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#book">Book Diagnostic</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+
+      <!-- contact -->
+      <div>
+        <div class="footer-nav-title">Contact</div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-label">Phone</div>
+          <a href="tel:4165621234" class="footer-contact-phone">(416) 562-1234</a>
+        </div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-label">Address</div>
+          <div class="footer-contact-addr">1788 Drew Rd Unit 6,<br>Mississauga, ON L5S 1L7</div>
+        </div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-label" style="margin-bottom: 8px;">Hours</div>
+          <div class="hours-row"><span class="hours-day">Mon – Fri</span><span class="hours-time">8:00 AM – 6:00 PM</span></div>
+          <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">9:00 AM – 4:00 PM</span></div>
+          <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time closed">Closed</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA + map -->
+  <div class="wrap">
+    <div class="footer-cta-section">
+      <div class="footer-cta-grid">
+        <div>
+          <div class="section-label">Local shop. Easy next step.</div>
+          <h2 class="h2" style="font-size: clamp(30px, 4vw, 44px); margin-bottom: 20px;">
+            Ready to sort out the issue?
+          </h2>
+          <p class="footer-cta-sub">
+            Call, request a time, or use directions to find the shop in Mississauga.
+            If the vehicle is unsafe to drive, call before bringing it in.
+          </p>
+          <div class="footer-cta-btns">
+            <a href="#book" class="btn-primary">Request an Appointment →</a>
+            <a href="tel:4165621234" class="btn-ghost">Call (416) 562-1234</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-map-wrap">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6958.122417743781!2d-79.66554469573205!3d43.684492976401316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b3f45dc47b881%3A0x5805cbd311f3cdfb!2sREVWORKS%20AUTOMOTIVE!5e0!3m2!1sen!2sca!4v1777916097425!5m2!1sen!2sca"
+              width="100%" height="280"
+              style="border: 0; display: block; filter: grayscale(1) invert(0.85) contrast(0.9) hue-rotate(185deg);"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Revworks Automotive location"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-copy">
+          © <span id="yr"></span> Revworks Automotive · Mississauga, ON ·
+          <a href="/privacy">Privacy</a>
+        </div>
+        <div class="footer-bottom-links">
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#book">Book</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── MOBILE STICKY BAR ──────────────────────────────────────────────────── -->
+<div id="sticky-bar">
+  <a href="tel:4165621234" class="sticky-bar-btn">📞 Call</a>
+  <a href="#book" class="sticky-bar-btn primary">📅 Book</a>
+  <a href="https://maps.google.com/?q=1788+Drew+Rd+Unit+6+Mississauga+ON+L5S+1L7"
+     target="_blank" rel="noopener" class="sticky-bar-btn">🗺 Directions</a>
+</div>
+
+<!-- ── SCRIPTS ────────────────────────────────────────────────────────────── -->
+<script>
+(function () {
+  'use strict';
+
+  // ── year ────────────────────────────────────────────────────────────────
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // ── hamburger / drawer ──────────────────────────────────────────────────
+  const hamburger  = document.getElementById('hamburger');
+  const drawer     = document.getElementById('nav-drawer');
+  const overlay    = document.getElementById('nav-overlay');
+
+  function openDrawer() {
+    hamburger.classList.add('open');
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDrawer() {
+    hamburger.classList.remove('open');
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', () =>
+    drawer.classList.contains('open') ? closeDrawer() : openDrawer()
+  );
+  overlay.addEventListener('click', closeDrawer);
+  document.querySelectorAll('[data-close-drawer]').forEach(el =>
+    el.addEventListener('click', closeDrawer)
+  );
+
+  // ── reviews carousel ────────────────────────────────────────────────────
+  const REVIEWS = [
+    { name: 'Dillon',  rating: 5, date: 'a month ago',
+      text: 'Brought my car in because it had a whining noise. They diagnosed it as the transmission and helped source a good quality replacement at a reasonable price. The turnaround time for the install was quick and they kept me updated throughout the process. While it was there I also had the engine and transmission mounts done, along with the control arm bushings. Everything was handled professionally and efficiently, and the car now drives great with no more noise. Really happy with the service and transparency. Highly recommend this shop to anyone looking for honest and reliable automotive work!' },
+    { name: 'Arpit',   rating: 5, date: 'a month ago',
+      text: 'Great service, fair pricing, and they got my car back on the road quickly — highly recommend!' },
+    { name: 'Sehaj',   rating: 5, date: 'a month ago',
+      text: 'Best place to get any services done to your vehicle. The team is exceptional and know what they are doing.' },
+    { name: 'Patrick', rating: 5, date: 'a month ago',
+      text: "The team was great, they took their time with reviewing my Honda Ridgeline's engine noise and then explaining it." },
+    { name: 'Aesha',   rating: 5, date: 'a month ago',
+      text: 'Best in the business!!' },
+    { name: 'Tuzamo',  rating: 4, date: 'a month ago',
+      text: 'Quick service and great customer experience. Will be back!' },
+  ];
+
+  const AVATAR_COLORS = ['#1e4db7','#1a3fa0','#2359d6','#163388','#1b45b8','#19399c'];
+  const avatarColor = name => AVATAR_COLORS[name.charCodeAt(0) % AVATAR_COLORS.length];
+
+  let activeIdx = 0;
+  let autoTimer;
+
+  const box     = document.getElementById('review-box');
+  const rText   = document.getElementById('review-text');
+  const rRating = document.getElementById('review-rating');
+  const rName   = document.getElementById('review-name');
+  const rDate   = document.getElementById('review-date');
+  const rAvatar = document.getElementById('review-avatar');
+  const rCount  = document.getElementById('review-counter');
+  const dotsEl  = document.getElementById('review-dots');
+
+  // build dots
+  REVIEWS.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Review ' + (i + 1));
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+  });
+
+  function renderReview(idx) {
+    const r = REVIEWS[idx];
+    rText.textContent = r.text;
+    rName.textContent = r.name;
+    rDate.textContent = r.date;
+    rCount.textContent = (idx + 1) + ' / ' + REVIEWS.length;
+    rAvatar.textContent = r.name[0];
+    rAvatar.style.background = avatarColor(r.name);
+    rRating.innerHTML = Array(r.rating).fill('<span>★</span>').join('');
+    dotsEl.querySelectorAll('.dot').forEach((d, i) =>
+      d.classList.toggle('active', i === idx)
+    );
+  }
+
+  function goTo(idx) {
+    const next = ((idx % REVIEWS.length) + REVIEWS.length) % REVIEWS.length;
+    box.style.opacity = '0';
+    setTimeout(() => {
+      activeIdx = next;
+      renderReview(activeIdx);
+      box.style.opacity = '1';
+    }, 220);
+    resetAuto();
+  }
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => goTo(activeIdx + 1), 6000);
+  }
+
+  document.getElementById('review-prev').addEventListener('click', () => goTo(activeIdx - 1));
+  document.getElementById('review-next').addEventListener('click', () => goTo(activeIdx + 1));
+
+  renderReview(0);
+  resetAuto();
+
+  // ── booking form ─────────────────────────────────────────────────────────
+  let driveVal = '';
+
+  document.querySelectorAll('.drive-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      driveVal = btn.dataset.val;
+      document.querySelectorAll('.drive-btn').forEach(b =>
+        b.classList.toggle('active', b === btn)
+      );
+    });
+  });
+
+  document.getElementById('form-submit').addEventListener('click', () => {
+    const first = document.getElementById('f-first').value.trim();
+    const phone = document.getElementById('f-phone').value.trim();
+    const year  = document.getElementById('f-year').value.trim();
+    const make  = document.getElementById('f-make').value.trim();
+    const model = document.getElementById('f-model').value.trim();
+    const issue = document.getElementById('f-issue').value.trim();
+
+    if (!first || !phone || !year || !make || !model || !issue) {
+      // highlight empty required fields
+      [
+        ['f-first', first], ['f-phone', phone],
+        ['f-year', year],   ['f-make', make],
+        ['f-model', model], ['f-issue', issue],
+      ].forEach(([id, val]) => {
+        const el = document.getElementById(id);
+        el.style.borderColor = val ? '' : '#e05555';
+      });
+      return;
+    }
+
+    document.getElementById('form-body').style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+    window.scrollTo({ top: document.getElementById('book').offsetTop - 80, behavior: 'smooth' });
+  });
+
+  document.getElementById('form-reset').addEventListener('click', () => {
+    document.getElementById('form-body').style.display = 'block';
+    document.getElementById('form-success').style.display = 'none';
+    // reset fields
+    ['f-first','f-last','f-phone','f-email','f-year','f-make','f-model','f-issue','f-date'].forEach(id => {
+      document.getElementById(id).value = '';
+      document.getElementById(id).style.borderColor = '';
+    });
+    document.getElementById('f-service').value = '';
+    document.getElementById('f-time').value = '';
+    driveVal = '';
+    document.querySelectorAll('.drive-btn').forEach(b => b.classList.remove('active'));
+  });
+
+  // clear red border on input
+  document.querySelectorAll('.field-input').forEach(el => {
+    el.addEventListener('input', () => { el.style.borderColor = ''; });
+  });
+
+  // ── sticky bar hide on scroll down (mobile) ──────────────────────────────
+  const stickyBar = document.getElementById('sticky-bar');
+  let prevY = window.scrollY;
+  window.addEventListener('scroll', () => {
+    if (window.innerWidth > 768) return;
+    const y = window.scrollY;
+    stickyBar.style.transform = (y > prevY && y > 180) ? 'translateY(100%)' : '';
+    prevY = y;
+  }, { passive: true });
+
+  // ── reveal on scroll ─────────────────────────────────────────────────────
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  }
+
+  // add transition to sticky bar
+  stickyBar.style.transition = 'transform 0.25s ease';
+
+})();
+</script>
+
+</body>
+</html>
