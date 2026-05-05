@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Revworks Automotive — Reliable Repairs in Mississauga, ON</title>
-  <meta name="description" content="Revworks Automotive in Mississauga. 15+ years experience, 5,000+ cars serviced. Diagnostics, brakes, oil, A/C, inspections and more." />
+  <title>Revworks Automotive — Honest Auto Repair in Mississauga</title>
+  <meta name="description" content="Honest auto repair in Mississauga. Fair pricing, clear explanations, fast turnaround. Diagnostics, brakes, transmission, maintenance and more. 16 Google reviews, 5.0 rating." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -342,6 +342,34 @@
       margin-bottom: 28px;
     }
 
+    .hero-rating {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 40px;
+      padding: 14px 18px;
+      background: rgba(79,142,247,0.07);
+      border: 1px solid var(--border2);
+      border-radius: 4px;
+      max-width: 520px;
+    }
+    .hero-stars { color: var(--blue); font-size: 15px; letter-spacing: 2px; }
+    .hero-rating-score {
+      font-family: var(--fm);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .hero-rating-sub {
+      font-size: 12px;
+      color: var(--muted);
+      width: 100%;
+      line-height: 1.5;
+    }
+
     /* quick actions */
     .quick-actions {
       display: grid;
@@ -476,6 +504,46 @@
       color: var(--muted);
       line-height: 1.65;
       font-weight: 300;
+    }
+
+    /* ── EXAMPLES ───────────────────────────────────────────────────────── */
+    .examples-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .example-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--blue);
+      padding: 32px 28px;
+      border-radius: 2px;
+    }
+    .example-theme {
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 14px;
+    }
+    .example-title {
+      font-family: var(--fd);
+      font-size: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+    }
+    .example-text {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    @media (max-width: 768px) {
+      .examples-grid { grid-template-columns: 1fr; }
     }
 
     /* ── ABOUT ───────────────────────────────────────────────────────────── */
@@ -651,6 +719,79 @@
       width: 8px;
     }
     .dot.active { width: 28px; background: var(--blue); }
+
+    /* ── REVIEWS GRID ────────────────────────────────────────────────────── */
+    .reviews-sub {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 480px;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .rcard {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 24px 22px;
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .rcard-featured {
+      border-top: 2px solid var(--blue);
+      padding: 28px 24px;
+    }
+    .rcard-stars { color: var(--blue); font-size: 16px; letter-spacing: 2px; }
+    .rcard-text {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.7;
+      font-style: italic;
+      font-weight: 300;
+      flex: 1;
+    }
+    .rcard-footer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+    .rcard-avatar {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--fd);
+      font-weight: 800;
+      font-size: 16px;
+      color: #fff;
+      flex-shrink: 0;
+      border-radius: 2px;
+    }
+    .rcard-name { font-size: 14px; font-weight: 500; }
+    .rcard-source { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .reviews-also {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+      padding: 16px 20px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .reviews-grid { grid-template-columns: 1fr; }
+    }
 
     /* ── PROCESS ─────────────────────────────────────────────────────────── */
     #process {
@@ -1102,22 +1243,29 @@
 <!-- ── HERO ─────────────────────────────────────────────────────────────── -->
 <section id="hero">
   <div class="hero-inner">
-    <div class="hero-eyebrow">Mississauga, Ontario · Est. 2009</div>
+    <div class="hero-eyebrow">Mississauga Auto Repair · Diagnostics · Brakes · Maintenance</div>
 
     <h1 class="h1" style="margin-bottom: 32px;">
-      <span class="hero-h1-blue">Revworks</span><br>
-      Auto Repair<br>
-      <span class="hero-h1-outline">Done Right</span>
+      <span class="hero-h1-blue">Honest Auto</span><br>
+      Repair in<br>
+      <span class="hero-h1-outline">Mississauga</span>
     </h1>
 
     <p class="hero-sub">
-      From oil changes and brakes to full diagnostics — 15+ years of combined
-      experience, 5,000+ vehicles serviced in Mississauga.
+      From engine noises and warning lights to brakes, maintenance, and major
+      repairs — Revworks helps you understand the issue, approve the right fix,
+      and get back on the road quickly.
     </p>
 
     <div class="hero-actions">
-      <a href="#book" class="btn-primary">Request an Appointment →</a>
+      <a href="#book" class="btn-primary">Request a Service Check →</a>
       <a href="tel:4165621234" class="btn-ghost">☏ (416) 562-1234</a>
+    </div>
+
+    <div class="hero-rating">
+      <span class="hero-stars">★★★★★</span>
+      <span class="hero-rating-score">5.0 Google Rating · 16 Reviews</span>
+      <span class="hero-rating-sub">15 five-star reviews · Customers mention fair pricing, quick service, and honest communication</span>
     </div>
 
     <div class="quick-actions">
@@ -1137,12 +1285,12 @@
         <div class="stat-sub">Cars Serviced</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num">1-Hr</div>
-        <div class="stat-sub">Same-Day Diagnostics</div>
+        <div class="stat-num">Fast</div>
+        <div class="stat-sub">Turnaround</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num">100%</div>
-        <div class="stat-sub">Photo-Backed Work</div>
+        <div class="stat-num">Clear</div>
+        <div class="stat-sub">Updates Every Step</div>
       </div>
     </div>
   </div>
@@ -1151,34 +1299,34 @@
 <!-- ── TRUST BAR ─────────────────────────────────────────────────────────── -->
 <section id="trust" class="reveal">
   <div class="wrap">
-    <div class="section-label">Why people choose Revworks</div>
+    <div class="section-label">What customers consistently mention</div>
     <div class="trust-grid">
       <div class="trust-item">
         <div class="trust-accent"></div>
         <div>
-          <div class="trust-label">Practical recommendations</div>
-          <div class="trust-sub">No generic upsells</div>
+          <div class="trust-label">Fair Pricing</div>
+          <div class="trust-sub">"Fair pricing…" — Arpit, Google Review</div>
         </div>
       </div>
       <div class="trust-item">
         <div class="trust-accent"></div>
         <div>
-          <div class="trust-label">Photo-backed inspections</div>
-          <div class="trust-sub">See it before you approve it</div>
+          <div class="trust-label">Quick Turnaround</div>
+          <div class="trust-sub">"Got my car back on the road quickly…" — Arpit, Google Review</div>
         </div>
       </div>
       <div class="trust-item">
         <div class="trust-accent"></div>
         <div>
-          <div class="trust-label">Honest communication</div>
-          <div class="trust-sub">Plain language, every time</div>
+          <div class="trust-label">Clear Explanations</div>
+          <div class="trust-sub">"They took their time… explaining it." — Patrick Deshwal, Google Review</div>
         </div>
       </div>
       <div class="trust-item">
         <div class="trust-accent"></div>
         <div>
-          <div class="trust-label">Work that feels thought through</div>
-          <div class="trust-sub">Details matter here</div>
+          <div class="trust-label">Honest Work</div>
+          <div class="trust-sub">"Honest and reliable automotive work." — Dillon Rambhajue, Google Review</div>
         </div>
       </div>
     </div>
@@ -1191,7 +1339,7 @@
     <div class="section-label">What we do</div>
     <h2 class="h2" style="margin-bottom: 16px;">Core Services</h2>
     <p style="color: var(--muted); font-size: 16px; max-width: 480px; margin-bottom: 48px; font-weight: 300;">
-      Start with the jobs that matter most — diagnosed properly, explained clearly.
+      Common issues handled properly — diagnosed clearly, explained before work begins.
     </p>
 
     <div class="services-grid">
@@ -1201,17 +1349,21 @@
             <rect x="3" y="5" width="22" height="15" rx="2"/><path d="M8 25H20M14 20V25"/><path d="M7.5 14.5l3-4 4 5 3-4 3 2.5"/>
           </svg>
         </div>
-        <h3>Diagnostics</h3>
-        <p>Warning lights, noises, drivability concerns, hard starts — we read the car, not just the code.</p>
+        <h3>Diagnostics &amp; Engine Noises</h3>
+        <p>For warning lights, whining noises, engine sounds, no-start issues, and
+        drivability problems. We take the time to inspect the issue and explain what
+        we find before repair work begins.</p>
       </div>
       <div class="service-card">
         <div class="svc-icon">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 2C14 2 6 11 6 17a8 8 0 0016 0c0-6-8-15-8-15z"/><path d="M10.5 19a3.5 3.5 0 003.5 2.5"/>
+            <path d="M19.5 4.5a4.5 4.5 0 00-4.08 6.45L6 20.37A2.5 2.5 0 009.63 24l9.37-9.42A4.5 4.5 0 1019.5 4.5z"/><path d="M19.5 6.5l2 2"/>
           </svg>
         </div>
-        <h3>Oil &amp; Maintenance</h3>
-        <p>Routine service that keeps daily drivers dependable and your warranty intact.</p>
+        <h3>Transmission &amp; Drivetrain</h3>
+        <p>Whining noises, transmission concerns, mounts, bushings, and related repairs.
+        We help identify the issue, source quality parts where needed, and keep you
+        updated through the process.</p>
       </div>
       <div class="service-card">
         <div class="svc-icon">
@@ -1220,16 +1372,19 @@
           </svg>
         </div>
         <h3>Brakes &amp; Suspension</h3>
-        <p>Safety-first work with clear explanations before anything gets touched.</p>
+        <p>Brake noise, worn pads and rotors, suspension clunks, control arm bushings,
+        mounts, and ride-quality issues. Safety-first with clear explanations before
+        anything gets touched.</p>
       </div>
       <div class="service-card">
         <div class="svc-icon">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 3v22M3 14h22M6.5 6.5l15 15M21.5 6.5l-15 15"/><circle cx="14" cy="14" r="3"/>
+            <path d="M14 2C14 2 6 11 6 17a8 8 0 0016 0c0-6-8-15-8-15z"/><path d="M10.5 19a3.5 3.5 0 003.5 2.5"/>
           </svg>
         </div>
-        <h3>A/C &amp; Heating</h3>
-        <p>Cabin comfort and system checks before seasonal extremes catch you off guard.</p>
+        <h3>Oil &amp; Maintenance</h3>
+        <p>Oil changes, filters, fluids, inspections, and routine maintenance to keep
+        your vehicle reliable between bigger services.</p>
       </div>
       <div class="service-card">
         <div class="svc-icon">
@@ -1238,7 +1393,8 @@
           </svg>
         </div>
         <h3>Inspections</h3>
-        <p>Pre-purchase, safety, and general condition checks done thoroughly.</p>
+        <p>Pre-purchase checks, safety inspections, seasonal checks, and issue
+        confirmation before bigger repairs. Done thoroughly, explained clearly.</p>
       </div>
       <div class="service-card">
         <div class="svc-icon">
@@ -1246,8 +1402,9 @@
             <path d="M19.5 4.5a4.5 4.5 0 00-4.08 6.45L6 20.37A2.5 2.5 0 009.63 24l9.37-9.42A4.5 4.5 0 1019.5 4.5z"/><path d="M19.5 6.5l2 2"/>
           </svg>
         </div>
-        <h3>Repair Work</h3>
-        <p>When the issue goes beyond routine maintenance — diagnosed properly, fixed cleanly.</p>
+        <h3>General Repairs</h3>
+        <p>From small issues to larger repairs — clear communication, fair pricing,
+        and work done properly. Most makes and models serviced.</p>
       </div>
     </div>
 
@@ -1257,38 +1414,80 @@
   </div>
 </section>
 
+<!-- ── REAL ISSUES ────────────────────────────────────────────────────────── -->
+<section id="examples" class="section-pad reveal">
+  <div class="wrap">
+    <div class="section-label">Real customer cases</div>
+    <h2 class="h2" style="margin-bottom: 16px;">Real issues.<br>Clear next steps.</h2>
+    <p style="color: var(--muted); font-size: 16px; max-width: 480px; margin-bottom: 48px; font-weight: 300;">
+      What service actually looks like at Revworks — straight from customer accounts.
+    </p>
+    <div class="examples-grid">
+
+      <div class="example-card">
+        <div class="example-theme">Clear explanation</div>
+        <h3 class="example-title">Engine noise diagnosis</h3>
+        <p class="example-text">
+          A Honda Ridgeline came in with an engine noise. The team took time to review
+          the issue thoroughly and explain what they found clearly before any repair
+          decisions were made.
+        </p>
+      </div>
+
+      <div class="example-card">
+        <div class="example-theme">Honest diagnosis + strong communication</div>
+        <h3 class="example-title">Whining noise diagnosed</h3>
+        <p class="example-text">
+          A vehicle came in with a whining noise. Revworks diagnosed it as
+          transmission-related, helped source a quality replacement at a reasonable
+          price, and kept the customer updated throughout the repair. Engine and
+          transmission mounts and control arm bushings were also addressed.
+        </p>
+      </div>
+
+      <div class="example-card">
+        <div class="example-theme">Fast turnaround</div>
+        <h3 class="example-title">Back on the road quickly</h3>
+        <p class="example-text">
+          Customers mention quick service, fair pricing, and getting their vehicles
+          back on the road without unnecessary delays — whether it's routine
+          maintenance or a more involved repair.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ── ABOUT ──────────────────────────────────────────────────────────────── -->
 <section id="about" class="section-pad reveal">
   <div class="wrap">
     <div class="about-grid">
       <div>
-        <div class="section-label">15+ Yrs Combined Experience · 5,000+ Cars</div>
+        <div class="section-label">Mississauga · 15+ Yrs Combined Experience</div>
         <h2 class="h2" style="margin-bottom: 28px;">
-          A mechanic shop that understands why details matter.
+          A shop built around clear answers, fair pricing, and honest work.
         </h2>
         <p class="about-sub">
-          The mechanics at Revworks bring over 15 years of hands-on experience
-          to every vehicle that comes through the door — and with 5,000+ cars serviced
-          in Mississauga, not much surprises them.
+          Revworks Automotive helps drivers understand what is actually happening with
+          their vehicle before approving repairs. Whether it's an engine noise, warning
+          light, brake issue, maintenance visit, or larger repair — the focus is on
+          proper diagnostics, clear communication, and work that gets you confidently
+          back on the road.
         </p>
-        <p class="about-sub">
-          Whether your vehicle is a daily commuter, family hauler, or something you care
-          a little too much about — the approach is the same: diagnose properly,
-          communicate clearly, do the job cleanly.
-        </p>
-        <a href="#book" class="btn-primary">Start With Your Issue →</a>
+        <a href="#book" class="btn-primary">Request a Service Check →</a>
       </div>
 
       <div>
         <div class="about-panel">
           <div class="about-corner"></div>
-          <div class="section-label" style="margin-bottom: 24px;">What sets us apart</div>
-          <div class="about-point"><span class="about-arrow">→</span><span>15+ years of mechanic experience</span></div>
-          <div class="about-point"><span class="about-arrow">→</span><span>5,000+ vehicles diagnosed and serviced</span></div>
-          <div class="about-point"><span class="about-arrow">→</span><span>Real recommendations, not generic upsells</span></div>
-          <div class="about-point"><span class="about-arrow">→</span><span>Practical repair priorities based on safety and reliability</span></div>
-          <div class="about-point"><span class="about-arrow">→</span><span>Photos and notes before you approve any work</span></div>
-          <div class="about-point"><span class="about-arrow">→</span><span>Servicing most makes and models</span></div>
+          <div class="section-label" style="margin-bottom: 24px;">What customers consistently mention</div>
+          <div class="about-point"><span class="about-arrow">→</span><span>Fair pricing on every job</span></div>
+          <div class="about-point"><span class="about-arrow">→</span><span>Quick service and fast turnaround</span></div>
+          <div class="about-point"><span class="about-arrow">→</span><span>Clear explanations before work begins</span></div>
+          <div class="about-point"><span class="about-arrow">→</span><span>Updates throughout the repair process</span></div>
+          <div class="about-point"><span class="about-arrow">→</span><span>Honest and reliable work — no generic upsells</span></div>
+          <div class="about-point"><span class="about-arrow">→</span><span>Photo-backed inspections so you see it before you approve it</span></div>
         </div>
       </div>
     </div>
@@ -1301,7 +1500,7 @@
     <div class="reviews-header">
       <div>
         <div class="section-label">Customer reviews</div>
-        <h2 class="h2">Trusted by drivers<br>who notice the difference.</h2>
+        <h2 class="h2">Trusted by<br>Mississauga drivers.</h2>
         <div class="reviews-stars">
           <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
         </div>
@@ -1309,6 +1508,8 @@
           <span class="score-num">5.0</span>
           <span class="score-count">· 16 Google reviews</span>
         </div>
+        <p class="reviews-sub">16 Google reviews · 15 five-star ratings · Customers mention quick service,
+        fair pricing, transparency, and clear communication.</p>
       </div>
       <a href="https://g.page/r/CfvN8xEx2wVYEAE/review" target="_blank" rel="noreferrer"
         class="btn-ghost" style="white-space: nowrap; font-size: 11px;">
@@ -1316,25 +1517,88 @@
       </a>
     </div>
 
-    <div class="review-box" id="review-box">
-      <div class="review-quote">"</div>
-      <div class="review-rating" id="review-rating"></div>
-      <p class="review-text" id="review-text"></p>
-      <div class="review-footer">
-        <div class="review-avatar" id="review-avatar"></div>
-        <div>
-          <div class="review-name" id="review-name"></div>
-          <div class="review-source">Google Review · <span id="review-date"></span></div>
+    <div class="reviews-grid">
+
+      <!-- Featured 3 -->
+      <div class="rcard rcard-featured">
+        <div class="rcard-stars">★★★★★</div>
+        <p class="rcard-text">"Really happy with the service and transparency. Highly recommend this shop to anyone looking for honest and reliable automotive work!"</p>
+        <div class="rcard-footer">
+          <div class="rcard-avatar" style="background:#1e4db7;">D</div>
+          <div>
+            <div class="rcard-name">Dillon Rambhajue</div>
+            <div class="rcard-source">Google Review · 1 month ago</div>
+          </div>
         </div>
-        <div class="review-counter" id="review-counter"></div>
       </div>
+
+      <div class="rcard rcard-featured">
+        <div class="rcard-stars">★★★★★</div>
+        <p class="rcard-text">"Great service, fair pricing, and they got my car back on the road quickly — highly recommend!"</p>
+        <div class="rcard-footer">
+          <div class="rcard-avatar" style="background:#1a3fa0;">A</div>
+          <div>
+            <div class="rcard-name">Arpit</div>
+            <div class="rcard-source">Google Review · 1 month ago</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rcard rcard-featured">
+        <div class="rcard-stars">★★★★★</div>
+        <p class="rcard-text">"The team was great, they took their time with reviewing my Honda Ridgeline's engine noise and then explaining it."</p>
+        <div class="rcard-footer">
+          <div class="rcard-avatar" style="background:#2359d6;">P</div>
+          <div>
+            <div class="rcard-name">Patrick Deshwal</div>
+            <div class="rcard-source">Google Review · 1 month ago</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary 3 -->
+      <div class="rcard">
+        <div class="rcard-stars" style="font-size:14px;">★★★★<span style="color:var(--muted);">★</span></div>
+        <p class="rcard-text">"Quick service and great customer experience. Will be back!"</p>
+        <div class="rcard-footer">
+          <div class="rcard-avatar" style="background:#163388;">T</div>
+          <div>
+            <div class="rcard-name">Tuzamo</div>
+            <div class="rcard-source">Google Review · 1 month ago</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rcard">
+        <div class="rcard-stars" style="font-size:14px;">★★★★★</div>
+        <p class="rcard-text">"Best in the business!!"</p>
+        <div class="rcard-footer">
+          <div class="rcard-avatar" style="background:#1b45b8;">A</div>
+          <div>
+            <div class="rcard-name">AeshaJ</div>
+            <div class="rcard-source">Google Review · 1 month ago</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rcard">
+        <div class="rcard-stars" style="font-size:14px;">★★★★★</div>
+        <p class="rcard-text">"Best place to get any services done to your vehicle. The team is exceptional and know what they are doing."</p>
+        <div class="rcard-footer">
+          <div class="rcard-avatar" style="background:#19399c;">S</div>
+          <div>
+            <div class="rcard-name">sehaj sangha</div>
+            <div class="rcard-source">Google Review · 1 month ago</div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <div class="reviews-nav">
-      <button class="review-btn" id="review-prev">← Prev</button>
-      <div class="review-dots" id="review-dots"></div>
-      <button class="review-btn" id="review-next">Next →</button>
-    </div>
+    <p class="reviews-also">
+      Also rated ★★★★★ by Denis Patel, Purab Prajapati, Janvi Prajapati, Tony Sandhu,
+      Arti Patel, Param Oza, Harsh Mistry, XO Slatt, Aaron Sanghera, and Megha Mistry.
+    </p>
   </div>
 </section>
 
@@ -1342,29 +1606,30 @@
 <section id="process" class="section-pad reveal">
   <div class="wrap">
     <div class="section-label">How it works</div>
-    <h2 class="h2" style="margin-bottom: 48px;">How booking works.</h2>
+    <h2 class="h2" style="margin-bottom: 48px;">Tell us what's going on. We'll help you understand the next step.</h2>
 
     <div class="process-grid">
       <div class="process-step">
         <div class="step-num">01</div>
-        <div class="step-title">Send your request or call</div>
-        <p class="step-desc">Tell us what the car is doing and your preferred timing.</p>
+        <div class="step-title">Share the issue</div>
+        <p class="step-desc">Tell us the vehicle, symptoms, and whether it's safe to drive.</p>
       </div>
       <div class="process-step">
         <div class="step-num">02</div>
-        <div class="step-title">We review your needs</div>
-        <p class="step-desc">We assess the vehicle, service type, and the right next step.</p>
+        <div class="step-title">We review the problem</div>
+        <p class="step-desc">The team looks at the details and recommends the right next step.</p>
       </div>
       <div class="process-step">
         <div class="step-num">03</div>
-        <div class="step-title">We confirm before you come in</div>
-        <p class="step-desc">No appointment locked until the shop confirms it with you.</p>
+        <div class="step-title">You get a confirmed plan</div>
+        <p class="step-desc">We confirm timing, diagnostic needs, and next steps before you come in.</p>
       </div>
     </div>
 
     <div class="process-note">
-      <strong>Note:</strong> We manually confirm all appointment requests within a few hours.
-      You'll hear from us before anything is set — no auto-booking.
+      <strong>Note:</strong> Customers mention being kept updated, having repairs
+      explained clearly, and getting their vehicles back on the road quickly.
+      We confirm all requests manually — no auto-booking.
     </div>
   </div>
 </section>
@@ -1391,10 +1656,11 @@
     <!-- form body -->
     <div id="form-body">
       <div class="section-label">Get in touch</div>
-      <h2 class="h2" style="margin-bottom: 12px;">Request an Appointment.</h2>
+      <h2 class="h2" style="margin-bottom: 12px;">Request a Service Check.</h2>
       <p style="color: var(--muted); font-size: 16px; max-width: 480px; margin-bottom: 48px; font-weight: 300;">
         Tell us what's going on with the vehicle and your preferred timing.
-        We'll review the request and confirm the right next step.
+        We'll review it and confirm the right next step — no auto-booking,
+        no wasted trip.
       </p>
 
       <div class="form-layout">
@@ -1698,82 +1964,6 @@
   document.querySelectorAll('[data-close-drawer]').forEach(el =>
     el.addEventListener('click', closeDrawer)
   );
-
-  // ── reviews carousel ────────────────────────────────────────────────────
-  const REVIEWS = [
-    { name: 'Dillon',  rating: 5, date: 'a month ago',
-      text: 'Brought my car in because it had a whining noise. They diagnosed it as the transmission and helped source a good quality replacement at a reasonable price. The turnaround time for the install was quick and they kept me updated throughout the process. While it was there I also had the engine and transmission mounts done, along with the control arm bushings. Everything was handled professionally and efficiently, and the car now drives great with no more noise. Really happy with the service and transparency. Highly recommend this shop to anyone looking for honest and reliable automotive work!' },
-    { name: 'Arpit',   rating: 5, date: 'a month ago',
-      text: 'Great service, fair pricing, and they got my car back on the road quickly — highly recommend!' },
-    { name: 'Sehaj',   rating: 5, date: 'a month ago',
-      text: 'Best place to get any services done to your vehicle. The team is exceptional and know what they are doing.' },
-    { name: 'Patrick', rating: 5, date: 'a month ago',
-      text: "The team was great, they took their time with reviewing my Honda Ridgeline's engine noise and then explaining it." },
-    { name: 'Aesha',   rating: 5, date: 'a month ago',
-      text: 'Best in the business!!' },
-    { name: 'Tuzamo',  rating: 4, date: 'a month ago',
-      text: 'Quick service and great customer experience. Will be back!' },
-  ];
-
-  const AVATAR_COLORS = ['#1e4db7','#1a3fa0','#2359d6','#163388','#1b45b8','#19399c'];
-  const avatarColor = name => AVATAR_COLORS[name.charCodeAt(0) % AVATAR_COLORS.length];
-
-  let activeIdx = 0;
-  let autoTimer;
-
-  const box     = document.getElementById('review-box');
-  const rText   = document.getElementById('review-text');
-  const rRating = document.getElementById('review-rating');
-  const rName   = document.getElementById('review-name');
-  const rDate   = document.getElementById('review-date');
-  const rAvatar = document.getElementById('review-avatar');
-  const rCount  = document.getElementById('review-counter');
-  const dotsEl  = document.getElementById('review-dots');
-
-  // build dots
-  REVIEWS.forEach((_, i) => {
-    const d = document.createElement('button');
-    d.className = 'dot' + (i === 0 ? ' active' : '');
-    d.setAttribute('aria-label', 'Review ' + (i + 1));
-    d.addEventListener('click', () => goTo(i));
-    dotsEl.appendChild(d);
-  });
-
-  function renderReview(idx) {
-    const r = REVIEWS[idx];
-    rText.textContent = r.text;
-    rName.textContent = r.name;
-    rDate.textContent = r.date;
-    rCount.textContent = (idx + 1) + ' / ' + REVIEWS.length;
-    rAvatar.textContent = r.name[0];
-    rAvatar.style.background = avatarColor(r.name);
-    rRating.innerHTML = Array(r.rating).fill('<span>★</span>').join('');
-    dotsEl.querySelectorAll('.dot').forEach((d, i) =>
-      d.classList.toggle('active', i === idx)
-    );
-  }
-
-  function goTo(idx) {
-    const next = ((idx % REVIEWS.length) + REVIEWS.length) % REVIEWS.length;
-    box.style.opacity = '0';
-    setTimeout(() => {
-      activeIdx = next;
-      renderReview(activeIdx);
-      box.style.opacity = '1';
-    }, 220);
-    resetAuto();
-  }
-
-  function resetAuto() {
-    clearInterval(autoTimer);
-    autoTimer = setInterval(() => goTo(activeIdx + 1), 6000);
-  }
-
-  document.getElementById('review-prev').addEventListener('click', () => goTo(activeIdx - 1));
-  document.getElementById('review-next').addEventListener('click', () => goTo(activeIdx + 1));
-
-  renderReview(0);
-  resetAuto();
 
   // ── booking form ─────────────────────────────────────────────────────────
   let driveVal = '';
