@@ -119,7 +119,7 @@
       content: '';
       position: fixed;
       inset: 0;
-      background: linear-gradient(180deg, rgba(7,7,11,0.55) 0%, rgba(7,7,11,0.78) 100%);
+      background: linear-gradient(180deg, rgba(7,7,11,0.68) 0%, rgba(7,7,11,0.88) 100%);
       pointer-events: none;
       z-index: 0;
     }
@@ -368,8 +368,12 @@
       font-size: 11px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: #b6c2db;
       margin-bottom: 32px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 12px;
+      line-height: 1.6;
     }
 
     .hero-h1-blue { color: var(--blue); }
@@ -380,7 +384,7 @@
 
     .hero-sub {
       font-size: 16px;
-      color: var(--muted);
+      color: #d5dceb;
       max-width: 460px;
       line-height: 1.75;
       margin-bottom: 40px;
@@ -849,7 +853,7 @@
     /* ── REVIEWS GRID ────────────────────────────────────────────────────── */
     .reviews-sub {
       font-size: 13px;
-      color: var(--muted);
+      color: #b8c3da;
       max-width: 480px;
       margin-top: 12px;
       line-height: 1.6;
@@ -1302,6 +1306,7 @@
 
     @media (max-width: 768px) {
       .wrap { padding: 0 20px; }
+      .hero-eyebrow { font-size: 10px; letter-spacing: 0.14em; gap: 4px 8px; }
       #nav { padding: 0 20px; }
       .nav-links, .nav-cta { display: none !important; }
       .nav-hamburger { display: flex; }
@@ -1410,7 +1415,6 @@
     <li><a href="#book">Book</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="#book" class="nav-cta">Request a Service Check →</a>
   <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
@@ -1425,13 +1429,12 @@
   <a class="drawer-link" href="#faq" data-close-drawer>FAQ</a>
   <a class="drawer-link" href="#book" data-close-drawer>Book</a>
   <a class="drawer-link" href="#contact" data-close-drawer>Contact</a>
-  <a class="drawer-link primary" href="#book" data-close-drawer>Request a Service Check →</a>
 </div>
 
 <!-- ── HERO ─────────────────────────────────────────────────────────────── -->
 <section id="hero">
   <div class="hero-inner">
-    <div class="hero-eyebrow">Mississauga Auto Repair · Diagnostics · Brakes · Maintenance</div>
+    <div class="hero-eyebrow"><span>Mississauga Auto Repair</span><span>Diagnostics · Brakes · Maintenance</span></div>
 
     <h1 class="h1" style="margin-bottom: 32px;">
       <span class="hero-h1-blue">Honest Auto</span><br>
@@ -1452,8 +1455,8 @@
 
     <div class="hero-rating">
       <span class="hero-stars">★★★★★</span>
-      <span class="hero-rating-score">5.0 Google Rating · 16 Reviews</span>
-      <span class="hero-rating-sub">15 five-star reviews · Customers mention fair pricing, quick service, and honest communication</span>
+      <span class="hero-rating-score">5.0 ★ Rated · 16 Verified Reviews</span>
+      <span class="hero-rating-sub">15 five-star ratings · Customers mention fair pricing, quick service, and honest communication</span>
     </div>
 
     <div class="quick-actions">
@@ -1493,28 +1496,28 @@
         <div class="trust-accent"></div>
         <div>
           <div class="trust-label">Fair Pricing</div>
-          <div class="trust-sub">"Fair pricing…" — Arpit, Google Review</div>
+          <div class="trust-sub">"Fair pricing…" — Arpit (★★★★★)</div>
         </div>
       </div>
       <div class="trust-item">
         <div class="trust-accent"></div>
         <div>
           <div class="trust-label">Quick Turnaround</div>
-          <div class="trust-sub">"Got my car back on the road quickly…" — Arpit, Google Review</div>
+          <div class="trust-sub">"Got my car back on the road quickly…" — Arpit (★★★★★)</div>
         </div>
       </div>
       <div class="trust-item">
         <div class="trust-accent"></div>
         <div>
           <div class="trust-label">Clear Explanations</div>
-          <div class="trust-sub">"They took their time… explaining it." — Patrick Deshwal, Google Review</div>
+          <div class="trust-sub">"They took their time… explaining it." — Patrick (★★★★★)</div>
         </div>
       </div>
       <div class="trust-item">
         <div class="trust-accent"></div>
         <div>
           <div class="trust-label">Honest Work</div>
-          <div class="trust-sub">"Honest and reliable automotive work." — Dillon Rambhajue, Google Review</div>
+          <div class="trust-sub">"Honest and reliable automotive work." — Dillon (★★★★★)</div>
         </div>
       </div>
     </div>
@@ -1722,14 +1725,14 @@
         </div>
         <div class="reviews-score">
           <span class="score-num">5.0</span>
-          <span class="score-count">· 16 Google reviews</span>
+          <span class="score-count">· 16 verified reviews</span>
         </div>
-        <p class="reviews-sub">16 Google reviews · 15 five-star ratings · Customers mention quick service,
+        <p class="reviews-sub">16 verified reviews · 15 five-star ratings · Customers mention quick service,
         fair pricing, transparency, and clear communication.</p>
       </div>
       <a href="https://g.page/r/CfvN8xEx2wVYEAE/review" target="_blank" rel="noreferrer"
         class="btn-ghost" style="white-space: nowrap; font-size: 11px;">
-        Leave a Google Review →
+        Leave a Review →
       </a>
     </div>
 
@@ -1742,8 +1745,8 @@
         <div class="rcard-footer">
           <div class="rcard-avatar" style="background:#1e4db7;">D</div>
           <div>
-            <div class="rcard-name">Dillon Rambhajue</div>
-            <div class="rcard-source">Google Review · 1 month ago</div>
+            <div class="rcard-name">Dillon R.</div>
+            <div class="rcard-source">★★★★★ · Verified Review</div>
           </div>
         </div>
       </div>
@@ -1755,7 +1758,7 @@
           <div class="rcard-avatar" style="background:#1a3fa0;">A</div>
           <div>
             <div class="rcard-name">Arpit</div>
-            <div class="rcard-source">Google Review · 1 month ago</div>
+            <div class="rcard-source">★★★★★ · Verified Review</div>
           </div>
         </div>
       </div>
@@ -1766,8 +1769,8 @@
         <div class="rcard-footer">
           <div class="rcard-avatar" style="background:#2359d6;">P</div>
           <div>
-            <div class="rcard-name">Patrick Deshwal</div>
-            <div class="rcard-source">Google Review · 1 month ago</div>
+            <div class="rcard-name">Patrick D.</div>
+            <div class="rcard-source">★★★★★ · Verified Review</div>
           </div>
         </div>
       </div>
@@ -1780,7 +1783,7 @@
           <div class="rcard-avatar" style="background:#163388;">T</div>
           <div>
             <div class="rcard-name">Tuzamo</div>
-            <div class="rcard-source">Google Review · 1 month ago</div>
+            <div class="rcard-source">★★★★★ · Verified Review</div>
           </div>
         </div>
       </div>
@@ -1792,7 +1795,7 @@
           <div class="rcard-avatar" style="background:#1b45b8;">A</div>
           <div>
             <div class="rcard-name">AeshaJ</div>
-            <div class="rcard-source">Google Review · 1 month ago</div>
+            <div class="rcard-source">★★★★★ · Verified Review</div>
           </div>
         </div>
       </div>
@@ -1803,8 +1806,8 @@
         <div class="rcard-footer">
           <div class="rcard-avatar" style="background:#19399c;">S</div>
           <div>
-            <div class="rcard-name">sehaj sangha</div>
-            <div class="rcard-source">Google Review · 1 month ago</div>
+            <div class="rcard-name">Sehaj S.</div>
+            <div class="rcard-source">★★★★★ · Verified Review</div>
           </div>
         </div>
       </div>
@@ -2132,7 +2135,7 @@
         </div>
         <p class="footer-tagline">
           Honest auto repair in Mississauga. Fair pricing, clear explanations,
-          and fast turnaround — backed by 16 Google reviews and a 5.0 rating.
+          and fast turnaround — backed by 16 verified reviews and a 5.0 rating.
         </p>
         <div class="footer-socials">
           <a href="#" class="social-btn" aria-label="Instagram">
