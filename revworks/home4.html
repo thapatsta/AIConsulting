@@ -9,6 +9,56 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoRepair",
+    "name": "Revworks Automotive",
+    "url": "https://patrickdes.ca/revworks/home4",
+    "telephone": "+14165621234",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "1788 Drew Rd Unit 6",
+      "addressLocality": "Mississauga",
+      "addressRegion": "ON",
+      "postalCode": "L5S 1L7",
+      "addressCountry": "CA"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 43.6845,
+      "longitude": -79.6655
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "08:00",
+        "closes": "18:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "09:00",
+        "closes": "16:00"
+      }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "16",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "priceRange": "$$",
+    "description": "Honest auto repair in Mississauga. Fair pricing, clear explanations, and fast turnaround. Diagnostics, transmission, brakes, maintenance and more.",
+    "areaServed": {
+      "@type": "City",
+      "name": "Mississauga"
+    }
+  }
+  </script>
+
   <style>
     /* ── RESET & ROOT ────────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1206,6 +1256,66 @@
       .hero-actions { flex-direction: column; }
       .hero-actions a { text-align: center; }
     }
+
+    /* ── FAQ ──────────────────────────────────────────────────────────────── */
+    #faq { background: var(--bg); border-top: 1px solid var(--border); position: relative; z-index: 1; }
+
+    .faq-list {
+      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border);
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-item:last-child { border-bottom: none; }
+
+    .faq-q {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      background: var(--bg2);
+      border: none;
+      padding: 22px 28px;
+      text-align: left;
+      font-family: var(--fd);
+      font-weight: 700;
+      font-size: 17px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .faq-q:hover { background: var(--bg3); color: var(--blue); }
+    .faq-q[aria-expanded="true"] { color: var(--blue); background: var(--bg3); }
+
+    .faq-chevron {
+      font-size: 16px;
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+      color: var(--blue);
+    }
+    .faq-q[aria-expanded="true"] .faq-chevron { transform: rotate(180deg); }
+
+    .faq-a {
+      display: none;
+      padding: 0 28px 22px;
+      background: var(--bg3);
+    }
+    .faq-a.open { display: block; }
+    .faq-a p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.75;
+      font-weight: 300;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
   </style>
 </head>
 <body>
@@ -1220,10 +1330,11 @@
     <li><a href="#services">Services</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#faq">FAQ</a></li>
     <li><a href="#book">Book</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="#book" class="nav-cta">Book Diagnostic →</a>
+  <a href="#book" class="nav-cta">Request a Service Check →</a>
   <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
@@ -1235,9 +1346,10 @@
   <a class="drawer-link" href="#services" data-close-drawer>Services</a>
   <a class="drawer-link" href="#about" data-close-drawer>About</a>
   <a class="drawer-link" href="#reviews" data-close-drawer>Reviews</a>
+  <a class="drawer-link" href="#faq" data-close-drawer>FAQ</a>
   <a class="drawer-link" href="#book" data-close-drawer>Book</a>
   <a class="drawer-link" href="#contact" data-close-drawer>Contact</a>
-  <a class="drawer-link primary" href="#book" data-close-drawer>Book Diagnostic →</a>
+  <a class="drawer-link primary" href="#book" data-close-drawer>Request a Service Check →</a>
 </div>
 
 <!-- ── HERO ─────────────────────────────────────────────────────────────── -->
@@ -1709,11 +1821,12 @@
             <select id="f-service" class="field-input">
               <option value="">Select a service…</option>
               <option>Diagnostics</option>
-              <option>Oil Change</option>
+              <option>Transmission &amp; Drivetrain</option>
               <option>Brakes</option>
-              <option>A/C &amp; Heating</option>
               <option>Suspension</option>
+              <option>Oil &amp; Maintenance</option>
               <option>Inspection</option>
+              <option>General Repair</option>
               <option>Other</option>
             </select>
           </div>
@@ -1807,6 +1920,101 @@
   </div>
 </section>
 
+<section id="faq" class="section-pad reveal">
+  <div class="wrap">
+    <div class="section-label">Common questions</div>
+    <h2 class="h2" style="margin-bottom: 48px;">FAQ</h2>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Do I need to call ahead or can I just show up?
+          <span class="faq-chevron">↓</span>
+        </button>
+        <div class="faq-a">
+          <p>We recommend submitting a request or calling ahead so we can confirm
+          timing and make sure the right resources are available for your vehicle.
+          Walk-ins are welcome but confirmed requests get priority scheduling.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Does submitting the form confirm my appointment?
+          <span class="faq-chevron">↓</span>
+        </button>
+        <div class="faq-a">
+          <p>No — submitting the form sends us your request. A team member will
+          review it and reach out to confirm the details before anything is set.
+          You won't be locked in until we confirm with you directly.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          How long will my car be at the shop?
+          <span class="faq-chevron">↓</span>
+        </button>
+        <div class="faq-a">
+          <p>It depends on the service. Diagnostics and routine maintenance are
+          typically same-day. Larger repairs involving parts sourcing may take
+          longer — we'll give you a clear timeline before work begins and keep
+          you updated throughout.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Do you work on all makes and models?
+          <span class="faq-chevron">↓</span>
+        </button>
+        <div class="faq-a">
+          <p>Yes — we service most makes and models, domestic and import. If you
+          have a specific vehicle and want to confirm before coming in, call us
+          or mention it in the request form.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          I'm not sure what's wrong with my car. Can you still help?
+          <span class="faq-chevron">↓</span>
+        </button>
+        <div class="faq-a">
+          <p>Yes — that's what diagnostics are for. Describe what the vehicle is
+          doing (noise, warning light, behaviour) and we'll identify the issue and
+          explain what we found before recommending any repair work.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Do you provide estimates before starting work?
+          <span class="faq-chevron">↓</span>
+        </button>
+        <div class="faq-a">
+          <p>Yes. We review the issue, explain what we find, and confirm pricing
+          before any repair work begins. Nothing gets done without your approval first.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          My vehicle isn't safe to drive. What should I do?
+          <span class="faq-chevron">↓</span>
+        </button>
+        <div class="faq-a">
+          <p>Call us directly at <a href="tel:4165621234" style="color:var(--blue);">(416) 562-1234</a>
+          rather than using the form. We can advise on the safest next step — whether
+          that's a tow, a mobile assessment, or coming in at a specific time.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ── FOOTER ─────────────────────────────────────────────────────────────── -->
 <footer id="contact">
   <div class="footer-top">
@@ -1819,8 +2027,8 @@
           <span class="footer-brand-name">Revworks Automotive</span>
         </div>
         <p class="footer-tagline">
-          Honest automotive repair in Mississauga. 15+ years of experience,
-          5,000+ vehicles serviced, and work you can see before you approve it.
+          Honest auto repair in Mississauga. Fair pricing, clear explanations,
+          and fast turnaround — backed by 16 Google reviews and a 5.0 rating.
         </p>
         <div class="footer-socials">
           <a href="#" class="social-btn" aria-label="Instagram">
@@ -1848,6 +2056,7 @@
           <a href="#services">Services</a>
           <a href="#about">About</a>
           <a href="#reviews">Reviews</a>
+          <a href="#faq">FAQ</a>
           <a href="#book">Book Diagnostic</a>
           <a href="#contact">Contact</a>
         </div>
@@ -1881,10 +2090,11 @@
         <div>
           <div class="section-label">Local shop. Easy next step.</div>
           <h2 class="h2" style="font-size: clamp(30px, 4vw, 44px); margin-bottom: 20px;">
-            Ready to sort out the issue?
+            Tell us what's going on. We'll help you understand the next step.
           </h2>
           <p class="footer-cta-sub">
-            Call, request a time, or use directions to find the shop in Mississauga.
+            Call the shop, request a time, or use directions to find us in Mississauga.
+            Customers mention being kept updated and getting clear answers at every step.
             If the vehicle is unsafe to drive, call before bringing it in.
           </p>
           <div class="footer-cta-btns">
@@ -2044,6 +2254,23 @@
 
   // add transition to sticky bar
   stickyBar.style.transition = 'transform 0.25s ease';
+
+  // ── FAQ accordion ──────────────────────────────────────────────────────
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      // close all
+      document.querySelectorAll('.faq-q').forEach(b => {
+        b.setAttribute('aria-expanded', 'false');
+        b.nextElementSibling.classList.remove('open');
+      });
+      // open clicked if it was closed
+      if (!isOpen) {
+        btn.setAttribute('aria-expanded', 'true');
+        btn.nextElementSibling.classList.add('open');
+      }
+    });
+  });
 
 })();
 </script>
