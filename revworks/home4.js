@@ -73,17 +73,21 @@
 
   document.getElementById('form-submit').addEventListener('click', () => {
     const first = document.getElementById('f-first').value.trim();
+    const last  = document.getElementById('f-last').value.trim();
     const phone = document.getElementById('f-phone').value.trim();
     const year  = document.getElementById('f-year').value.trim();
     const make  = document.getElementById('f-make').value.trim();
     const model = document.getElementById('f-model').value.trim();
+    const service = document.getElementById('f-service').value.trim();
     const issue = document.getElementById('f-issue').value.trim();
+    const date = document.getElementById('f-date').value.trim();
+    const time = document.getElementById('f-time').value.trim();
 
-    if (!first || !phone || !year || !make || !model || !issue) {
+    if (!first || !last || !phone || !year || !make || !model || !service || !issue || !date || !time || !driveVal) {
       [
-        ['f-first', first], ['f-phone', phone],
+        ['f-first', first], ['f-last', last], ['f-phone', phone],
         ['f-year', year],   ['f-make', make],
-        ['f-model', model], ['f-issue', issue],
+        ['f-model', model], ['f-service', service], ['f-issue', issue], ['f-date', date], ['f-time', time],
       ].forEach(([id, val]) => {
         const el = document.getElementById(id);
         el.style.borderColor = val ? '' : '#e05555';
