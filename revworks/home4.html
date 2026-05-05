@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Revworks Automotive — Honest Auto Repair in Mississauga</title>
   <meta name="description" content="Honest auto repair in Mississauga. Fair pricing, clear explanations, fast turnaround. Diagnostics, brakes, transmission, maintenance and more. 16 Google reviews, 5.0 rating." />
+  <meta property="og:image" content="./images/hero-garage.jpg" />
+  <meta property="og:title" content="Revworks Automotive — Honest Auto Repair in Mississauga" />
+  <meta property="og:description" content="Fair pricing, clear explanations, fast turnaround. 16 Google reviews, 5.0 rating." />
+  <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -103,7 +107,7 @@
       background-image:
         linear-gradient(rgba(79,142,247,0.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(79,142,247,0.03) 1px, transparent 1px),
-        url('https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=1800&q=80');
+        url('./images/hero-garage.jpg');
       background-size: 60px 60px, 60px 60px, cover;
       background-position: center;
       background-blend-mode: normal, normal, soft-light;
@@ -556,6 +560,34 @@
       font-weight: 300;
     }
 
+    .svc-img-strip {
+      height: 150px;
+      margin: -36px -32px 22px;
+      overflow: hidden;
+      position: relative;
+    }
+    .svc-img-strip img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.6) saturate(0.85);
+      transition: filter 0.3s ease;
+    }
+    .service-card:hover .svc-img-strip img {
+      filter: brightness(0.72) saturate(0.9);
+    }
+    .svc-img-strip::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 48px;
+      background: linear-gradient(transparent, var(--bg2));
+      pointer-events: none;
+    }
+
     /* ── EXAMPLES ───────────────────────────────────────────────────────── */
     .examples-grid {
       display: grid;
@@ -638,6 +670,50 @@
     .about-point:last-child { border-bottom: none; }
     .about-arrow { color: var(--blue); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
     .about-point span { font-size: 15px; line-height: 1.5; }
+
+    .about-photo-wrap {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .about-photo {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      object-position: center 30%;
+      display: block;
+      filter: brightness(0.82) saturate(0.9);
+    }
+    .about-photo-badge {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(7,7,11,0.88));
+      padding: 32px 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .about-photo-badge-line {
+      font-family: var(--fd);
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text);
+    }
+    .about-photo-badge-sub {
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+
+    @media (max-width: 768px) {
+      .about-photo { height: 220px; }
+    }
 
     /* ── REVIEWS ─────────────────────────────────────────────────────────── */
     #reviews {
@@ -1456,6 +1532,11 @@
 
     <div class="services-grid">
       <div class="service-card">
+        <div class="svc-img-strip">
+          <img src="./images/service-diagnostics.jpg"
+               alt="Mechanic using diagnostic scanner"
+               loading="lazy" />
+        </div>
         <div class="svc-icon">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="5" width="22" height="15" rx="2"/><path d="M8 25H20M14 20V25"/><path d="M7.5 14.5l3-4 4 5 3-4 3 2.5"/>
@@ -1467,6 +1548,11 @@
         we find before repair work begins.</p>
       </div>
       <div class="service-card">
+        <div class="svc-img-strip">
+          <img src="./images/service-transmission.jpg"
+               alt="Mechanic working under vehicle"
+               loading="lazy" />
+        </div>
         <div class="svc-icon">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M19.5 4.5a4.5 4.5 0 00-4.08 6.45L6 20.37A2.5 2.5 0 009.63 24l9.37-9.42A4.5 4.5 0 1019.5 4.5z"/><path d="M19.5 6.5l2 2"/>
@@ -1478,6 +1564,11 @@
         updated through the process.</p>
       </div>
       <div class="service-card">
+        <div class="svc-img-strip">
+          <img src="./images/service-brakes.jpg"
+               alt="Mechanic servicing brakes"
+               loading="lazy" />
+        </div>
         <div class="svc-icon">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="14" cy="14" r="11"/><circle cx="14" cy="14" r="4.5"/><path d="M14 3v4M14 21v4M3 14h4M21 14h4"/>
@@ -1591,7 +1682,20 @@
       </div>
 
       <div>
-        <div class="about-panel">
+        <div class="about-photo-wrap">
+          <img
+            src="./images/about-mechanic.jpg"
+            alt="Revworks mechanic inspecting vehicle engine"
+            class="about-photo"
+            loading="lazy"
+          />
+          <div class="about-photo-badge">
+            <span class="about-photo-badge-line">Diagnostics before repair</span>
+            <span class="about-photo-badge-sub">Every vehicle, every time</span>
+          </div>
+        </div>
+
+        <div class="about-panel" style="margin-top: 20px;">
           <div class="about-corner"></div>
           <div class="section-label" style="margin-bottom: 24px;">What customers consistently mention</div>
           <div class="about-point"><span class="about-arrow">→</span><span>Fair pricing on every job</span></div>
