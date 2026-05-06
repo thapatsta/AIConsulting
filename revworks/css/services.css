@@ -33,6 +33,21 @@
 }
 .service-card p { display: none; }
 
+
+.svc-img-strip {
+  width: calc(100% + 32px);
+  margin: -14px -16px 10px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+.svc-img-strip img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 /* service card CTA */
 .svc-cta {
   display: inline-block;
