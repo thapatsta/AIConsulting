@@ -218,4 +218,17 @@ nav.footer-nav-links a:hover { color: var(--text); }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
   .final-cta-btns { flex-direction: column; }
   .final-cta-btns a { text-align: center; justify-content: center; }
+  .footer-nav-links a,
+  nav.footer-nav-links a {
+    display: block;
+    padding: 13px 0;
+  }
+  .footer-socials a,
+  .social-btn {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

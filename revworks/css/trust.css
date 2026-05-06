@@ -97,3 +97,8 @@
 @media (max-width: 900px) {
   .quick-contact-card { flex-direction: column; align-items: flex-start; }
 }
+
+.trust-rating-stars {
+  color: var(--blue);
+  letter-spacing: 0.08em;
+}
