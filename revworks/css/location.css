@@ -8,15 +8,15 @@
 .location-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 64px;
+  gap: 36px;
   align-items: start;
 }
 .location-text {
   font-size: 16px;
   color: var(--muted);
-  line-height: 1.75;
+  line-height: 1.55;
   font-weight: 300;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   max-width: 520px;
 }
 .location-info {
@@ -47,7 +47,7 @@
   font-size: 15px;
   color: var(--text-dim);
 }
-.location-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.location-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
 .location-actions .btn-primary,
 .location-actions .btn-ghost { text-decoration: none; }
 
@@ -60,6 +60,6 @@
 
 /* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .location-grid { grid-template-columns: 1fr; gap: 32px; }
+  .location-grid { grid-template-columns: 1fr; gap: 22px; }
   .location-actions a { width: 100%; text-align: center; justify-content: center; }
 }

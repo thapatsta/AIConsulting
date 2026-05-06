@@ -23,11 +23,11 @@
   gap: 16px;
   background: var(--bg2);
   border: none;
-  padding: 22px 28px;
+  padding: 16px 18px;
   text-align: left;
   font-family: var(--fd);
   font-weight: 700;
-  font-size: 17px;
+  font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--text);
@@ -47,15 +47,15 @@
 
 .faq-a {
   display: none;
-  padding: 0 28px 22px;
+  padding: 0 18px 16px;
   background: var(--bg3);
 }
 .faq-a.open { display: block; }
 .faq-a p {
-  font-size: 15px;
+  font-size: 14px;
   color: var(--muted);
-  line-height: 1.75;
+  line-height: 1.5;
   font-weight: 300;
-  padding-top: 16px;
+  padding-top: 10px;
   border-top: 1px solid var(--border);
 }
