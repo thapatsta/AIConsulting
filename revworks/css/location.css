@@ -41,6 +41,16 @@
   font-size: 18px;
   text-decoration: none;
 }
+
+.compact-support { gap: 36px; }
+.location-info.compact .location-info-item {
+  font-size: 15px;
+  color: var(--text-dim);
+}
+.location-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.location-actions .btn-primary,
+.location-actions .btn-ghost { text-decoration: none; }
+
 .location-map-wrap {
   border: 1px solid var(--border);
   overflow: hidden;
@@ -50,5 +60,6 @@
 
 /* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .location-grid { grid-template-columns: 1fr; gap: 40px; }
+  .location-grid { grid-template-columns: 1fr; gap: 32px; }
+  .location-actions a { width: 100%; text-align: center; justify-content: center; }
 }
