@@ -242,7 +242,7 @@
   <div class="wrap">
 
     <!-- success state (hidden by default) -->
-    <div id="form-success" aria-live="polite" aria-atomic="true">
+    <div id="form-success" hidden aria-hidden="true" aria-live="polite" aria-atomic="true" role="status" tabindex="-1">
       <div class="success-icon" aria-hidden="true">&#10003;</div>
       <h2 class="h2 mb-16">Request Received.</h2>
       <p class="success-text">
@@ -261,7 +261,7 @@
       <div class="section-label">Book</div>
       <h2 class="h2 mb-12">Request an appointment</h2>
       <p class="section-intro">
-        Choose Diagnostics / Not sure if you&rsquo;re unsure.
+        Not sure what service you need? Choose Diagnostics / Not sure and describe what you&rsquo;re noticing.
       </p>
 
       <!-- unsafe-to-drive warning -->
@@ -276,46 +276,51 @@
         <!-- left: form fields -->
         <div class="form-col">
 
-          <div class="form-two-col">
-            <div>
-              <label class="field-label" for="f-first">First Name <span aria-label="required">*</span></label>
-              <input id="f-first" class="field-input" type="text" autocomplete="given-name" required />
+          <fieldset class="form-group">
+            <legend class="form-group-title">Your Info</legend>
+            <div class="form-two-col">
+              <div>
+                <label class="field-label" for="f-first">First Name <span aria-label="required">*</span></label>
+                <input id="f-first" class="field-input" type="text" autocomplete="given-name" required />
+              </div>
+              <div>
+                <label class="field-label" for="f-last">Last Name <span aria-label="required">*</span></label>
+                <input id="f-last" class="field-input" type="text" autocomplete="family-name" required />
+              </div>
+              <div>
+                <label class="field-label" for="f-phone">Phone <span aria-label="required">*</span></label>
+                <input id="f-phone" class="field-input" type="tel" autocomplete="tel" required />
+              </div>
+              <div>
+                <label class="field-label" for="f-email">Email <span class="field-label-optional">(optional)</span></label>
+                <input id="f-email" class="field-input" type="email" autocomplete="email" />
+              </div>
             </div>
-            <div>
-              <label class="field-label" for="f-last">Last Name <span aria-label="required">*</span></label>
-              <input id="f-last" class="field-input" type="text" autocomplete="family-name" required />
-            </div>
-          </div>
+          </fieldset>
 
-          <div class="form-two-col">
-            <div>
-              <label class="field-label" for="f-phone">Phone <span aria-label="required">*</span></label>
-              <input id="f-phone" class="field-input" type="tel" autocomplete="tel" required />
+          <fieldset class="form-group">
+            <legend class="form-group-title">Vehicle Info</legend>
+            <div class="form-three-col">
+              <div>
+                <label class="field-label" for="f-year">Year <span aria-label="required">*</span></label>
+                <input id="f-year" class="field-input" type="text" placeholder="2018" required />
+              </div>
+              <div>
+                <label class="field-label" for="f-make">Make <span aria-label="required">*</span></label>
+                <input id="f-make" class="field-input" type="text" placeholder="Honda" required />
+              </div>
+              <div>
+                <label class="field-label" for="f-model">Model <span aria-label="required">*</span></label>
+                <input id="f-model" class="field-input" type="text" placeholder="Civic" required />
+              </div>
             </div>
-            <div>
-              <label class="field-label" for="f-email">Email <span class="field-label-optional">(optional)</span></label>
-              <input id="f-email" class="field-input" type="email" autocomplete="email" />
-            </div>
-          </div>
+          </fieldset>
 
-          <div class="form-three-col">
+          <fieldset class="form-group">
+            <legend class="form-group-title">What&rsquo;s Happening</legend>
             <div>
-              <label class="field-label" for="f-year">Year <span aria-label="required">*</span></label>
-              <input id="f-year" class="field-input" type="text" placeholder="2018" required />
-            </div>
-            <div>
-              <label class="field-label" for="f-make">Make <span aria-label="required">*</span></label>
-              <input id="f-make" class="field-input" type="text" placeholder="Honda" required />
-            </div>
-            <div>
-              <label class="field-label" for="f-model">Model <span aria-label="required">*</span></label>
-              <input id="f-model" class="field-input" type="text" placeholder="Civic" required />
-            </div>
-          </div>
-
-          <div>
-            <label class="field-label" for="f-service">Service Needed <span aria-label="required">*</span></label>
-            <select id="f-service" class="field-input" required>
+              <label class="field-label" for="f-service">Service Needed <span aria-label="required">*</span></label>
+              <select id="f-service" class="field-input" required>
               <option value="">Select a service&hellip;</option>
               <option value="Diagnostics / Not sure">Diagnostics / Not sure</option>
               <option value="Oil Change">Oil Change</option>
@@ -325,44 +330,46 @@
               <option value="Inspection">Inspection</option>
               <option value="General Repair">General Repair</option>
               <option value="Other">Other</option>
-            </select>
-          </div>
-
-          <div>
-            <label class="field-label" for="f-issue">Describe the Issue <span aria-label="required">*</span></label>
-            <textarea id="f-issue" class="field-input"
-              placeholder="What is the vehicle doing? When does it happen?"
-              aria-describedby="f-issue-hint" required></textarea>
-            <p id="f-issue-hint" class="field-hint">
-              Example: whining noise when accelerating, brake vibration, check engine light, leaking fluid, A/C not cold.
-            </p>
-          </div>
-
-          <div class="form-two-col">
-            <div>
-              <label class="field-label" for="f-date">Preferred Day <span aria-label="required">*</span></label>
-              <input id="f-date" class="field-input" type="date" required />
-            </div>
-            <div>
-              <label class="field-label" for="f-time">Time Window <span aria-label="required">*</span></label>
-              <select id="f-time" class="field-input" required>
-                <option value="">Select&hellip;</option>
-                <option>Morning</option>
-                <option>Midday</option>
-                <option>Afternoon</option>
-                <option>Flexible</option>
               </select>
             </div>
-          </div>
-
-          <div>
-            <label class="field-label" id="drive-label">Is the Vehicle Safe to Drive? <span aria-label="required">*</span></label>
-            <div class="drive-toggle" role="group" aria-labelledby="drive-label">
-              <button type="button" class="drive-btn" data-val="Yes">Yes</button>
-              <button type="button" class="drive-btn" data-val="No">No</button>
-              <button type="button" class="drive-btn" data-val="Unsure">Unsure</button>
+            <div>
+              <label class="field-label" for="f-issue">Describe the Issue <span aria-label="required">*</span></label>
+              <textarea id="f-issue" class="field-input"
+                placeholder="What is the vehicle doing? When does it happen?"
+                aria-describedby="f-issue-hint" required></textarea>
+              <p id="f-issue-hint" class="field-hint">
+                Example: whining noise when accelerating, brake vibration, check engine light, leaking fluid, A/C not cold.
+              </p>
             </div>
-          </div>
+            <div>
+              <label class="field-label" id="drive-label">Is the Vehicle Safe to Drive? <span aria-label="required">*</span></label>
+              <div class="drive-toggle" role="group" aria-labelledby="drive-label">
+                <button type="button" class="drive-btn" data-val="Yes">Yes</button>
+                <button type="button" class="drive-btn" data-val="No">No</button>
+                <button type="button" class="drive-btn" data-val="Unsure">Unsure</button>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <legend class="form-group-title">Preferred Timing</legend>
+            <div class="form-two-col">
+              <div>
+                <label class="field-label" for="f-date">Preferred Day <span aria-label="required">*</span></label>
+                <input id="f-date" class="field-input" type="date" required />
+              </div>
+              <div>
+                <label class="field-label" for="f-time">Preferred Time Window <span aria-label="required">*</span></label>
+                <select id="f-time" class="field-input" required>
+                  <option value="">Select&hellip;</option>
+                  <option>Morning</option>
+                  <option>Midday</option>
+                  <option>Afternoon</option>
+                  <option>Flexible</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
 
           <div class="form-note">
             <strong>Note:</strong> Submitting this request does <strong>not</strong> confirm your appointment.
