@@ -27,51 +27,51 @@
 
   const ISSUE_CARDS = [
     {
-      title: 'Car making a noise',
-      desc: 'Whining, grinding, clunking, rattling, or humming sounds while driving or turning.',
-      service: 'Diagnostics / Not sure', analytics: 'revworks_issue_noise_click', cta: 'Start with a diagnostic',
-      icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5"/><path d="M17.5 3.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 7.5-7.5z"/></svg>',
-    },
-    {
       title: 'Warning light is on',
-      desc: 'Check engine light, battery light, oil light, ABS, or other dashboard warnings.',
-      service: 'Diagnostics / Not sure', analytics: 'revworks_issue_warning_light_click', cta: 'Check the warning light',
+      desc: 'Check engine, ABS, battery, or oil light.',
+      service: 'Diagnostics / Not sure', analytics: 'revworks_issue_warning_light_click', cta: 'Warning light',
       icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>',
     },
     {
-      title: 'Brakes feel off',
-      desc: 'Squeaking, shaking, soft pedal, grinding, or longer stopping distance.',
-      service: 'Brakes', analytics: 'revworks_issue_brakes_click', cta: 'Inspect my brakes',
+      title: 'Brake noise',
+      desc: 'Squealing, scraping, or grinding when braking.',
+      service: 'Brakes', analytics: 'revworks_issue_brakes_click', cta: 'Brake noise',
       icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>',
     },
     {
-      title: 'Car shaking or pulling',
-      desc: 'Vibration, pulling to one side, rough ride, or steering feel changes.',
-      service: 'Suspension', analytics: 'revworks_issue_shaking_click', cta: 'Check steering/suspension',
+      title: 'Vibration',
+      desc: 'Shaking in the wheel, seat, or pedal.',
+      service: 'Suspension', analytics: 'revworks_issue_shaking_click', cta: 'Vibration',
       icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>',
     },
     {
-      title: 'A/C or heat not working',
-      desc: 'A/C not cold, heat not warm, weak airflow, or unusual cabin smells.',
-      service: 'A/C & Heating', analytics: 'revworks_issue_ac_heat_click', cta: 'Fix A/C or heat',
-      icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>',
-    },
-    {
-      title: 'Leak under the car',
-      desc: 'Oil, coolant, transmission fluid, or unknown fluid showing under the vehicle.',
-      service: 'Diagnostics / Not sure', analytics: 'revworks_issue_leak_click', cta: 'Find the leak',
+      title: 'Fluid leak',
+      desc: 'Spots or drips under the car.',
+      service: 'Diagnostics / Not sure', analytics: 'revworks_issue_leak_click', cta: 'Fluid leak',
       icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>',
     },
     {
-      title: 'Due for maintenance',
-      desc: 'Oil change, filters, spark plugs, fluids, belts, or seasonal maintenance.',
-      service: 'Oil Change', analytics: 'revworks_issue_maintenance_click', cta: 'Book maintenance',
-      icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+      title: 'Whining or grinding noise',
+      desc: 'Noise while accelerating, turning, or idling.',
+      service: 'Diagnostics / Not sure', analytics: 'revworks_issue_noise_click', cta: 'Whining or grinding',
+      icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5"/><path d="M17.5 3.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 7.5-7.5z"/></svg>',
+    },
+    {
+      title: 'AC not cold',
+      desc: 'Weak cooling or warm air from vents.',
+      service: 'A/C & Heating', analytics: 'revworks_issue_ac_heat_click', cta: 'AC not cold',
+      icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>',
+    },
+    {
+      title: 'Car won’t start',
+      desc: 'No crank, slow crank, or clicking.',
+      service: 'Diagnostics / Not sure', analytics: 'revworks_issue_no_start_click', cta: 'Car won’t start',
+      icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/><circle cx="12" cy="12" r="10"/></svg>',
     },
     {
       title: 'Not sure what’s wrong',
-      desc: 'Describe what you’re feeling, hearing, seeing, or smelling. We’ll help from there.',
-      service: 'Diagnostics / Not sure', analytics: 'revworks_issue_unsure_click', cta: 'Help me figure it out',
+      desc: 'We can start with diagnostics.',
+      service: 'Diagnostics / Not sure', analytics: 'revworks_issue_unsure_click', cta: 'Not sure / diagnostics',
       highlighted: true,
       icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
     },
@@ -87,7 +87,7 @@
       icon: '<svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="22" height="15" rx="2"/><path d="M8 25H20M14 20V25"/><path d="M7.5 14.5l3-4 4 5 3-4 3 2.5"/></svg>',
     },
     {
-      heading: 'Oil Changes',
+      heading: 'Oil changes',
       desc: 'Routine oil and filter maintenance.',
       img: null,
       service: 'Oil Change', analytics: 'revworks_service_oil_change_click', cta: 'Book oil change',
@@ -116,14 +116,7 @@
       icon: '<svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 4.5a4.5 4.5 0 00-4.08 6.45L6 20.37A2.5 2.5 0 009.63 24l9.37-9.42A4.5 4.5 0 1019.5 4.5z"/><path d="M19.5 6.5l2 2"/></svg>',
     },
     {
-      heading: 'Inspections',
-      desc: 'Pre-purchase and safety-focused inspections.',
-      img: null,
-      service: 'Inspection', analytics: 'revworks_service_inspection_click', cta: 'Request inspection',
-      icon: '<svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="16" height="22" rx="2"/><path d="M10 3v3h8V3"/><path d="M10 15l3 3 6-6"/></svg>',
-    },
-    {
-      heading: 'General Repairs',
+      heading: 'General repair',
       desc: 'Common repair and replacement work.',
       img: null,
       service: 'General Repair', analytics: 'revworks_service_general_repairs_click', cta: 'Request repair',
@@ -151,7 +144,7 @@
   }
 
   function renderIssueCards() {
-    const grid = document.querySelector('#panel-symptom .issues-grid');
+    const grid = document.querySelector('#services .issues-grid');
     if (!grid) return;
     grid.innerHTML = ISSUE_CARDS.map(c => {
       const cardClass = c.highlighted ? 'issue-card issue-card-highlight' : 'issue-card';
@@ -167,7 +160,7 @@
   }
 
   function renderServiceCards() {
-    const grid = document.querySelector('#panel-service .services-grid');
+    const grid = document.querySelector('#services .services-grid');
     if (!grid) return;
     grid.innerHTML = SERVICE_CARDS.map(c => {
       const imgStrip = c.img
@@ -252,9 +245,13 @@
     window.scrollTo({ top, behavior: 'smooth' });
     if (serviceValue) {
       const select = document.getElementById('f-service');
+      const issueInput = document.getElementById('f-issue');
       if (select) {
         const match = Array.from(select.options).find(o => o.value === serviceValue);
         if (match) select.value = serviceValue;
+      }
+      if (issueInput && !issueInput.value.trim()) {
+        issueInput.placeholder = `Tell us more about: ${serviceValue.toLowerCase()}.`;
       }
     }
   }
@@ -370,41 +367,6 @@
   } else {
     revealElements.forEach((el) => el.classList.add('visible'));
   }
-
-  // ── tab navigation ────────────────────────────────────────────────────────
-  const tabs   = Array.from(document.querySelectorAll('[role="tab"]'));
-  const panels = document.querySelectorAll('[role="tabpanel"]');
-
-  function activateTab(tab) {
-    tabs.forEach(t => {
-      t.setAttribute('aria-selected', 'false');
-      t.setAttribute('tabindex', '-1');
-    });
-    panels.forEach(p => p.setAttribute('hidden', ''));
-    tab.setAttribute('aria-selected', 'true');
-    tab.removeAttribute('tabindex');
-    const panel = document.getElementById(tab.getAttribute('aria-controls'));
-    if (panel) panel.removeAttribute('hidden');
-  }
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => activateTab(tab));
-    tab.addEventListener('keydown', (e) => {
-      const idx = tabs.indexOf(tab);
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-        e.preventDefault();
-        const next = tabs[(idx + 1) % tabs.length];
-        activateTab(next); next.focus();
-      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        const prev = tabs[(idx - 1 + tabs.length) % tabs.length];
-        activateTab(prev); prev.focus();
-      } else if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        activateTab(tab);
-      }
-    });
-  });
 
   // ── FAQ accordion ─────────────────────────────────────────────────────────
   document.querySelectorAll('.faq-q').forEach(btn => {
