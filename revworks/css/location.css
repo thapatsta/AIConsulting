@@ -1,0 +1,54 @@
+/* ── LOCATION ─────────────────────────────────────────────────────────────── */
+#location {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  position: relative;
+  z-index: 1;
+}
+.location-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.location-text {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.75;
+  font-weight: 300;
+  margin-bottom: 20px;
+  max-width: 520px;
+}
+.location-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.location-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.location-info-item svg { color: var(--blue); flex-shrink: 0; margin-top: 1px; }
+.location-addr { font-style: normal; line-height: 1.5; }
+.location-phone {
+  color: var(--blue);
+  font-family: var(--fd);
+  font-weight: 700;
+  font-size: 18px;
+  text-decoration: none;
+}
+.location-map-wrap {
+  border: 1px solid var(--border);
+  overflow: hidden;
+  border-radius: 4px;
+  line-height: 0;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .location-grid { grid-template-columns: 1fr; gap: 40px; }
+}
