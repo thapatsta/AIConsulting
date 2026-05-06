@@ -12,24 +12,16 @@
   // ── data ──────────────────────────────────────────────────────────────────
   const REVIEWS = [
     {
-      name: 'Dillon', avatar: 'avatar-1', featured: true,
+      name: 'Dillon M.', featured: true,
       text: 'Brought my car in because it had a whining noise. They diagnosed it as the transmission and helped source a good quality replacement at a reasonable price. The turnaround time for the install was quick and they kept me updated throughout the process.'
     },
     {
-      name: 'Arpit', avatar: 'avatar-2', featured: true,
+      name: 'Arpit S.', featured: true,
       text: 'Great service, fair pricing, and they got my car back on the road quickly — highly recommend!'
     },
     {
-      name: 'Patrick', avatar: 'avatar-3', featured: true,
+      name: 'Patrick D.', featured: true,
       text: 'The team was great, they took their time with reviewing my Honda Ridgeline’s engine noise and then explaining it.'
-    },
-    {
-      name: 'Aesha', avatar: 'avatar-5', featured: false,
-      text: 'Best in the business!!'
-    },
-    {
-      name: 'Sehaj', avatar: 'avatar-6', featured: false,
-      text: 'Best place to get any services done to your vehicle. The team is exceptional and know what they are doing.'
     },
   ];
 
@@ -144,19 +136,15 @@
     const grid = document.getElementById('reviews-grid');
     if (!grid) return;
     grid.innerHTML = REVIEWS.map(r => {
-      const initial = r.name[0];
       const starsClass = r.featured ? 'rcard-stars' : 'rcard-stars stars-small';
       const cardClass  = r.featured ? 'rcard rcard-featured' : 'rcard';
       return `
         <article class="${cardClass}" role="listitem" aria-label="Review by ${r.name}, 5 stars">
+          <div class="rcard-name">${r.name}</div>
           <div class="${starsClass}" aria-label="5 out of 5 stars"><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
           <p class="rcard-text">“${r.text}”</p>
           <footer class="rcard-footer">
-            <div class="rcard-avatar ${r.avatar}" aria-hidden="true">${initial}</div>
-            <div>
-              <div class="rcard-name">${r.name}</div>
-              <div class="rcard-source">&#9733;&#9733;&#9733;&#9733;&#9733; &middot; Google Review</div>
-            </div>
+            <div class="rcard-source">Google review</div>
           </footer>
         </article>`;
     }).join('');
