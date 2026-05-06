@@ -3,7 +3,6 @@
 
   // ── constants ─────────────────────────────────────────────────────────────
   const MOBILE_BREAKPOINT     = 768;
-  const SCROLL_HIDE_THRESHOLD = 180;
   const SCROLL_OFFSET         = 80;
   const REVEAL_THRESHOLD      = 0.1;
   const ERROR_BORDER_COLOR    = 'var(--color-error)';
@@ -335,23 +334,25 @@
     el.addEventListener('input', () => { el.style.borderColor = ''; });
   });
 
-  // ── sticky bar: hide on scroll down (mobile) ──────────────────────────────
+  // ── sticky bar: keep visible on mobile, hide while typing in form fields ──
   const stickyBar = document.getElementById('sticky-bar');
-  stickyBar.style.transition = 'transform 0.25s ease';
-  let prevY = window.scrollY;
+  if (stickyBar) {
+    stickyBar.style.transition = 'transform 0.25s ease';
 
-  let _scrollTimer;
-  function handleScroll() {
-    if (window.innerWidth > MOBILE_BREAKPOINT) return;
-    const y = window.scrollY;
-    stickyBar.style.transform = (y > prevY && y > SCROLL_HIDE_THRESHOLD) ? 'translateY(100%)' : '';
-    prevY = y;
+    function shouldHideStickyForInput(target) {
+      if (window.innerWidth >= MOBILE_BREAKPOINT) return false;
+      if (!target) return false;
+      return target.matches('input, textarea, select');
+    }
+
+    document.addEventListener('focusin', (event) => {
+      stickyBar.classList.toggle('is-hidden', shouldHideStickyForInput(event.target));
+    });
+
+    document.addEventListener('focusout', () => {
+      stickyBar.classList.remove('is-hidden');
+    });
   }
-
-  window.addEventListener('scroll', function () {
-    clearTimeout(_scrollTimer);
-    _scrollTimer = setTimeout(handleScroll, 10);
-  }, { passive: true });
 
   // ── reveal on scroll ──────────────────────────────────────────────────────
   const revealElements = Array.from(document.querySelectorAll('.reveal'));
