@@ -21,6 +21,7 @@
   display: flex; align-items: center; justify-content: center;
   font-family: var(--fm);
   font-size: 11px;
+  min-height: 44px;
   color: var(--blue);
 }
 .footer-brand-name {
@@ -78,6 +79,7 @@
   text-decoration: none;
   font-family: var(--fm);
   font-size: 11px;
+  min-height: 44px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   transition: color 0.2s;
@@ -88,6 +90,7 @@ nav.footer-nav-links { display: flex; flex-direction: column; gap: 12px; }
 nav.footer-nav-links a {
   font-family: var(--fm);
   font-size: 11px;
+  min-height: 44px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
@@ -145,6 +148,7 @@ nav.footer-nav-links a:hover { color: var(--text); }
 .footer-bottom-links { display: flex; gap: 24px; }
 .footer-bottom-links a {
   font-size: 11px;
+  min-height: 44px;
   color: var(--muted);
   text-decoration: none;
   font-family: var(--fm);
@@ -163,6 +167,10 @@ nav.footer-nav-links a:hover { color: var(--text); }
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1px;
   background: var(--border);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+#sticky-bar.is-hidden {
+  transform: translateY(calc(100% + env(safe-area-inset-bottom, 0px)));
 }
 .sticky-bar-btn {
   display: flex;
@@ -173,11 +181,12 @@ nav.footer-nav-links a:hover { color: var(--text); }
   font-family: var(--fm);
   font-weight: 700;
   font-size: 11px;
+  min-height: 44px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text);
   text-decoration: none;
-  padding: 16px 8px;
+  padding: 14px 8px;
   transition: background 0.2s;
 }
 .sticky-bar-btn.primary:active { background: var(--blue); color: #fff; }
@@ -206,11 +215,11 @@ nav.footer-nav-links a:hover { color: var(--text); }
 }
 
 /* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
-@media (min-width: 769px) {
+@media (min-width: 768px) {
   #sticky-bar { display: none !important; }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   #sticky-bar { display: grid; }
   .footer-top { padding: 40px 20px; }
   .footer-top-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -234,6 +243,8 @@ nav.footer-nav-links a:hover { color: var(--text); }
 }
 
 
-@media (max-width: 768px) {
-  body { padding-bottom: 60px; }
+@media (max-width: 767px) {
+  body {
+    padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+  }
 }
