@@ -208,6 +208,21 @@
 .hero-trust-link:hover .hero-trust-label { color: var(--blue-lite); }
 .hero-trust-link:hover .hero-trust-stars { opacity: 0.85; }
 
+
+.hero-trust-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.hero-card {
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  padding: 12px;
+}
+.hero-card h3 { font-family: var(--fd); font-size: 14px; text-transform: uppercase; margin-bottom: 6px; }
+.hero-card p { color: var(--muted); font-size: 13px; line-height: 1.45; }
+
 /* hero microcopy */
 .hero-microcopy {
   font-family: var(--fm);
@@ -281,6 +296,7 @@
   .hero-stats { grid-template-columns: 1fr 1fr; gap: 24px; }
   .stat-item { padding: 0; }
   .hero-trust-row { gap: 16px 24px; }
+  .hero-trust-cards { grid-template-columns: 1fr; }
   .hero-actions { display: none; }
   .hero-title { font-size: 48px; line-height: 0.92; }
   .hero-h1-outline { display: none; }
