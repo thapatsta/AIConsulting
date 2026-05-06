@@ -175,30 +175,18 @@
 <section id="services" class="section-pad reveal">
   <div class="wrap">
     <div class="section-label">Services</div>
-    <h2 class="h2 mb-16">Find your fix.</h2>
+    <h2 class="h2 mb-16">Tell us what you&rsquo;re noticing.</h2>
     <p class="section-intro">
-      Start with what you&rsquo;re noticing. Not sure what service you need? Start with Diagnostics.
+      You don&rsquo;t need to know the exact repair. Start with the symptom and we&rsquo;ll help confirm the next step.
     </p>
 
-    <div class="tabs-nav" role="tablist" aria-label="Browse by symptom or service">
-      <button class="tab-btn" role="tab" id="tab-symptom"
-              aria-selected="true" aria-controls="panel-symptom">By symptom</button>
-      <button class="tab-btn" role="tab" id="tab-service"
-              aria-selected="false" aria-controls="panel-service" tabindex="-1">By service</button>
+    <div class="issues-grid" aria-label="Symptom options">
+      <!-- populated by home4.js ISSUE_CARDS array -->
     </div>
 
-    <!-- By symptom panel -->
-    <div id="panel-symptom" role="tabpanel" aria-labelledby="tab-symptom" class="tab-panel">
-      <div class="issues-grid">
-        <!-- populated by home4.js ISSUE_CARDS array -->
-      </div>
-    </div>
-
-    <!-- By service panel -->
-    <div id="panel-service" role="tabpanel" aria-labelledby="tab-service" class="tab-panel" hidden>
-      <div class="services-grid">
-        <!-- populated by home4.js SERVICE_CARDS array -->
-      </div>
+    <h3 class="services-subhead">Or choose a service</h3>
+    <div class="services-grid services-grid-compact" aria-label="Service options">
+      <!-- populated by home4.js SERVICE_CARDS array -->
     </div>
   </div>
 </section>
@@ -273,7 +261,7 @@
       <div class="section-label">Book</div>
       <h2 class="h2 mb-12">Request an appointment</h2>
       <p class="section-intro">
-        Not sure what service you need? Choose Diagnostics and describe what you&rsquo;re noticing.
+        Choose Diagnostics / Not sure if you&rsquo;re unsure.
       </p>
 
       <!-- unsafe-to-drive warning -->
