@@ -132,11 +132,35 @@
 
 /* ── HERO LAYOUT ─────────────────────────────────────────────────────────── */
 .hero-layout {
-  max-width: 720px;
+  max-width: 1160px;
   margin: 0 auto;
   width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+  gap: 32px;
+  align-items: start;
 }
 .hero-content { max-width: none; }
+.hero-side-visual {
+  margin-top: 10px;
+  border: 1px solid var(--border2);
+  background: #0f1118;
+}
+.hero-side-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.hero-side-caption {
+  font-family: var(--fm);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 10px 12px;
+  border-top: 1px solid var(--border);
+}
 
 /* eyebrow override (single-line variant) */
 .hero-eyebrow {
@@ -251,6 +275,7 @@
 /* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   #hero { padding: 100px 20px 64px; }
+  .hero-layout { grid-template-columns: 1fr; max-width: 720px; gap: 24px; }
   .hero-eyebrow { letter-spacing: 0.14em; }
   .quick-actions { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
   .hero-stats { grid-template-columns: 1fr 1fr; gap: 24px; }
@@ -259,6 +284,7 @@
   .hero-actions { display: none; }
   .hero-title { font-size: 48px; line-height: 0.92; }
   .hero-h1-outline { display: none; }
+  .hero-side-visual { order: 2; }
 }
 
 @media (max-width: 600px) {

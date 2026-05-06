@@ -5,7 +5,7 @@
   const MOBILE_BREAKPOINT     = 768;
   const SCROLL_HIDE_THRESHOLD = 180;
   const SCROLL_OFFSET         = 80;
-  const REVEAL_THRESHOLD      = 0.08;
+  const REVEAL_THRESHOLD      = 0.1;
   const ERROR_BORDER_COLOR    = 'var(--color-error)';
   const REQUIRED_FIELDS = ['f-first','f-last','f-phone','f-year','f-make','f-model','f-service','f-issue','f-date','f-time'];
 
@@ -362,13 +362,25 @@
   }, { passive: true });
 
   // ── reveal on scroll ──────────────────────────────────────────────────────
+  const revealElements = Array.from(document.querySelectorAll('.reveal'));
   if ('IntersectionObserver' in window) {
     const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: REVEAL_THRESHOLD });
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: '0px 0px -50px 0px',
+      threshold: REVEAL_THRESHOLD,
+    });
+    revealElements.forEach((el) => obs.observe(el));
+    window.setTimeout(() => {
+      revealElements.forEach((el) => el.classList.add('visible'));
+    }, 1500);
   } else {
-    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    revealElements.forEach((el) => el.classList.add('visible'));
   }
 
   // ── tab navigation ────────────────────────────────────────────────────────
