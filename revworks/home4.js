@@ -288,15 +288,22 @@
 
     if (!valid) return;
 
-    document.getElementById('form-body').style.display = 'none';
-    document.getElementById('form-success').style.display = 'block';
+    const formBody = document.getElementById('form-body');
+    const success = document.getElementById('form-success');
+    formBody.style.display = 'none';
+    success.hidden = false;
+    success.setAttribute('aria-hidden', 'false');
+    success.focus();
     const top = document.getElementById('booking').offsetTop - SCROLL_OFFSET;
     window.scrollTo({ top, behavior: 'smooth' });
   });
 
   document.getElementById('form-reset').addEventListener('click', () => {
-    document.getElementById('form-body').style.display = 'block';
-    document.getElementById('form-success').style.display = 'none';
+    const formBody = document.getElementById('form-body');
+    const success = document.getElementById('form-success');
+    formBody.style.display = 'block';
+    success.hidden = true;
+    success.setAttribute('aria-hidden', 'true');
     REQUIRED_FIELDS.forEach(id => {
       const el = document.getElementById(id);
       el.value = '';
