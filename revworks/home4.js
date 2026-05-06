@@ -235,6 +235,27 @@
     el.addEventListener('click', closeDrawer)
   );
 
+  // ── defensive internal anchor scrolling ───────────────────────────────────
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (event) => {
+      const targetId = anchor.getAttribute('href');
+      if (!targetId || targetId === '#') return;
+
+      const target = document.querySelector(targetId);
+      if (!target) return;
+
+      event.preventDefault();
+
+      if (drawer.classList.contains('open')) closeDrawer();
+
+      const nav = document.getElementById('nav');
+      const offset = nav ? nav.offsetHeight + 12 : SCROLL_OFFSET;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+      history.replaceState(null, '', targetId);
+    });
+  });
+
   // ── service CTA: scroll to booking + preselect ────────────────────────────
   function scrollToBookingWithService(serviceValue) {
     const section = document.getElementById('booking');

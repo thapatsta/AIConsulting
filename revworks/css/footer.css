@@ -44,6 +44,16 @@
 }
 .social-btn:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
 
+.social-btn-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.social-btn-disabled:hover {
+  background: var(--bg3);
+  border-color: var(--border);
+  color: var(--muted);
+}
+
 .footer-nav-title {
   font-family: var(--fm);
   font-size: 10px;
