@@ -1,0 +1,18 @@
+/* ── home4.css — import hub ──────────────────────────────────────────────── */
+/* Edit individual section files in css/ for targeted changes.               */
+/* Add --color-error and all custom properties in css/base.css               */
+
+@import "css/base.css";
+@import "css/layout.css";
+@import "css/buttons.css";
+@import "css/nav.css";
+@import "css/hero.css";
+@import "css/trust.css";
+@import "css/services.css";
+@import "css/reviews.css";
+@import "css/process.css";
+@import "css/booking.css";
+@import "css/gallery.css";
+@import "css/location.css";
+@import "css/faq.css";
+@import "css/footer.css";

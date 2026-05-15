@@ -1,0 +1,115 @@
+/* ── LAYOUT HELPERS ──────────────────────────────────────────────────────── */
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+.section-pad { padding: 96px 0; }
+section { position: relative; z-index: 1; }
+
+.section-label {
+  font-family: var(--fm);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: var(--blue);
+  flex-shrink: 0;
+}
+
+/* ── TYPOGRAPHY ──────────────────────────────────────────────────────────── */
+.h1 {
+  font-family: var(--fd);
+  font-weight: 900;
+  font-size: clamp(64px, 9vw, 112px);
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+.h2 {
+  font-family: var(--fd);
+  font-weight: 800;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+.h3 {
+  font-family: var(--fd);
+  font-weight: 700;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ── UTILITIES ───────────────────────────────────────────────────────────── */
+.hero-title   { margin-bottom: 32px; }
+.mb-8         { margin-bottom: 8px; }
+.mb-12        { margin-bottom: 12px; }
+.mb-16        { margin-bottom: 16px; }
+.mb-20        { margin-bottom: 20px; }
+.mb-24        { margin-bottom: 24px; }
+.mb-28        { margin-bottom: 28px; }
+.mb-48        { margin-bottom: 48px; }
+.mt-20        { margin-top: 20px; }
+.mt-40        { margin-top: 40px; }
+.muted        { color: var(--muted); }
+.link-blue    { color: var(--blue); }
+.stars-small  { font-size: 14px; }
+.col-gap-20   { display: flex; flex-direction: column; gap: 20px; }
+.hours-label  { display: block; margin-bottom: 12px; }
+.section-intro { color: var(--muted); font-size: 16px; max-width: 480px; margin-bottom: 48px; font-weight: 300; }
+.footer-cta-title { font-size: clamp(30px, 4vw, 44px); margin-bottom: 20px; }
+.map-frame { border: 0; display: block; filter: grayscale(1) invert(0.85) contrast(0.9) hue-rotate(185deg); }
+
+/* ── ACCESSIBILITY ───────────────────────────────────────────────────────── */
+button, .btn-primary, .btn-ghost, .sticky-bar-btn, .faq-q, .nav-hamburger {
+  min-height: 44px;
+}
+:focus-visible {
+  outline: 2px solid var(--blue-lite);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+button:focus-visible, a:focus-visible { outline-offset: 3px; }
+
+/* ── SKIP LINK ───────────────────────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--bg);
+  color: var(--text);
+  padding: 12px 16px;
+  z-index: 9999;
+  border: 2px solid var(--blue-lite);
+  border-radius: 4px;
+  font-family: var(--fm);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.skip-link:focus { left: 16px; top: 16px; }
+
+/* ── REVEAL ANIMATION ────────────────────────────────────────────────────── */
+.reveal { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
+  .reveal.visible { opacity: 1; transform: none; }
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .wrap { padding: 0 20px; }
+  .section-pad { padding-block: 64px; }
+}
