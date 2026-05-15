@@ -1,0 +1,104 @@
+/* ── TRUST BAR (legacy grid style) ──────────────────────────────────────── */
+#trust {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  z-index: 1;
+}
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 32px;
+  padding: 56px 0;
+}
+.trust-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.trust-accent {
+  width: 2px; height: 36px;
+  background: var(--blue);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+.trust-label {
+  font-family: var(--fd);
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 3px;
+}
+.trust-sub { font-size: 13px; color: var(--muted); }
+
+/* ── TRUST BADGES (current 4-badge strip) ────────────────────────────────── */
+.trust-badges {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  padding: 40px 0;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.trust-badge {
+  background: var(--bg2);
+  padding: 24px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s;
+}
+.trust-badge:hover { background: var(--bg3); }
+.trust-badge-icon { color: var(--blue); }
+.trust-badge-icon svg { display: block; }
+.trust-badge-label {
+  font-family: var(--fd);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  line-height: 1.3;
+}
+.trust-badge-desc { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+/* ── QUICK CONTACT CARD ──────────────────────────────────────────────────── */
+#quick-contact { background: var(--bg); border-bottom: 1px solid var(--border); }
+.quick-contact-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: center;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  padding: 18px 20px;
+}
+.quick-contact-title { font-family: var(--fd); text-transform: uppercase; font-size: 24px; margin-bottom: 4px; }
+.quick-contact-text { color: var(--muted); font-size: 14px; }
+.quick-contact-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+/* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .trust-grid { grid-template-columns: 1fr; padding: 40px 0; }
+  .trust-badges { grid-template-columns: repeat(2, 1fr); padding: 0; }
+  .quick-contact-actions { width: 100%; }
+  .quick-contact-actions a { flex: 1 1 auto; text-align: center; justify-content: center; }
+}
+
+@media (max-width: 600px) {
+  .trust-badges { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 900px) {
+  .quick-contact-card { flex-direction: column; align-items: flex-start; }
+}
+
+.trust-rating-stars {
+  color: var(--blue);
+  letter-spacing: 0.08em;
+}

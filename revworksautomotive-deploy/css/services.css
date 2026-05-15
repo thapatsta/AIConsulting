@@ -1,0 +1,170 @@
+/* ── SERVICES ─────────────────────────────────────────────────────────────── */
+#services { background: var(--bg); position: relative; z-index: 1; }
+
+.services-subhead {
+  margin: 20px 0 12px;
+  font-family: var(--fm);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.service-card {
+  background: var(--bg2);
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  min-height: 44px;
+}
+.svc-icon { color: var(--blue); margin-bottom: 8px; }
+.svc-icon svg { display: block; }
+.service-card h3 {
+  font-family: var(--fd);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0;
+}
+.service-card p { display: none; }
+
+
+.svc-img-strip {
+  width: calc(100% + 32px);
+  margin: -14px -16px 10px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+.svc-img-strip img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* service card CTA */
+.svc-cta {
+  display: inline-block;
+  margin-top: 8px;
+  font-family: var(--fm);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue);
+  text-decoration: none;
+  padding: 10px 0;
+  border-top: 1px solid var(--border);
+  width: 100%;
+  transition: color 0.2s;
+}
+.svc-cta:hover { color: var(--blue-lite); }
+
+/* ── EXAMPLES (legacy) ───────────────────────────────────────────────────── */
+.examples-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+.example-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--blue);
+  padding: 32px 28px;
+  border-radius: 2px;
+}
+.example-theme {
+  font-family: var(--fm);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 14px;
+}
+.example-title {
+  font-family: var(--fd);
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+}
+.example-text { font-size: 14px; color: var(--muted); line-height: 1.7; font-weight: 300; }
+
+/* ── ISSUES SECTION ──────────────────────────────────────────────────────── */
+#issues {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  position: relative;
+  z-index: 1;
+}
+.issues-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.issue-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 44px;
+  gap: 6px;
+  transition: background 0.2s, border-color 0.2s;
+}
+.issue-card:hover { background: var(--bg3); border-color: var(--border2); }
+.issue-card-highlight { border-top: 2px solid var(--blue); }
+.issue-icon { display: none; }
+.issue-icon svg { display: block; }
+.issue-title {
+  font-family: var(--fd);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+.issue-desc { font-size: 12px; color: var(--muted); line-height: 1.35; font-weight: 300; flex: 1; }
+.issue-cta {
+  display: inline-block;
+  margin-top: auto;
+  font-family: var(--fm);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue);
+  text-decoration: none;
+  padding-top: 0;
+  border-top: 0;
+  transition: color 0.2s;
+}
+.issue-cta:hover { color: var(--blue-lite); }
+
+/* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .issues-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1100px) {
+  .issues-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .examples-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .issues-grid { grid-template-columns: repeat(2, 1fr); }
+}

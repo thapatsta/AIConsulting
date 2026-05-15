@@ -1,0 +1,62 @@
+/* ── BUTTON BASE ─────────────────────────────────────────────────────────── */
+/* Shared base for .btn-primary, .btn-ghost, and new .btn modifier classes   */
+.btn,
+.btn-primary,
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--fm);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
+}
+
+/* ── PRIMARY ─────────────────────────────────────────────────────────────── */
+.btn--primary,
+.btn-primary {
+  background: var(--blue);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+}
+.btn--primary:hover,
+.btn-primary:hover { background: var(--blue-lite); transform: translateY(-1px); }
+
+/* ── GHOST ───────────────────────────────────────────────────────────────── */
+.btn--ghost,
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  font-weight: 500;
+  border: 1px solid var(--border);
+  padding: 13px 27px;
+}
+.btn--ghost:hover,
+.btn-ghost:hover { border-color: var(--blue); color: var(--blue); }
+
+/* ── TEXT LINK ───────────────────────────────────────────────────────────── */
+.btn--text,
+.btn-text-link {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--fm);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue);
+  text-decoration: none;
+  padding: 13px 4px;
+  transition: color 0.2s;
+}
+.btn--text:hover,
+.btn-text-link:hover { color: var(--blue-lite); }
+
+/* ── UTILITY MODIFIERS ───────────────────────────────────────────────────── */
+.btn-submit { width: 100%; justify-content: center; font-size: 14px; padding: 18px; }
+.btn-review { white-space: nowrap; font-size: 11px; }
